@@ -18,17 +18,31 @@ class Bab0 extends PGBase {
   late String op0;
   late String op1;
   late String op2;
+  late int answer;
+
+  int activeDifficulty = 0;
 
   String qFormat0() {
+    activeDifficulty = 0;
     return "Hasil dari $a $op0 ${b < 0 ? "($b)" : "$b"}  = ...";
   }
 
   String qFormat1() {
+    activeDifficulty = 1;
     return "Hasil dari $a $op0 ${b < 0 ? "($b)" : "$b"} $op1 ${c < 0 ? "($c)" : "$c"} = ...";
   }
 
   String qFormat2() {
+    activeDifficulty = 2;
     return "Hasil dari $a $op0 ${b < 0 ? "($b)" : "$b"} $op1 ${c < 0 ? "($c)" : "$c"} $op2 ${d < 0 ? "($d)" : "$d"} = ...";
+  }
+
+  int randomNum(int min, int max) {
+    int num;
+    do {
+      num = Random().nextInt(max - min) + min;
+    } while (num == 0);
+    return num;
   }
 
   String setQFormat(int difficulty) {
@@ -45,28 +59,56 @@ class Bab0 extends PGBase {
   }
 
   @override
-  void setAnswer(int n) {
-    // TODO: implement setAnswer
+  void setAnswer() {
+    int calculate(int x, int y, String op) => op == "+" ? x + y : x - y;
+
+    switch (activeDifficulty) {
+      case 0:
+        answer = calculate(a, b, op0);
+        break;
+      case 1:
+        answer = calculate(calculate(a, b, op0), c, op1);
+        break;
+      case 2:
+        answer = calculate(calculate(calculate(a, b, op0), c, op1), d, op2);
+        break;
+      default:
+        answer = 0;
+        break;
+    }
   }
 
   @override
   void setQuestion(int subBab) {
     switch (subBab) {
+      // Penjumlahan dan pengurangan
       case 0:
-        a = Random().nextInt(40) - 20 + 1;
+        a = randomNum(-10, 10);
         op0 = Random().nextBool() ? "+" : "-";
-        b = Random().nextInt(20) - 10 + 1;
+        b = randomNum(-20, 20);
         op1 = Random().nextBool() ? "+" : "-";
-        c = Random().nextInt(50) - 25 + 1;
+        c = randomNum(-40, 40);
         op2 = Random().nextBool() ? "+" : "-";
-        d = Random().nextInt(20) - 10 + 1;
+        d = randomNum(-10, 10);
 
         question = setQFormat(Random().nextInt(3));
         break;
+
+      // Perkalian dan pembagian
       case 1:
+        a = randomNum(-10, 10);
+        op0 = Random().nextBool() ? "+" : "-";
+        b = randomNum(-20, 20);
+        op1 = Random().nextBool() ? "+" : "-";
+        c = randomNum(-40, 40);
+
+        question = setQFormat(Random().nextInt(2));
         break;
+
+      // FPB dan KPK
       case 2:
         break;
+
       default:
         question = "Soal belum tersedia";
         break;
