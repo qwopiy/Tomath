@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dart_eval/dart_eval.dart';
 import 'package:tomath/soal/problems_generator_kls7/problems_generator_base.dart';
 
 class Bab0 extends PGBase {
@@ -11,41 +12,23 @@ class Bab0 extends PGBase {
   * SubBab 1 : Perkalian dan Pembagian
   * SubBab 2 : FPB dan KPK
   */
-  late int a;
-  late int b;
-  late int c;
-  late int d;
-  late String op0;
-  late String op1;
-  late String op2;
-  late int answer;
-
-  int activeDifficulty = 0;
 
   String qFormat0() {
     activeDifficulty = 0;
-    return "Hasil dari $a $op0 ${b < 0 ? "($b)" : "$b"}  = ...";
+    return "$num0 $op0 ${num1 < 0 ? "($num1)" : "$num1"}";
   }
 
   String qFormat1() {
     activeDifficulty = 1;
-    return "Hasil dari $a $op0 ${b < 0 ? "($b)" : "$b"} $op1 ${c < 0 ? "($c)" : "$c"} = ...";
+    return "$num0 $op0 ${num1 < 0 ? "($num1)" : "$num1"} $op1 ${num2 < 0 ? "($num2)" : "$num2"}";
   }
 
   String qFormat2() {
     activeDifficulty = 2;
-    return "Hasil dari $a $op0 ${b < 0 ? "($b)" : "$b"} $op1 ${c < 0 ? "($c)" : "$c"} $op2 ${d < 0 ? "($d)" : "$d"} = ...";
+    return "$num0 $op0 ${num1 < 0 ? "($num1)" : "$num1"} $op1 ${num2 < 0 ? "($num2)" : "$num2"} $op2 ${num3 < 0 ? "($num3)" : "$num3"}";
   }
 
-  int randomNum(int min, int max) {
-    int num;
-    do {
-      num = Random().nextInt(max - min) + min;
-    } while (num == 0);
-    return num;
-  }
-
-  String setQFormat(int difficulty) {
+  String setQDifficulty(int difficulty) {
     switch (difficulty) {
       case 0:
         return qFormat0();
@@ -58,24 +41,39 @@ class Bab0 extends PGBase {
     }
   }
 
-  @override
-  void setAnswer() {
-    int calculate(int x, int y, String op) => op == "+" ? x + y : x - y;
+  void setChoices(int currentSubBab) {
+    int correctAnswer = Random().nextInt(4);
+    for (int i = 0; i < 4; i++){
+      choices[i] = randomNum((-50 - currentSubBab * 100), (50 + currentSubBab * 100), true);
+    }
 
-    switch (activeDifficulty) {
+    choices[correctAnswer] = answer;
+  }
+
+  @override
+  void setAnswer(int subBab) {
+    switch (subBab) {
+      // Penjumlahan dan pengurangan
       case 0:
-        answer = calculate(a, b, op0);
+        // WARNING: Using eval can be dangerous if the input is not controlled. Make sure to sanitize inputs in production code.
+        // kata si copilot
+        answer = eval(question);
         break;
+
+      // Perkalian dan pembagian
       case 1:
-        answer = calculate(calculate(a, b, op0), c, op1);
+        answer = eval(question).toInt();
         break;
+
+      // FPB dan KPK
       case 2:
-        answer = calculate(calculate(calculate(a, b, op0), c, op1), d, op2);
         break;
+
       default:
         answer = 0;
         break;
     }
+    setChoices(subBab);
   }
 
   @override
@@ -83,26 +81,50 @@ class Bab0 extends PGBase {
     switch (subBab) {
       // Penjumlahan dan pengurangan
       case 0:
-        a = randomNum(-10, 10);
+        num0 = randomNum(-10, 10);
         op0 = Random().nextBool() ? "+" : "-";
-        b = randomNum(-20, 20);
+        num1 = randomNum(-20, 20);
         op1 = Random().nextBool() ? "+" : "-";
-        c = randomNum(-40, 40);
+        num2 = randomNum(-40, 40);
         op2 = Random().nextBool() ? "+" : "-";
-        d = randomNum(-10, 10);
+        num3 = randomNum(-10, 10);
 
-        question = setQFormat(Random().nextInt(3));
+        question = setQDifficulty(Random().nextInt(3));
+        setAnswer(subBab);
         break;
 
       // Perkalian dan pembagian
       case 1:
-        a = randomNum(-10, 10);
-        op0 = Random().nextBool() ? "+" : "-";
-        b = randomNum(-20, 20);
-        op1 = Random().nextBool() ? "+" : "-";
-        c = randomNum(-40, 40);
+        op0 = Random().nextBool() ? "*" : "/";
+        op1 = Random().nextBool() ? "*" : "/";
+        print("DEBUG: op0=$op0, op1=$op1");
 
-        question = setQFormat(Random().nextInt(2));
+        if (op0 == "*" && op1 == "*") {
+          num0 = randomNum(-10, 10);
+          num1 = randomNum(-10, 10);
+          num2 = randomNum(-5, 5);
+        } else if (op0 == "*" && op1 == "/") {
+          num0 = randomNum(-10, 10);
+          num1 = randomNum(-10, 10);
+          int temp = num0 * num1;
+          List<int> factors = getAllFactors(temp);
+          num2 = factors[Random().nextInt(factors.length)];
+        } else if (op0 == "/" && op1 == "*") {
+          num1 = randomNum(-10, 10);
+          num2 = randomNum(-5, 5);
+          num0 = num1 * randomNum(-10, 10);
+        } else {
+          num0 = randomNum(-100, 100);
+          List<int> factors = getAllFactors(num0);
+          num1 = factors[Random().nextInt(factors.length)];
+          factors = getAllFactors(num1);
+          num2 = factors[Random().nextInt(factors.length)];
+        }
+
+        print("DEBUG: num0=$num0, num1=$num1, num2=$num2");
+        question = setQDifficulty(Random().nextInt(2));
+        print("DEBUG: $question");
+        setAnswer(subBab);
         break;
 
       // FPB dan KPK
