@@ -28,6 +28,14 @@ class Bab0 extends PGBase {
     return "$num0 $op0 ${num1 < 0 ? "($num1)" : "$num1"} $op1 ${num2 < 0 ? "($num2)" : "$num2"} $op2 ${num3 < 0 ? "($num3)" : "$num3"}";
   }
 
+  String qFormatFPB() {
+    return "FPB dari $num0 dan $num1 adalah";
+  }
+
+  String qFormatKPK() {
+    return "KPK dari $num0 dan $num1 adalah";
+  }
+
   String setQDifficulty(int difficulty) {
     switch (difficulty) {
       case 0:
@@ -41,17 +49,36 @@ class Bab0 extends PGBase {
     }
   }
 
+  String setQFormat(bool isFPB) {
+    if (isFPB) {
+      return qFormatFPB();
+    }
+    return qFormatKPK();
+  }
+
   void setChoices(int currentSubBab) {
     int correctAnswer = Random().nextInt(4);
-    for (int i = 0; i < 4; i++){
-      choices[i] = randomNum((-50 - currentSubBab * 100), (50 + currentSubBab * 100), true);
+    switch (currentSubBab) {
+      case 0:
+      case 1:
+        for (int i = 0; i < 4; i++){
+          choices[i] = randomNum((-50 - currentSubBab * 100), (50 + currentSubBab * 100), true);
+        }
+        break;
+      case 2:
+        for (int i = 0; i < 4; i++){
+          choices[i] = randomNum(0, 30, true);
+        }
+        break;
+      default:
+        print("eror choises");
     }
 
     choices[correctAnswer] = answer;
   }
 
   @override
-  void setAnswer(int subBab) {
+  void setAnswer(int subBab, [bool? isFPB]) {
     switch (subBab) {
       // Penjumlahan dan pengurangan
       case 0:
@@ -67,6 +94,11 @@ class Bab0 extends PGBase {
 
       // FPB dan KPK
       case 2:
+        bool useFPB = isFPB ?? true;
+        if (useFPB)
+          answer = FPB(num0, num1);
+        else
+          answer = KPK(num0, num1);
         break;
 
       default:
@@ -97,7 +129,7 @@ class Bab0 extends PGBase {
       case 1:
         op0 = Random().nextBool() ? "*" : "/";
         op1 = Random().nextBool() ? "*" : "/";
-        print("DEBUG: op0=$op0, op1=$op1");
+        // print("DEBUG: op0=$op0, op1=$op1");
 
         if (op0 == "*" && op1 == "*") {
           num0 = randomNum(-10, 10);
@@ -121,14 +153,24 @@ class Bab0 extends PGBase {
           num2 = factors[Random().nextInt(factors.length)];
         }
 
-        print("DEBUG: num0=$num0, num1=$num1, num2=$num2");
         question = setQDifficulty(Random().nextInt(2));
-        print("DEBUG: $question");
+        // print("DEBUG: num0=$num0, num1=$num1, num2=$num2");
+        // print("DEBUG: $question");
         setAnswer(subBab);
         break;
 
       // FPB dan KPK
       case 2:
+        bool isFPB = Random().nextBool();
+        num0 = randomNumEven(1, 200);
+        num1 = randomNumEven(1, 200);
+
+        question = setQFormat(isFPB);
+        setAnswer(subBab);
+
+        print("num0 = $num0");
+        print("num1 = $num1");
+        print("answer = $answer");
         break;
 
       default:

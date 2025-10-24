@@ -20,12 +20,19 @@ abstract class PGBase {
 
   int activeDifficulty = 0;
 
-  // inclusive min, inclusive max
-  int randomNum(int min, int max, [bool? includeZero]) {
+  int randomNum(int inclusiveMin, int inclusiveMax, [bool? includeZero]) {
     int num;
     do {
-      num = Random().nextInt(max + 1 - min) + min;
+      num = Random().nextInt(inclusiveMax + 1 - inclusiveMin) + inclusiveMin;
     } while (num == 0 && includeZero == false);
+    return num;
+  }
+
+  int randomNumEven(int inclusiveMin, int inclusiveMax) {
+    int num;
+    do {
+      num = Random().nextInt(inclusiveMax + 1 - inclusiveMin) + inclusiveMin;
+    } while (num % 2 == 1);
     return num;
   }
 
@@ -39,6 +46,14 @@ abstract class PGBase {
       }
     }
     return factors;
+  }
+
+  int FPB(int a, int b) {
+    return a.gcd(b);
+  }
+
+  int KPK(int a, int b) {
+    return ((a.abs() * b.abs()) / a.gcd(b)).toInt();
   }
 
   void setQuestion(int subBab);
