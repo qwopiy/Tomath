@@ -1,0 +1,1558 @@
+[
+  {
+    "id": 101,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari (-3) + 7 adalah ...",
+    "opsi": ["-10", "4", "10", "-4"],
+    "jawaban": "4",
+    "pembahasan": "Karena -3 + 7 = 4."
+  },
+  {
+    "id": 102,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari 8 - (-5) adalah ...",
+    "opsi": ["3", "13", "-3", "-13"],
+    "jawaban": "13",
+    "pembahasan": "8 - (-5) = 8 + 5 = 13."
+  },
+  {
+    "id": 103,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari (-9) + (-6) adalah ...",
+    "opsi": ["15", "-15", "3", "-3"],
+    "jawaban": "-15",
+    "pembahasan": "Menjumlahkan dua bilangan negatif menghasilkan -15."
+  },
+  {
+    "id": 104,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari 12 + (-8) adalah ...",
+    "opsi": ["20", "4", "-4", "-20"],
+    "jawaban": "4",
+    "pembahasan": "12 + (-8) = 12 - 8 = 4."
+  },
+  {
+    "id": 105,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari (-10) - (-4) adalah ...",
+    "opsi": ["-14", "-6", "6", "14"],
+    "jawaban": "-6",
+    "pembahasan": "(-10) - (-4) = (-10) + 4 = -6."
+  },
+  {
+    "id": 106,
+    "bab": "Bilangan Bulat",
+    "soal": "Nilai dari 7 × (-3) adalah ...",
+    "opsi": ["-21", "21", "10", "-10"],
+    "jawaban": "-21",
+    "pembahasan": "Bilangan positif dikali negatif menghasilkan negatif: 7 × (-3) = -21."
+  },
+  {
+    "id": 107,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari (-5) × (-6) adalah ...",
+    "opsi": ["-30", "30", "-11", "11"],
+    "jawaban": "30",
+    "pembahasan": "Negatif × negatif = positif, jadi hasilnya 30."
+  },
+  {
+    "id": 108,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari 48 ÷ (-6) adalah ...",
+    "opsi": ["-8", "8", "-6", "6"],
+    "jawaban": "-8",
+    "pembahasan": "Positif ÷ negatif = negatif, jadi hasilnya -8."
+  },
+  {
+    "id": 109,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari (-36) ÷ 9 adalah ...",
+    "opsi": ["-4", "-3", "3", "4"],
+    "jawaban": "-4",
+    "pembahasan": "Negatif ÷ positif = negatif, hasilnya -4."
+  },
+  {
+    "id": 110,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari (-2)³ adalah ...",
+    "opsi": ["8", "-8", "4", "-4"],
+    "jawaban": "-8",
+    "pembahasan": "(-2)³ = (-2) × (-2) × (-2) = -8."
+  },
+  {
+    "id": 111,
+    "bab": "Bilangan Bulat",
+    "soal": "Urutan bilangan dari yang terkecil adalah: -3, 5, -7, 0",
+    "opsi": ["-7, -3, 0, 5", "5, 0, -3, -7", "-3, -7, 0, 5", "0, -3, -7, 5"],
+    "jawaban": "-7, -3, 0, 5",
+    "pembahasan": "Bilangan negatif lebih kecil dari nol, jadi urutannya -7, -3, 0, 5."
+  },
+  {
+    "id": 112,
+    "bab": "Bilangan Bulat",
+    "soal": "Nilai mutlak dari -15 adalah ...",
+    "opsi": ["-15", "0", "15", "1"],
+    "jawaban": "15",
+    "pembahasan": "Nilai mutlak menghilangkan tanda negatif, jadi hasilnya 15."
+  },
+  {
+    "id": 113,
+    "bab": "Bilangan Bulat",
+    "soal": "Nilai mutlak dari 0 adalah ...",
+    "opsi": ["0", "1", "-1", "10"],
+    "jawaban": "0",
+    "pembahasan": "Nilai mutlak dari nol adalah nol."
+  },
+  {
+    "id": 114,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari (-12) + 9 adalah ...",
+    "opsi": ["-3", "3", "21", "-21"],
+    "jawaban": "-3",
+    "pembahasan": "(-12) + 9 = -3."
+  },
+  {
+    "id": 115,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari 15 - 27 adalah ...",
+    "opsi": ["-12", "12", "42", "-42"],
+    "jawaban": "-12",
+    "pembahasan": "15 - 27 = -12."
+  },
+  {
+    "id": 116,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari (-4) × 9 adalah ...",
+    "opsi": ["-36", "36", "-13", "13"],
+    "jawaban": "-36",
+    "pembahasan": "Negatif × positif = negatif, jadi hasilnya -36."
+  },
+  {
+    "id": 117,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari 0 × (-7) adalah ...",
+    "opsi": ["0", "7", "-7", "1"],
+    "jawaban": "0",
+    "pembahasan": "Setiap bilangan dikalikan nol hasilnya nol."
+  },
+  {
+    "id": 118,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari (-20) ÷ (-5) adalah ...",
+    "opsi": ["-4", "4", "5", "-5"],
+    "jawaban": "4",
+    "pembahasan": "Negatif ÷ negatif = positif, jadi hasilnya 4."
+  },
+  {
+    "id": 119,
+    "bab": "Bilangan Bulat",
+    "soal": "Selisih antara -9 dan 4 adalah ...",
+    "opsi": ["5", "13", "-13", "-5"],
+    "jawaban": "13",
+    "pembahasan": "Selisih berarti nilai mutlak dari (-9 - 4) = |-13| = 13."
+  },
+  {
+    "id": 120,
+    "bab": "Bilangan Bulat",
+    "soal": "Hasil dari (-7)² adalah ...",
+    "opsi": ["-49", "49", "14", "-14"],
+    "jawaban": "49",
+    "pembahasan": "Kuadrat dari bilangan negatif menghasilkan positif: (-7)² = 49."
+  },
+  {
+    "id": 121,
+    "bab": "Bilangan Bulat (KPK dan FPB)",
+    "soal": "Faktor persekutuan terbesar (FPB) dari 18 dan 24 adalah ...",
+    "opsi": ["6", "8", "12", "4"],
+    "jawaban": "6",
+    "pembahasan": "Faktor 18 = {1,2,3,6,9,18}, faktor 24 = {1,2,3,4,6,8,12,24}. FPB = 6."
+  },
+  {
+    "id": 122,
+    "bab": "Bilangan Bulat (KPK dan FPB)",
+    "soal": "Kelipatan persekutuan terkecil (KPK) dari 4 dan 6 adalah ...",
+    "opsi": ["8", "10", "12", "24"],
+    "jawaban": "12",
+    "pembahasan": "Kelipatan 4: 4,8,12,16,... Kelipatan 6: 6,12,18,... KPK = 12."
+  },
+  {
+    "id": 123,
+    "bab": "Bilangan Bulat (KPK dan FPB)",
+    "soal": "FPB dari 42 dan 63 adalah ...",
+    "opsi": ["7", "14", "21", "9"],
+    "jawaban": "21",
+    "pembahasan": "Faktor 42 = {1,2,3,6,7,14,21,42}, faktor 63 = {1,3,7,9,21,63}, FPB = 21."
+  },
+  {
+    "id": 124,
+    "bab": "Bilangan Bulat (KPK dan FPB)",
+    "soal": "KPK dari 8 dan 12 adalah ...",
+    "opsi": ["16", "20", "24", "36"],
+    "jawaban": "24",
+    "pembahasan": "Kelipatan 8: 8,16,24,... dan 12: 12,24,36,... KPK = 24."
+  },
+  {
+    "id": 125,
+    "bab": "Bilangan Bulat (KPK dan FPB)",
+    "soal": "FPB dari 45 dan 60 adalah ...",
+    "opsi": ["5", "10", "15", "20"],
+    "jawaban": "15",
+    "pembahasan": "45 = 3² × 5, 60 = 2² × 3 × 5, FPB = 3 × 5 = 15."
+  },
+  {
+    "id": 126,
+    "bab": "Bilangan Bulat (KPK dan FPB)",
+    "soal": "KPK dari 9 dan 15 adalah ...",
+    "opsi": ["30", "45", "60", "90"],
+    "jawaban": "45",
+    "pembahasan": "9 = 3², 15 = 3 × 5, maka KPK = 3² × 5 = 45."
+  },
+  {
+    "id": 127,
+    "bab": "Bilangan Bulat (KPK dan FPB)",
+    "soal": "Dua bilangan adalah 18 dan 30. KPK dari kedua bilangan tersebut adalah ...",
+    "opsi": ["60", "90", "120", "150"],
+    "jawaban": "90",
+    "pembahasan": "18 = 2 × 3², 30 = 2 × 3 × 5, KPK = 2 × 3² × 5 = 90."
+  },
+  {
+    "id": 128,
+    "bab": "Bilangan Bulat (KPK dan FPB)",
+    "soal": "FPB dari 72 dan 108 adalah ...",
+    "opsi": ["12", "18", "24", "36"],
+    "jawaban": "36",
+    "pembahasan": "72 = 2³ × 3², 108 = 2² × 3³, FPB = 2² × 3² = 36."
+  },
+  {
+    "id": 129,
+    "bab": "Bilangan Bulat (KPK dan FPB)",
+    "soal": "KPK dari 5, 6, dan 8 adalah ...",
+    "opsi": ["30", "40", "60", "120"],
+    "jawaban": "120",
+    "pembahasan": "KPK(5,6,8) = 2³ × 3 × 5 = 120."
+  },
+  {
+    "id": 130,
+    "bab": "Bilangan Bulat (KPK dan FPB)",
+    "soal": "Diketahui dua bilangan memiliki FPB = 4 dan KPK = 48. Jika salah satu bilangan adalah 12, maka bilangan lainnya adalah ...",
+    "opsi": ["8", "12", "16", "24"],
+    "jawaban": "16",
+    "pembahasan": "Gunakan rumus a × b = FPB × KPK → 12 × b = 4 × 48 → b = 16."
+  },
+  {
+    "id": 201,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari 3/4 + 1/2 adalah ...",
+    "opsi": ["5/4", "3/8", "1/4", "7/8"],
+    "jawaban": "5/4",
+    "pembahasan": "3/4 + 1/2 = 3/4 + 2/4 = 5/4."
+  },
+  {
+    "id": 202,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari 5/6 - 1/3 adalah ...",
+    "opsi": ["4/6", "1/2", "3/6", "2/3"],
+    "jawaban": "1/2",
+    "pembahasan": "1/3 = 2/6, jadi 5/6 - 2/6 = 3/6 = 1/2."
+  },
+  {
+    "id": 203,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari 2/5 × 3/4 adalah ...",
+    "opsi": ["6/20", "3/10", "5/8", "8/15"],
+    "jawaban": "3/10",
+    "pembahasan": "2/5 × 3/4 = 6/20 = 3/10."
+  },
+  {
+    "id": 204,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari 3/7 ÷ 2/5 adalah ...",
+    "opsi": ["15/14", "14/15", "5/9", "9/5"],
+    "jawaban": "15/14",
+    "pembahasan": "3/7 ÷ 2/5 = 3/7 × 5/2 = 15/14."
+  },
+  {
+    "id": 205,
+    "bab": "Bilangan Rasional",
+    "soal": "Bilangan 0,75 dalam bentuk pecahan adalah ...",
+    "opsi": ["3/4", "7/10", "1/2", "2/3"],
+    "jawaban": "3/4",
+    "pembahasan": "0,75 = 75/100 = 3/4."
+  },
+  {
+    "id": 206,
+    "bab": "Bilangan Rasional",
+    "soal": "Bilangan 1/8 dalam bentuk desimal adalah ...",
+    "opsi": ["0,25", "0,125", "0,5", "0,75"],
+    "jawaban": "0,125",
+    "pembahasan": "1 ÷ 8 = 0,125."
+  },
+  {
+    "id": 207,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari (-2/3) + (5/6) adalah ...",
+    "opsi": ["1/2", "-1/2", "1/6", "-1/6"],
+    "jawaban": "1/6",
+    "pembahasan": "-2/3 = -4/6, jadi -4/6 + 5/6 = 1/6."
+  },
+  {
+    "id": 208,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari (-3/4) × (-2/5) adalah ...",
+    "opsi": ["6/20", "3/10", "6/15", "8/15"],
+    "jawaban": "3/10",
+    "pembahasan": "Negatif × negatif = positif, 3×2=6 dan 4×5=20 → 6/20=3/10."
+  },
+  {
+    "id": 209,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari (-5/9) ÷ (1/3) adalah ...",
+    "opsi": ["-15/9", "-5/3", "5/27", "-3/5"],
+    "jawaban": "-5/3",
+    "pembahasan": "(-5/9) ÷ (1/3) = (-5/9) × 3/1 = -15/9 = -5/3."
+  },
+  {
+    "id": 210,
+    "bab": "Bilangan Rasional",
+    "soal": "Bilangan manakah yang termasuk bilangan rasional?",
+    "opsi": ["√2", "π", "1/5", "√3"],
+    "jawaban": "1/5",
+    "pembahasan": "Bilangan rasional dapat dinyatakan sebagai a/b, 1/5 termasuk rasional."
+  },
+  {
+    "id": 211,
+    "bab": "Bilangan Rasional",
+    "soal": "Nilai dari 2 1/4 dalam bentuk pecahan biasa adalah ...",
+    "opsi": ["9/4", "8/4", "7/4", "10/4"],
+    "jawaban": "9/4",
+    "pembahasan": "2 1/4 = (2×4 + 1)/4 = 9/4."
+  },
+  {
+    "id": 212,
+    "bab": "Bilangan Rasional",
+    "soal": "Nilai dari 1,2 + 0,35 adalah ...",
+    "opsi": ["1,55", "1,45", "1,25", "1,65"],
+    "jawaban": "1,55",
+    "pembahasan": "1,2 + 0,35 = 1,55."
+  },
+  {
+    "id": 213,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari 7/8 - 1/2 adalah ...",
+    "opsi": ["3/8", "1/4", "5/8", "1/8"],
+    "jawaban": "3/8",
+    "pembahasan": "1/2 = 4/8, jadi 7/8 - 4/8 = 3/8."
+  },
+  {
+    "id": 214,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari 1,25 × 0,4 adalah ...",
+    "opsi": ["0,45", "0,5", "0,25", "0,6"],
+    "jawaban": "0,5",
+    "pembahasan": "1,25 × 0,4 = 0,5."
+  },
+  {
+    "id": 215,
+    "bab": "Bilangan Rasional",
+    "soal": "Urutan dari yang terkecil adalah 0,2; 1/4; 0,15; 2/5",
+    "opsi": ["0,15; 0,2; 1/4; 2/5", "2/5; 1/4; 0,15; 0,2", "1/4; 0,15; 0,2; 2/5", "0,2; 0,15; 2/5; 1/4"],
+    "jawaban": "0,15; 0,2; 1/4; 2/5",
+    "pembahasan": "Konversi ke desimal: 0,15; 0,2; 0,25; 0,4 → urut dari kecil ke besar."
+  },
+  {
+    "id": 216,
+    "bab": "Bilangan Rasional",
+    "soal": "Bilangan manakah yang sama nilainya dengan 0,6?",
+    "opsi": ["3/5", "2/3", "1/2", "5/8"],
+    "jawaban": "3/5",
+    "pembahasan": "0,6 = 6/10 = 3/5."
+  },
+  {
+    "id": 217,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari (-0,8) + 0,3 adalah ...",
+    "opsi": ["-0,5", "0,5", "-1,1", "1,1"],
+    "jawaban": "-0,5",
+    "pembahasan": "-0,8 + 0,3 = -0,5."
+  },
+  {
+    "id": 218,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari 0,2 ÷ 0,5 adalah ...",
+    "opsi": ["0,4", "0,2", "2,5", "0,5"],
+    "jawaban": "0,4",
+    "pembahasan": "0,2 ÷ 0,5 = 0,4."
+  },
+  {
+    "id": 219,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari (-3/5) + (-2/5) adalah ...",
+    "opsi": ["-5/5", "-1/5", "1/5", "5/5"],
+    "jawaban": "-5/5",
+    "pembahasan": "-3/5 + (-2/5) = -5/5 = -1."
+  },
+  {
+    "id": 220,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari 7/10 × (-5/7) adalah ...",
+    "opsi": ["-1/2", "-5/10", "-5/14", "-1/1"],
+    "jawaban": "-1/2",
+    "pembahasan": "7/10 × (-5/7) = -35/70 = -1/2."
+  },
+  {
+    "id": 221,
+    "bab": "Bilangan Rasional",
+    "soal": "Bilangan 2/3 termasuk bilangan ...",
+    "opsi": ["rasional", "irasional", "bulat", "cacah"],
+    "jawaban": "rasional",
+    "pembahasan": "2/3 dapat ditulis dalam bentuk a/b, jadi rasional."
+  },
+  {
+    "id": 222,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari 1/2 + 2/3 + 3/4 adalah ...",
+    "opsi": ["23/12", "19/12", "25/12", "17/12"],
+    "jawaban": "23/12",
+    "pembahasan": "KPK penyebut 12 → 6/12 + 8/12 + 9/12 = 23/12."
+  },
+  {
+    "id": 223,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari (-1,5) - (-0,75) adalah ...",
+    "opsi": ["-2,25", "-0,75", "-1,25", "-0,5"],
+    "jawaban": "-0,75",
+    "pembahasan": "-1,5 - (-0,75) = -1,5 + 0,75 = -0,75."
+  },
+  {
+    "id": 224,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari (-0,4) × (-0,5) adalah ...",
+    "opsi": ["0,2", "-0,2", "0,25", "-0,25"],
+    "jawaban": "0,2",
+    "pembahasan": "Negatif × negatif = positif → 0,4 × 0,5 = 0,2."
+  },
+  {
+    "id": 225,
+    "bab": "Bilangan Rasional",
+    "soal": "Urutan dari yang terbesar: 2/3, 3/4, 5/8",
+    "opsi": ["3/4, 2/3, 5/8", "5/8, 2/3, 3/4", "2/3, 3/4, 5/8", "2/3, 5/8, 3/4"],
+    "jawaban": "3/4, 2/3, 5/8",
+    "pembahasan": "Konversi desimal: 0,75; 0,67; 0,625 → urut terbesar ke terkecil."
+  },
+  {
+    "id": 226,
+    "bab": "Bilangan Rasional",
+    "soal": "Jika x = 1/2 dan y = 3/4, maka x + y adalah ...",
+    "opsi": ["1", "1 1/4", "1 1/2", "1/4"],
+    "jawaban": "1 1/4",
+    "pembahasan": "1/2 + 3/4 = 2/4 + 3/4 = 5/4 = 1 1/4."
+  },
+  {
+    "id": 227,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari 2,4 ÷ 0,6 adalah ...",
+    "opsi": ["4", "6", "2", "3"],
+    "jawaban": "4",
+    "pembahasan": "2,4 ÷ 0,6 = 4."
+  },
+  {
+    "id": 228,
+    "bab": "Bilangan Rasional",
+    "soal": "Bilangan 0,333... setara dengan ...",
+    "opsi": ["1/3", "1/2", "2/3", "3/4"],
+    "jawaban": "1/3",
+    "pembahasan": "0,333... = 1/3."
+  },
+  {
+    "id": 229,
+    "bab": "Bilangan Rasional",
+    "soal": "Bilangan 0,125 termasuk bilangan ...",
+    "opsi": ["rasional", "bulat", "cacah", "irasional"],
+    "jawaban": "rasional",
+    "pembahasan": "0,125 = 1/8, dapat ditulis sebagai a/b → bilangan rasional."
+  },
+  {
+    "id": 230,
+    "bab": "Bilangan Rasional",
+    "soal": "Hasil dari (-3/4) + 1/2 - 1/4 adalah ...",
+    "opsi": ["-1/2", "0", "1/4", "-1/4"],
+    "jawaban": "-1/2",
+    "pembahasan": "-3/4 + 1/2 - 1/4 = -3/4 + 2/4 - 1/4 = -2/4 = -1/2."
+  },
+  {
+    "id": 301,
+    "bab": "Rasio",
+    "soal": "Bentuk sederhana dari rasio 12 : 18 adalah ...",
+    "opsi": ["2 : 3", "3 : 2", "4 : 5", "6 : 8"],
+    "jawaban": "2 : 3",
+    "pembahasan": "FPB dari 12 dan 18 adalah 6, sehingga 12 : 18 = 2 : 3."
+  },
+  {
+    "id": 302,
+    "bab": "Rasio",
+    "soal": "Rasio antara 25 cm dan 1 meter adalah ...",
+    "opsi": ["1 : 4", "4 : 1", "25 : 100", "10 : 1"],
+    "jawaban": "1 : 4",
+    "pembahasan": "1 meter = 100 cm, jadi 25 : 100 = 1 : 4."
+  },
+  {
+    "id": 303,
+    "bab": "Rasio",
+    "soal": "Rasio antara 2 jam dan 30 menit adalah ...",
+    "opsi": ["2 : 1", "4 : 1", "1 : 4", "3 : 1"],
+    "jawaban": "4 : 1",
+    "pembahasan": "2 jam = 120 menit, jadi 120 : 30 = 4 : 1."
+  },
+  {
+    "id": 304,
+    "bab": "Rasio",
+    "soal": "Jika rasio uang Budi dan Ani adalah 3 : 5 dan jumlah uang mereka Rp80.000, maka uang Budi adalah ...",
+    "opsi": ["Rp30.000", "Rp48.000", "Rp50.000", "Rp45.000"],
+    "jawaban": "Rp30.000",
+    "pembahasan": "Total bagian = 3 + 5 = 8. Jadi uang Budi = (3/8) × 80.000 = 30.000."
+  },
+  {
+    "id": 305,
+    "bab": "Rasio",
+    "soal": "Rasio senilai dengan 2 : 3 adalah ...",
+    "opsi": ["4 : 6", "3 : 2", "6 : 8", "5 : 7"],
+    "jawaban": "4 : 6",
+    "pembahasan": "2 : 3 = 4 : 6 (dikali 2)."
+  },
+  {
+    "id": 306,
+    "bab": "Rasio",
+    "soal": "Jika rasio panjang dan lebar sebuah persegi panjang adalah 5 : 2 dan panjangnya 25 cm, maka lebarnya adalah ...",
+    "opsi": ["10 cm", "8 cm", "12 cm", "15 cm"],
+    "jawaban": "10 cm",
+    "pembahasan": "Perbandingan 5 : 2 → lebar = (2/5) × 25 = 10 cm."
+  },
+  {
+    "id": 307,
+    "bab": "Rasio",
+    "soal": "Jika A : B = 2 : 3 dan B : C = 4 : 5, maka A : B : C = ...",
+    "opsi": ["8 : 12 : 15", "2 : 3 : 5", "4 : 6 : 8", "6 : 9 : 12"],
+    "jawaban": "8 : 12 : 15",
+    "pembahasan": "Samakan nilai B → 3×4 = 12. Maka A : B : C = 8 : 12 : 15."
+  },
+  {
+    "id": 308,
+    "bab": "Rasio",
+    "soal": "Rasio jumlah siswa laki-laki dan perempuan di kelas adalah 3 : 4. Jika jumlah siswa 28 orang, maka banyak siswa laki-laki adalah ...",
+    "opsi": ["12", "14", "16", "18"],
+    "jawaban": "12",
+    "pembahasan": "Total bagian = 3 + 4 = 7. Laki-laki = (3/7) × 28 = 12."
+  },
+  {
+    "id": 309,
+    "bab": "Rasio",
+    "soal": "Rasio uang Andi dan Beni adalah 5 : 7. Jika uang Andi Rp50.000, maka uang Beni adalah ...",
+    "opsi": ["Rp60.000", "Rp70.000", "Rp75.000", "Rp80.000"],
+    "jawaban": "Rp70.000",
+    "pembahasan": "Perbandingan 5 : 7 → Beni = (7/5) × 50.000 = 70.000."
+  },
+  {
+    "id": 310,
+    "bab": "Rasio",
+    "soal": "Bentuk sederhana dari rasio 0,8 : 1,2 adalah ...",
+    "opsi": ["2 : 3", "3 : 2", "4 : 5", "1 : 2"],
+    "jawaban": "2 : 3",
+    "pembahasan": "0,8 : 1,2 = 8 : 12 = 2 : 3."
+  },
+  {
+    "id": 311,
+    "bab": "Rasio",
+    "soal": "Rasio umur Ayah dan Anak adalah 5 : 2. Jika umur Ayah 45 tahun, maka umur Anak adalah ...",
+    "opsi": ["18 tahun", "20 tahun", "22 tahun", "25 tahun"],
+    "jawaban": "18 tahun",
+    "pembahasan": "(2/5) × 45 = 18 tahun."
+  },
+  {
+    "id": 312,
+    "bab": "Rasio",
+    "soal": "Jika rasio A : B = 6 : 9, maka bentuk sederhananya adalah ...",
+    "opsi": ["2 : 3", "3 : 4", "4 : 6", "1 : 2"],
+    "jawaban": "2 : 3",
+    "pembahasan": "FPB dari 6 dan 9 adalah 3, jadi 6 : 9 = 2 : 3."
+  },
+  {
+    "id": 313,
+    "bab": "Rasio",
+    "soal": "Rasio antara 40 menit dan 2 jam adalah ...",
+    "opsi": ["1 : 3", "2 : 3", "1 : 2", "3 : 1"],
+    "jawaban": "1 : 3",
+    "pembahasan": "2 jam = 120 menit, jadi 40 : 120 = 1 : 3."
+  },
+  {
+    "id": 314,
+    "bab": "Rasio",
+    "soal": "Rasio senilai dengan 7 : 9 adalah ...",
+    "opsi": ["14 : 18", "9 : 7", "7 : 8", "21 : 30"],
+    "jawaban": "14 : 18",
+    "pembahasan": "Dikali 2 menjadi 14 : 18."
+  },
+  {
+    "id": 315,
+    "bab": "Rasio",
+    "soal": "Rasio tinggi badan Dinda dan Rani adalah 5 : 6. Jika tinggi Dinda 150 cm, maka tinggi Rani adalah ...",
+    "opsi": ["160 cm", "170 cm", "180 cm", "155 cm"],
+    "jawaban": "180 cm",
+    "pembahasan": "6/5 × 150 = 180 cm."
+  },
+  {
+    "id": 316,
+    "bab": "Rasio",
+    "soal": "Rasio uang A, B, dan C adalah 2 : 3 : 5. Jika jumlah mereka Rp100.000, uang B adalah ...",
+    "opsi": ["Rp20.000", "Rp30.000", "Rp25.000", "Rp40.000"],
+    "jawaban": "Rp30.000",
+    "pembahasan": "Total bagian = 10. Uang B = (3/10) × 100.000 = 30.000."
+  },
+  {
+    "id": 317,
+    "bab": "Rasio",
+    "soal": "Jika 3 apel setara dengan 6 jeruk, maka rasio apel terhadap jeruk adalah ...",
+    "opsi": ["1 : 2", "2 : 1", "3 : 6", "6 : 3"],
+    "jawaban": "1 : 2",
+    "pembahasan": "3 : 6 = 1 : 2."
+  },
+  {
+    "id": 318,
+    "bab": "Rasio",
+    "soal": "Rasio antara 2 kg dan 500 gram adalah ...",
+    "opsi": ["4 : 1", "1 : 4", "2 : 5", "3 : 1"],
+    "jawaban": "4 : 1",
+    "pembahasan": "2 kg = 2000 g, jadi 2000 : 500 = 4 : 1."
+  },
+  {
+    "id": 319,
+    "bab": "Rasio",
+    "soal": "Rasio antara 5 cm dan 2,5 cm adalah ...",
+    "opsi": ["2 : 1", "1 : 2", "3 : 1", "1 : 3"],
+    "jawaban": "2 : 1",
+    "pembahasan": "5 : 2,5 = 2 : 1."
+  },
+  {
+    "id": 320,
+    "bab": "Rasio",
+    "soal": "Skala peta adalah 1 : 100.000. Jika jarak pada peta 3 cm, maka jarak sebenarnya adalah ...",
+    "opsi": ["3 km", "2 km", "4 km", "1 km"],
+    "jawaban": "3 km",
+    "pembahasan": "3 × 100.000 cm = 300.000 cm = 3 km."
+  },
+  {
+    "id": 321,
+    "bab": "Rasio",
+    "soal": "Skala 1 : 50.000, jarak sebenarnya 10 km. Jarak di peta adalah ...",
+    "opsi": ["20 cm", "25 cm", "15 cm", "10 cm"],
+    "jawaban": "20 cm",
+    "pembahasan": "10 km = 1.000.000 cm → 1/50.000 × 1.000.000 = 20 cm."
+  },
+  {
+    "id": 322,
+    "bab": "Rasio",
+    "soal": "Rasio harga gula dan tepung adalah 8 : 5. Jika harga gula Rp40.000, maka harga tepung adalah ...",
+    "opsi": ["Rp20.000", "Rp25.000", "Rp30.000", "Rp35.000"],
+    "jawaban": "Rp25.000",
+    "pembahasan": "(5/8) × 40.000 = 25.000."
+  },
+  {
+    "id": 323,
+    "bab": "Rasio",
+    "soal": "Perbandingan panjang dan lebar persegi panjang adalah 3 : 2. Jika panjangnya 18 cm, maka lebarnya adalah ...",
+    "opsi": ["10 cm", "12 cm", "9 cm", "15 cm"],
+    "jawaban": "12 cm",
+    "pembahasan": "(2/3) × 18 = 12 cm."
+  },
+  {
+    "id": 324,
+    "bab": "Rasio",
+    "soal": "Rasio umur kakak dan adik adalah 5 : 3. Jika selisih umur mereka 6 tahun, maka umur kakak adalah ...",
+    "opsi": ["12 tahun", "15 tahun", "18 tahun", "20 tahun"],
+    "jawaban": "15 tahun",
+    "pembahasan": "Selisih = 2 bagian → 6 ÷ 2 = 3. Kakak = 5 × 3 = 15 tahun."
+  },
+  {
+    "id": 325,
+    "bab": "Rasio",
+    "soal": "Rasio jarak A ke B dan B ke C adalah 2 : 3. Jika jarak A ke B = 8 km, maka jarak B ke C = ...",
+    "opsi": ["10 km", "12 km", "14 km", "16 km"],
+    "jawaban": "12 km",
+    "pembahasan": "(3/2) × 8 = 12 km."
+  },
+  {
+    "id": 326,
+    "bab": "Rasio",
+    "soal": "Jika perbandingan p dan q adalah 4 : 7 dan jumlahnya 55, maka nilai q adalah ...",
+    "opsi": ["25", "30", "35", "40"],
+    "jawaban": "35",
+    "pembahasan": "4x + 7x = 55 → 11x = 55 → x = 5 → q = 7×5 = 35."
+  },
+  {
+    "id": 327,
+    "bab": "Rasio",
+    "soal": "Rasio antara keliling dua lingkaran dengan jari-jari 4 cm dan 10 cm adalah ...",
+    "opsi": ["2 : 5", "5 : 2", "4 : 10", "3 : 5"],
+    "jawaban": "2 : 5",
+    "pembahasan": "Keliling berbanding lurus dengan jari-jari, jadi 4 : 10 = 2 : 5."
+  },
+  {
+    "id": 328,
+    "bab": "Rasio",
+    "soal": "Rasio antara 500 ml dan 2 liter adalah ...",
+    "opsi": ["1 : 4", "4 : 1", "2 : 3", "3 : 2"],
+    "jawaban": "1 : 4",
+    "pembahasan": "2 liter = 2000 ml, jadi 500 : 2000 = 1 : 4."
+  },
+  {
+    "id": 329,
+    "bab": "Rasio",
+    "soal": "Jika rasio siswa laki-laki dan perempuan adalah 2 : 5 dan jumlah seluruh siswa 35 orang, banyak siswa perempuan adalah ...",
+    "opsi": ["10", "15", "20", "25"],
+    "jawaban": "25",
+    "pembahasan": "Total bagian = 7 → (5/7) × 35 = 25."
+  },
+  {
+    "id": 330,
+    "bab": "Rasio",
+    "soal": "Rasio luas dua persegi dengan sisi 4 cm dan 6 cm adalah ...",
+    "opsi": ["4 : 6", "2 : 3", "16 : 36", "4 : 9"],
+    "jawaban": "4 : 9",
+    "pembahasan": "Luas persegi = s², jadi 4² : 6² = 16 : 36 = 4 : 9."
+  },
+  {
+    "id": 401,
+    "bab": "Bilangan Aljabar",
+    "soal": "Bentuk aljabar dari 'tiga kali suatu bilangan x dikurangi lima' adalah ...",
+    "opsi": ["3x + 5", "3x - 5", "x - 5", "5x - 3"],
+    "jawaban": "3x - 5",
+    "pembahasan": "Tiga kali x berarti 3x, dikurangi lima berarti -5, sehingga 3x - 5."
+  },
+  {
+    "id": 402,
+    "bab": "Bilangan Aljabar",
+    "soal": "Pada bentuk aljabar 7x + 9, koefisien dari x adalah ...",
+    "opsi": ["7", "9", "x", "16"],
+    "jawaban": "7",
+    "pembahasan": "Koefisien adalah bilangan yang mengalikan variabel, jadi koefisien x = 7."
+  },
+  {
+    "id": 403,
+    "bab": "Bilangan Aljabar",
+    "soal": "Dalam bentuk aljabar 4p - 6, konstanta adalah ...",
+    "opsi": ["4", "-6", "p", "10"],
+    "jawaban": "-6",
+    "pembahasan": "Konstanta adalah suku tanpa variabel, yaitu -6."
+  },
+  {
+    "id": 404,
+    "bab": "Bilangan Aljabar",
+    "soal": "Bentuk sederhana dari 5x + 7x adalah ...",
+    "opsi": ["12", "12x", "x + 7", "5x - 7x"],
+    "jawaban": "12x",
+    "pembahasan": "Suku sejenis dijumlahkan: 5x + 7x = 12x."
+  },
+  {
+    "id": 405,
+    "bab": "Bilangan Aljabar",
+    "soal": "Sederhanakan bentuk aljabar 9a - 4a + 2.",
+    "opsi": ["5a + 2", "13a + 2", "5a - 2", "a + 2"],
+    "jawaban": "5a + 2",
+    "pembahasan": "9a - 4a = 5a, jadi hasilnya 5a + 2."
+  },
+  {
+    "id": 406,
+    "bab": "Bilangan Aljabar",
+    "soal": "Jika x = 4, maka nilai dari 3x + 5 adalah ...",
+    "opsi": ["7", "12", "17", "20"],
+    "jawaban": "17",
+    "pembahasan": "3(4) + 5 = 12 + 5 = 17."
+  },
+  {
+    "id": 407,
+    "bab": "Bilangan Aljabar",
+    "soal": "Sederhanakan 8m + 3n - 5m + 2n.",
+    "opsi": ["3m + 5n", "13m + 5n", "5m + 3n", "3m + n"],
+    "jawaban": "3m + 5n",
+    "pembahasan": "8m - 5m = 3m, 3n + 2n = 5n."
+  },
+  {
+    "id": 408,
+    "bab": "Bilangan Aljabar",
+    "soal": "Suku-suku sejenis dari 2x + 3y + 4x - y adalah ...",
+    "opsi": ["2x dan 3y", "2x dan 4x", "3y dan -y", "B dan D benar"],
+    "jawaban": "B dan D benar",
+    "pembahasan": "2x dan 4x sejenis, 3y dan -y juga sejenis."
+  },
+  {
+    "id": 409,
+    "bab": "Bilangan Aljabar",
+    "soal": "Jika a = 3 dan b = 2, maka nilai dari 2a + 3b adalah ...",
+    "opsi": ["10", "11", "12", "13"],
+    "jawaban": "12",
+    "pembahasan": "2(3) + 3(2) = 6 + 6 = 12."
+  },
+  {
+    "id": 410,
+    "bab": "Bilangan Aljabar",
+    "soal": "Bentuk sederhana dari 6x - 2x + 9 adalah ...",
+    "opsi": ["8x + 9", "4x + 9", "3x + 9", "x + 9"],
+    "jawaban": "4x + 9",
+    "pembahasan": "6x - 2x = 4x, jadi hasilnya 4x + 9."
+  },
+  {
+    "id": 411,
+    "bab": "Bilangan Aljabar",
+    "soal": "Sederhanakan (3x + 5y) + (2x - y).",
+    "opsi": ["5x + 6y", "5x + 4y", "x + 4y", "x + 6y"],
+    "jawaban": "5x + 4y",
+    "pembahasan": "3x + 2x = 5x, 5y - y = 4y."
+  },
+  {
+    "id": 412,
+    "bab": "Bilangan Aljabar",
+    "soal": "Sederhanakan (5a - 2b) - (3a + 4b).",
+    "opsi": ["2a - 6b", "8a + 2b", "2a + 2b", "a - 2b"],
+    "jawaban": "2a - 6b",
+    "pembahasan": "5a - 3a = 2a, -2b - 4b = -6b."
+  },
+  {
+    "id": 413,
+    "bab": "Bilangan Aljabar",
+    "soal": "Hasil dari 3x(2x + 5) adalah ...",
+    "opsi": ["6x + 15", "6x² + 15x", "3x² + 5x", "6x² + 5"],
+    "jawaban": "6x² + 15x",
+    "pembahasan": "Kalikan 3x ke dalam: 3x×2x = 6x² dan 3x×5 = 15x."
+  },
+  {
+    "id": 414,
+    "bab": "Bilangan Aljabar",
+    "soal": "Hasil dari (x + 2)(x + 3) adalah ...",
+    "opsi": ["x² + 5x + 6", "x² + 6x + 5", "x² + 2x + 3", "x² + 9"],
+    "jawaban": "x² + 5x + 6",
+    "pembahasan": "Gunakan metode distributif: x×x + x×3 + 2×x + 2×3 = x² + 5x + 6."
+  },
+  {
+    "id": 415,
+    "bab": "Bilangan Aljabar",
+    "soal": "Jika p = 2 dan q = 3, maka nilai dari pq + 2p adalah ...",
+    "opsi": ["10", "12", "14", "16"],
+    "jawaban": "10",
+    "pembahasan": "pq + 2p = (2×3) + 2×2 = 6 + 4 = 10."
+  },
+  {
+    "id": 416,
+    "bab": "Bilangan Aljabar",
+    "soal": "Sederhanakan hasil dari (4x - 2) + (3x + 5).",
+    "opsi": ["7x + 3", "x + 3", "7x + 7", "x + 7"],
+    "jawaban": "7x + 3",
+    "pembahasan": "4x + 3x = 7x dan -2 + 5 = 3."
+  },
+  {
+    "id": 417,
+    "bab": "Bilangan Aljabar",
+    "soal": "Sederhanakan (5x - 3y) - (2x - 5y).",
+    "opsi": ["3x + 2y", "7x - 8y", "3x - 8y", "3x + y"],
+    "jawaban": "3x + 2y",
+    "pembahasan": "5x - 2x = 3x dan -3y - (-5y) = -3y + 5y = 2y."
+  },
+  {
+    "id": 418,
+    "bab": "Bilangan Aljabar",
+    "soal": "Bentuk aljabar dari 'selisih dua kali suatu bilangan dengan 7' adalah ...",
+    "opsi": ["2x + 7", "7 - 2x", "2x - 7", "x - 7"],
+    "jawaban": "2x - 7",
+    "pembahasan": "Selisih dua kali suatu bilangan dengan 7 berarti 2x - 7."
+  },
+  {
+    "id": 419,
+    "bab": "Bilangan Aljabar",
+    "soal": "Koefisien dari x pada bentuk 12x² + 5x + 7 adalah ...",
+    "opsi": ["5", "7", "12", "x"],
+    "jawaban": "5",
+    "pembahasan": "Koefisien x adalah angka di depan x, yaitu 5."
+  },
+  {
+    "id": 420,
+    "bab": "Bilangan Aljabar",
+    "soal": "Bentuk sederhana dari (x² + 2x) + (3x² - x) adalah ...",
+    "opsi": ["4x² + x", "x² + 3x", "4x² + 3x", "2x² + x"],
+    "jawaban": "4x² + x",
+    "pembahasan": "x² + 3x² = 4x² dan 2x - x = x."
+  },
+  {
+    "id": 421,
+    "bab": "Bilangan Aljabar",
+    "soal": "Sederhanakan hasil dari (2a + 3)(a + 4).",
+    "opsi": ["2a² + 8a + 3a + 12", "2a² + 11a + 12", "a² + 11a + 12", "2a² + 7a + 12"],
+    "jawaban": "2a² + 11a + 12",
+    "pembahasan": "Gunakan distributif: 2a×a + 2a×4 + 3×a + 3×4 = 2a² + 11a + 12."
+  },
+  {
+    "id": 422,
+    "bab": "Bilangan Aljabar",
+    "soal": "Jika x = 2, maka nilai dari x² + 3x + 1 adalah ...",
+    "opsi": ["9", "11", "15", "13"],
+    "jawaban": "11",
+    "pembahasan": "x² + 3x + 1 = 4 + 6 + 1 = 11."
+  },
+  {
+    "id": 423,
+    "bab": "Bilangan Aljabar",
+    "soal": "Bentuk sederhana dari -2x(3x - 4) adalah ...",
+    "opsi": ["-6x² + 8x", "-6x² - 8x", "6x² + 8x", "6x² - 8x"],
+    "jawaban": "-6x² + 8x",
+    "pembahasan": "-2x×3x = -6x² dan -2x×(-4) = +8x."
+  },
+  {
+    "id": 424,
+    "bab": "Bilangan Aljabar",
+    "soal": "Sederhanakan (2x + 5)².",
+    "opsi": ["4x² + 20x + 25", "4x² + 10x + 25", "2x² + 10x + 5", "x² + 10x + 25"],
+    "jawaban": "4x² + 20x + 25",
+    "pembahasan": "(a + b)² = a² + 2ab + b² → (2x)² + 2×2x×5 + 25 = 4x² + 20x + 25."
+  },
+  {
+    "id": 425,
+    "bab": "Bilangan Aljabar",
+    "soal": "Sederhanakan (3x - 2)².",
+    "opsi": ["9x² - 12x + 4", "9x² + 12x + 4", "3x² - 4x + 4", "6x² - 12x + 2"],
+    "jawaban": "9x² - 12x + 4",
+    "pembahasan": "(a - b)² = a² - 2ab + b² → 9x² - 12x + 4."
+  },
+  {
+    "id": 426,
+    "bab": "Bilangan Aljabar",
+    "soal": "Suku-suku sejenis dari 2x² + 3x + 4x² - x adalah ...",
+    "opsi": ["2x² dan 4x²", "3x dan -x", "semuanya benar", "tidak ada"],
+    "jawaban": "semuanya benar",
+    "pembahasan": "2x² dan 4x² sejenis, 3x dan -x juga sejenis."
+  },
+  {
+    "id": 427,
+    "bab": "Bilangan Aljabar",
+    "soal": "Sederhanakan hasil dari (a + b)(a - b).",
+    "opsi": ["a² - b²", "a² + b²", "2ab", "a² - 2ab"],
+    "jawaban": "a² - b²",
+    "pembahasan": "Gunakan rumus (a + b)(a - b) = a² - b²."
+  },
+  {
+    "id": 428,
+    "bab": "Bilangan Aljabar",
+    "soal": "Jika x = 3, nilai dari 2x² - 5x + 1 adalah ...",
+    "opsi": ["4", "7", "10", "12"],
+    "jawaban": "4",
+    "pembahasan": "2(9) - 15 + 1 = 18 - 15 + 1 = 4."
+  },
+  {
+    "id": 429,
+    "bab": "Bilangan Aljabar",
+    "soal": "Bentuk sederhana dari (x + 1)(x + 5) adalah ...",
+    "opsi": ["x² + 6x + 5", "x² + 5x + 1", "x² + 10x + 6", "x² + 4x + 5"],
+    "jawaban": "x² + 6x + 5",
+    "pembahasan": "Gunakan distributif: x×x + x×5 + 1×x + 1×5 = x² + 6x + 5."
+  },
+  {
+    "id": 430,
+    "bab": "Bilangan Aljabar",
+    "soal": "Sederhanakan hasil dari (2x + 3y)(x + y).",
+    "opsi": ["2x² + 5xy + 3y²", "2x² + 3xy + y²", "x² + 3xy + 2y²", "2x² + 6xy + 3y²"],
+    "jawaban": "2x² + 5xy + 3y²",
+    "pembahasan": "Kalikan: 2x×x + 2x×y + 3y×x + 3y×y = 2x² + 5xy + 3y²."
+  },
+  {
+    "id": 501,
+    "bab": "Kesebangunan",
+    "soal": "Dua bangun datar dikatakan sebangun jika ...",
+    "opsi": [
+      "Bentuk dan ukuran sama",
+      "Sudut-sudutnya sama besar dan sisi-sisinya sebanding",
+      "Sisinya sama panjang",
+      "Luasnya sama"
+    ],
+    "jawaban": "Sudut-sudutnya sama besar dan sisi-sisinya sebanding",
+    "pembahasan": "Kesebangunan terjadi jika sudut bersesuaian sama besar dan sisi bersesuaian memiliki perbandingan yang sama."
+  },
+  {
+    "id": 502,
+    "bab": "Kesebangunan",
+    "soal": "Jika dua segitiga sebangun, maka ...",
+    "opsi": [
+      "Sudut-sudut bersesuaian tidak sama besar",
+      "Perbandingan sisi-sisi bersesuaian sama",
+      "Luasnya selalu sama",
+      "Kelilingnya sama"
+    ],
+    "jawaban": "Perbandingan sisi-sisi bersesuaian sama",
+    "pembahasan": "Segitiga sebangun memiliki perbandingan sisi-sisi bersesuaian yang sama."
+  },
+  {
+    "id": 503,
+    "bab": "Kesebangunan",
+    "soal": "Segitiga ABC sebangun dengan segitiga DEF. Jika AB/DE = 2/3 dan AC = 10 cm, maka panjang DF adalah ...",
+    "opsi": ["12 cm", "13 cm", "15 cm", "20 cm"],
+    "jawaban": "15 cm",
+    "pembahasan": "Perbandingan sisi bersesuaian 2 : 3 → DF = (3/2) × 10 = 15 cm."
+  },
+  {
+    "id": 504,
+    "bab": "Kesebangunan",
+    "soal": "Segitiga ABC ∼ segitiga PQR. Jika AB = 6 cm, PQ = 9 cm, dan BC = 4 cm, maka panjang QR adalah ...",
+    "opsi": ["5 cm", "6 cm", "8 cm", "6 cm"],
+    "jawaban": "6 cm",
+    "pembahasan": "Perbandingan AB:PQ = 6:9 = 2:3, maka QR = (3/2) × 4 = 6 cm."
+  },
+  {
+    "id": 505,
+    "bab": "Kesebangunan",
+    "soal": "Segitiga siku-siku sebangun jika ...",
+    "opsi": [
+      "Kedua sudut lancipnya sama besar",
+      "Sudut siku-sikunya berbeda",
+      "Sisi-sisinya sama panjang",
+      "Sudutnya tidak sama besar"
+    ],
+    "jawaban": "Kedua sudut lancipnya sama besar",
+    "pembahasan": "Syarat segitiga siku-siku sebangun adalah kedua sudut lancip bersesuaian sama besar."
+  },
+  {
+    "id": 506,
+    "bab": "Kesebangunan",
+    "soal": "Jika dua segitiga memiliki perbandingan sisi-sisi yang sama tetapi sudutnya tidak sama besar, maka kedua segitiga tersebut ...",
+    "opsi": ["Sebangun", "Kongruen", "Tidak sebangun", "Sama besar"],
+    "jawaban": "Tidak sebangun",
+    "pembahasan": "Harus memenuhi dua syarat: sudut bersesuaian sama besar dan sisi bersesuaian sebanding."
+  },
+  {
+    "id": 507,
+    "bab": "Kesebangunan",
+    "soal": "Segitiga ABC ∼ segitiga DEF dengan skala 2 : 3. Jika keliling segitiga ABC adalah 20 cm, maka keliling segitiga DEF adalah ...",
+    "opsi": ["25 cm", "30 cm", "35 cm", "40 cm"],
+    "jawaban": "30 cm",
+    "pembahasan": "Perbandingan sisi = 2 : 3, maka keliling pun berbanding sama → 20 : x = 2 : 3 → x = 30 cm."
+  },
+  {
+    "id": 508,
+    "bab": "Kesebangunan",
+    "soal": "Dua persegi panjang dikatakan sebangun jika ...",
+    "opsi": [
+      "Sisi-sisi panjangnya sama",
+      "Perbandingan panjang dan lebar sama",
+      "Kelilingnya sama",
+      "Luasnya sama"
+    ],
+    "jawaban": "Perbandingan panjang dan lebar sama",
+    "pembahasan": "Persegi panjang sebangun bila rasio panjang terhadap lebar sama."
+  },
+  {
+    "id": 509,
+    "bab": "Kesebangunan",
+    "soal": "Dua bangun datar memiliki bentuk yang sama tetapi ukuran berbeda. Maka kedua bangun tersebut ...",
+    "opsi": ["Kongruen", "Sebangun", "Tidak sebangun", "Berbeda bentuk"],
+    "jawaban": "Sebangun",
+    "pembahasan": "Bangun sebangun memiliki bentuk sama namun ukuran berbeda."
+  },
+  {
+    "id": 510,
+    "bab": "Kesebangunan",
+    "soal": "Sebuah segitiga memiliki sisi 3 cm, 4 cm, dan 5 cm. Segitiga lain memiliki sisi 6 cm, 8 cm, dan 10 cm. Kedua segitiga tersebut ...",
+    "opsi": ["Tidak sebangun", "Sebangun", "Kongruen", "Sama luas"],
+    "jawaban": "Sebangun",
+    "pembahasan": "Perbandingan sisi-sisi bersesuaian sama (3:6 = 4:8 = 5:10 = 1:2)."
+  },
+  {
+    "id": 511,
+    "bab": "Kesebangunan",
+    "soal": "Bangun berikut yang selalu sebangun adalah ...",
+    "opsi": [
+      "Dua persegi panjang",
+      "Dua persegi",
+      "Dua segitiga sama kaki",
+      "Dua jajar genjang"
+    ],
+    "jawaban": "Dua persegi",
+    "pembahasan": "Semua persegi memiliki sudut sama besar dan perbandingan sisi 1:1."
+  },
+  {
+    "id": 512,
+    "bab": "Kesebangunan",
+    "soal": "Skala pada peta adalah 1 : 100.000. Jika jarak dua kota di peta 3 cm, maka jarak sebenarnya adalah ...",
+    "opsi": ["300 m", "3 km", "30 km", "300 km"],
+    "jawaban": "3 km",
+    "pembahasan": "1 cm di peta mewakili 1 km, maka 3 cm = 3 km."
+  },
+  {
+    "id": 513,
+    "bab": "Kesebangunan",
+    "soal": "Jika dua segitiga sebangun dan salah satu sisinya 5 cm, sedangkan sisi bersesuaian pada segitiga lain 15 cm, maka skala kedua segitiga tersebut adalah ...",
+    "opsi": ["1 : 2", "1 : 3", "2 : 3", "3 : 1"],
+    "jawaban": "1 : 3",
+    "pembahasan": "Perbandingan 5 : 15 = 1 : 3."
+  },
+  {
+    "id": 514,
+    "bab": "Kesebangunan",
+    "soal": "Perhatikan pernyataan berikut:\n1. Sisi bersesuaian sebanding.\n2. Sudut bersesuaian sama besar.\n3. Luas kedua bangun sama.\nManakah yang merupakan syarat kesebangunan?",
+    "opsi": ["1 dan 2", "2 dan 3", "1 dan 3", "Semua benar"],
+    "jawaban": "1 dan 2",
+    "pembahasan": "Syarat kesebangunan adalah sisi sebanding dan sudut bersesuaian sama besar."
+  },
+  {
+    "id": 515,
+    "bab": "Kesebangunan",
+    "soal": "Segitiga ABC dan DEF sebangun dengan perbandingan sisi 3 : 4. Jika panjang sisi segitiga ABC adalah 9 cm, maka panjang sisi bersesuaian segitiga DEF adalah ...",
+    "opsi": ["10 cm", "11 cm", "12 cm", "13 cm"],
+    "jawaban": "12 cm",
+    "pembahasan": "9 / x = 3 / 4 → x = 12 cm."
+  },
+  {
+    "id": 516,
+    "bab": "Kesebangunan",
+    "soal": "Perbandingan dua sisi segitiga sebangun adalah 2 : 5. Jika panjang sisi segitiga kecil 8 cm, maka sisi segitiga besar adalah ...",
+    "opsi": ["15 cm", "18 cm", "20 cm", "25 cm"],
+    "jawaban": "20 cm",
+    "pembahasan": "8 / x = 2 / 5 → x = 20 cm."
+  },
+  {
+    "id": 517,
+    "bab": "Kesebangunan",
+    "soal": "Dua bangun sebangun memiliki perbandingan sisi 1 : 3. Jika luas bangun kecil 4 cm², maka luas bangun besar adalah ...",
+    "opsi": ["9 cm²", "12 cm²", "36 cm²", "27 cm²"],
+    "jawaban": "36 cm²",
+    "pembahasan": "Perbandingan luas = kuadrat perbandingan sisi → (3/1)² = 9, jadi 4 × 9 = 36 cm²."
+  },
+  {
+    "id": 518,
+    "bab": "Kesebangunan",
+    "soal": "Dua segitiga sebangun dengan perbandingan sisi 2 : 3. Jika luas segitiga kecil 20 cm², maka luas segitiga besar adalah ...",
+    "opsi": ["30 cm²", "40 cm²", "45 cm²", "60 cm²"],
+    "jawaban": "45 cm²",
+    "pembahasan": "Luas berbanding kuadrat sisi → (3/2)² × 20 = 45 cm²."
+  },
+  {
+    "id": 519,
+    "bab": "Kesebangunan",
+    "soal": "Segitiga PQR sebangun dengan segitiga XYZ. Jika PQ = 6 cm, PR = 9 cm, dan XY = 8 cm, maka XZ adalah ...",
+    "opsi": ["10 cm", "11 cm", "12 cm", "15 cm"],
+    "jawaban": "12 cm",
+    "pembahasan": "Rasio sisi PQ:XY = 6:8 = 3:4 → XZ = (4/3) × 9 = 12 cm."
+  },
+  {
+    "id": 520,
+    "bab": "Kesebangunan",
+    "soal": "Bangun berikut yang tidak selalu sebangun adalah ...",
+    "opsi": ["Dua lingkaran", "Dua persegi", "Dua persegi panjang", "Dua segitiga sama sisi"],
+    "jawaban": "Dua persegi panjang",
+    "pembahasan": "Persegi panjang bisa memiliki perbandingan panjang dan lebar yang berbeda."
+  },
+  {
+    "id": 521,
+    "bab": "Kesebangunan",
+    "soal": "Sebuah segitiga kecil memiliki sisi 5 cm, 6 cm, 8 cm. Segitiga besar sebangun dengan skala 1 : 2. Maka sisi-sisi segitiga besar adalah ...",
+    "opsi": ["10, 12, 16", "8, 10, 12", "6, 8, 10", "12, 14, 16"],
+    "jawaban": "10, 12, 16",
+    "pembahasan": "Skala 1 : 2 → semua sisi dikalikan 2."
+  },
+  {
+    "id": 522,
+    "bab": "Kesebangunan",
+    "soal": "Jika dua segitiga sebangun, maka perbandingan kelilingnya sama dengan ...",
+    "opsi": [
+      "Perbandingan luasnya",
+      "Perbandingan kuadrat sisinya",
+      "Perbandingan sisi-sisinya",
+      "Perbandingan sudutnya"
+    ],
+    "jawaban": "Perbandingan sisi-sisinya",
+    "pembahasan": "Keliling berbanding langsung dengan panjang sisi."
+  },
+  {
+    "id": 523,
+    "bab": "Kesebangunan",
+    "soal": "Perbandingan sisi dua segitiga sebangun adalah 4 : 5. Jika luas segitiga kecil 64 cm², maka luas segitiga besar adalah ...",
+    "opsi": ["80 cm²", "90 cm²", "100 cm²", "125 cm²"],
+    "jawaban": "100 cm²",
+    "pembahasan": "Luas berbanding kuadrat sisi → (5/4)² × 64 = 100 cm²."
+  },
+  {
+    "id": 524,
+    "bab": "Kesebangunan",
+    "soal": "Syarat kesebangunan dua segitiga adalah ...",
+    "opsi": [
+      "Dua sisi bersesuaian sama panjang",
+      "Dua sudut bersesuaian sama besar",
+      "Semua sisi sama panjang",
+      "Luas sama"
+    ],
+    "jawaban": "Dua sudut bersesuaian sama besar",
+    "pembahasan": "Jika dua sudut bersesuaian sama besar, maka segitiga pasti sebangun."
+  },
+  {
+    "id": 525,
+    "bab": "Kesebangunan",
+    "soal": "Jika panjang sisi-sisi segitiga adalah 4 cm, 6 cm, dan 8 cm, maka segitiga yang sebangun dengannya dapat memiliki sisi-sisi ...",
+    "opsi": [
+      "6 cm, 9 cm, 12 cm",
+      "8 cm, 10 cm, 12 cm",
+      "3 cm, 6 cm, 9 cm",
+      "5 cm, 7 cm, 9 cm"
+    ],
+    "jawaban": "6 cm, 9 cm, 12 cm",
+    "pembahasan": "Perbandingan sama 2:3."
+  },
+  {
+    "id": 526,
+    "bab": "Kesebangunan",
+    "soal": "Jika dua segitiga sebangun dengan skala 2 : 5 dan luas segitiga besar 100 cm², maka luas segitiga kecil adalah ...",
+    "opsi": ["10 cm²", "16 cm²", "20 cm²", "25 cm²"],
+    "jawaban": "16 cm²",
+    "pembahasan": "Luas berbanding kuadrat sisi → (2/5)² × 100 = 16 cm²."
+  },
+  {
+    "id": 527,
+    "bab": "Kesebangunan",
+    "soal": "Bangun A dan B sebangun dengan skala 1 : 4. Jika keliling bangun A 10 cm, maka keliling bangun B adalah ...",
+    "opsi": ["20 cm", "30 cm", "35 cm", "40 cm"],
+    "jawaban": "40 cm",
+    "pembahasan": "Keliling berbanding langsung dengan sisi → 10 × 4 = 40 cm."
+  },
+  {
+    "id": 528,
+    "bab": "Kesebangunan",
+    "soal": "Dua segitiga memiliki perbandingan sisi-sisi 5 : 8. Jika luas segitiga kecil 50 cm², maka luas segitiga besar adalah ...",
+    "opsi": ["80 cm²", "100 cm²", "128 cm²", "160 cm²"],
+    "jawaban": "128 cm²",
+    "pembahasan": "Luas berbanding kuadrat sisi → (8/5)² × 50 = 128 cm²."
+  },
+  {
+    "id": 529,
+    "bab": "Kesebangunan",
+    "soal": "Bangun berikut yang selalu sebangun adalah ...",
+    "opsi": [
+      "Dua lingkaran dengan jari-jari berbeda",
+      "Dua persegi panjang dengan ukuran berbeda",
+      "Dua segitiga sama kaki",
+      "Dua trapesium sembarang"
+    ],
+    "jawaban": "Dua lingkaran dengan jari-jari berbeda",
+    "pembahasan": "Semua lingkaran selalu sebangun karena perbandingan jari-jari sama."
+  },
+  {
+    "id": 530,
+    "bab": "Kesebangunan",
+    "soal": "Jika panjang sisi segitiga diperbesar 3 kali, maka luasnya bertambah ... kali lipat.",
+    "opsi": ["3 kali", "6 kali", "9 kali", "12 kali"],
+    "jawaban": "9 kali",
+    "pembahasan": "Luas berbanding kuadrat sisi → 3² = 9 kali lipat."
+  },{
+  "id": 601,
+  "kelas": 7,
+  "bab": "Data dan Diagram",
+  "tingkat_kesulitan": "Sedang",
+  "soal": "Data adalah ...",
+  "opsi": [
+    "Kumpulan angka acak tanpa makna",
+    "Kumpulan fakta atau informasi yang diperoleh dari pengamatan",
+    "Nilai rata-rata dari hasil pengamatan",
+    "Gambar hasil survei"
+  ],
+  "jawaban": "Kumpulan fakta atau informasi yang diperoleh dari pengamatan",
+  "pembahasan": "Data merupakan hasil dari pengamatan atau pencatatan suatu peristiwa yang dapat diolah menjadi informasi."
+},
+  {
+    "id": 602,
+    "bab": "Data dan Diagram",
+    "soal": "Tujuan penyajian data dalam bentuk diagram adalah ...",
+    "opsi": [
+      "Membuat data lebih banyak",
+      "Agar data terlihat lebih berwarna",
+      "Mempermudah pembaca memahami informasi",
+      "Menambah nilai data"
+    ],
+    "jawaban": "Mempermudah pembaca memahami informasi",
+    "pembahasan": "Diagram digunakan agar data mudah dibaca dan dibandingkan."
+  },
+  {
+    "id": 603,
+    "bab": "Data dan Diagram",
+    "soal": "Diagram yang digunakan untuk menunjukkan perubahan data dari waktu ke waktu adalah ...",
+    "opsi": [
+      "Diagram batang",
+      "Diagram garis",
+      "Diagram lingkaran",
+      "Diagram gambar"
+    ],
+    "jawaban": "Diagram garis",
+    "pembahasan": "Diagram garis cocok untuk menggambarkan data berurutan berdasarkan waktu."
+  },
+  {
+    "id": 604,
+    "bab": "Data dan Diagram",
+    "soal": "Diagram batang digunakan untuk ...",
+    "opsi": [
+      "Menunjukkan komposisi bagian terhadap keseluruhan",
+      "Membandingkan data antar kelompok",
+      "Menunjukkan kecenderungan data",
+      "Menampilkan data kontinu"
+    ],
+    "jawaban": "Membandingkan data antar kelompok",
+    "pembahasan": "Diagram batang digunakan untuk membandingkan nilai dari beberapa kategori."
+  },
+  {
+    "id": 605,
+    "bab": "Data dan Diagram",
+    "soal": "Diagram lingkaran menunjukkan ...",
+    "opsi": [
+      "Bagian dari keseluruhan dalam bentuk persen",
+      "Perubahan waktu",
+      "Frekuensi data",
+      "Nilai rata-rata"
+    ],
+    "jawaban": "Bagian dari keseluruhan dalam bentuk persen",
+    "pembahasan": "Diagram lingkaran digunakan untuk menunjukkan persentase dari total data."
+  },
+  {
+    "id": 606,
+    "bab": "Data dan Diagram",
+    "soal": "Dalam sebuah survei hobi siswa: membaca (10 siswa), menulis (15 siswa), dan olahraga (25 siswa). Persentase siswa yang suka olahraga adalah ...",
+    "opsi": ["40%", "45%", "50%", "55%"],
+    "jawaban": "50%",
+    "pembahasan": "Total siswa = 10 + 15 + 25 = 50. Persentase olahraga = 25/50 × 100% = 50%."
+  },
+  {
+    "id": 607,
+    "bab": "Data dan Diagram",
+    "soal": "Langkah pertama dalam mengolah data adalah ...",
+    "opsi": [
+      "Menentukan diagram",
+      "Mengumpulkan data",
+      "Membuat kesimpulan",
+      "Menghitung rata-rata"
+    ],
+    "jawaban": "Mengumpulkan data",
+    "pembahasan": "Langkah awal pengolahan data adalah mengumpulkan data dari sumber yang relevan."
+  },
+  {
+    "id": 608,
+    "bab": "Data dan Diagram",
+    "soal": "Nilai ulangan siswa: 60, 70, 80, 90, 100. Rata-rata nilainya adalah ...",
+    "opsi": ["70", "75", "80", "85"],
+    "jawaban": "80",
+    "pembahasan": "Jumlah = 400, banyak data = 5 → 400/5 = 80."
+  },
+  {
+    "id": 609,
+    "bab": "Data dan Diagram",
+    "soal": "Modus dari data 2, 3, 3, 4, 5, 5, 5, 6 adalah ...",
+    "opsi": ["3", "4", "5", "6"],
+    "jawaban": "5",
+    "pembahasan": "Angka 5 muncul paling sering."
+  },
+  {
+    "id": 610,
+    "bab": "Data dan Diagram",
+    "soal": "Median dari data 4, 6, 8, 10, 12 adalah ...",
+    "opsi": ["6", "8", "10", "12"],
+    "jawaban": "8",
+    "pembahasan": "Median adalah nilai tengah dari data yang diurutkan."
+  },
+  {
+    "id": 611,
+    "bab": "Data dan Diagram",
+    "soal": "Jika data memiliki dua nilai modus, maka disebut ...",
+    "opsi": ["Unimodal", "Bimodal", "Trimodal", "Multimodal"],
+    "jawaban": "Bimodal",
+    "pembahasan": "Data dengan dua modus disebut bimodal."
+  },
+  {
+    "id": 612,
+    "bab": "Data dan Diagram",
+    "soal": "Fungsi tabel frekuensi adalah ...",
+    "opsi": [
+      "Menampilkan data secara acak",
+      "Memudahkan menghitung jumlah data",
+      "Menyembunyikan data",
+      "Mengubah data menjadi persen"
+    ],
+    "jawaban": "Memudahkan menghitung jumlah data",
+    "pembahasan": "Tabel frekuensi menunjukkan banyaknya data untuk setiap nilai."
+  },
+  {
+    "id": 613,
+    "bab": "Data dan Diagram",
+    "soal": "Nilai ulangan: 70, 80, 80, 90, 100. Modus data tersebut adalah ...",
+    "opsi": ["70", "80", "90", "100"],
+    "jawaban": "80",
+    "pembahasan": "Nilai 80 muncul dua kali, paling sering dibanding lainnya."
+  },
+  {
+    "id": 614,
+    "bab": "Data dan Diagram",
+    "soal": "Untuk menyajikan data hasil survei jenis kendaraan siswa, diagram yang paling tepat digunakan adalah ...",
+    "opsi": [
+      "Diagram garis",
+      "Diagram batang",
+      "Diagram lingkaran",
+      "Diagram frekuensi"
+    ],
+    "jawaban": "Diagram lingkaran",
+    "pembahasan": "Diagram lingkaran cocok untuk menunjukkan bagian dari keseluruhan."
+  },
+  {
+    "id": 615,
+    "bab": "Data dan Diagram",
+    "soal": "Hasil survei: bola (8), bulu tangkis (12), renang (10). Jumlah seluruhnya adalah ...",
+    "opsi": ["20", "25", "30", "35"],
+    "jawaban": "30",
+    "pembahasan": "8 + 12 + 10 = 30 siswa."
+  },
+  {
+    "id": 616,
+    "bab": "Data dan Diagram",
+    "soal": "Diagram yang menggunakan gambar untuk menyajikan data disebut ...",
+    "opsi": [
+      "Diagram garis",
+      "Diagram batang",
+      "Diagram gambar",
+      "Diagram lingkaran"
+    ],
+    "jawaban": "Diagram gambar",
+    "pembahasan": "Diagram gambar menggunakan simbol atau ikon untuk mewakili data."
+  },
+  {
+    "id": 617,
+    "bab": "Data dan Diagram",
+    "soal": "Langkah terakhir dalam pengolahan data adalah ...",
+    "opsi": [
+      "Mengumpulkan data",
+      "Menghitung rata-rata",
+      "Menyajikan dan menafsirkan hasil",
+      "Membuat kuesioner"
+    ],
+    "jawaban": "Menyajikan dan menafsirkan hasil",
+    "pembahasan": "Setelah data diolah, hasilnya disajikan dan diinterpretasikan."
+  },
+  {
+    "id": 618,
+    "bab": "Data dan Diagram",
+    "soal": "Dalam diagram lingkaran, besar sudut untuk data 25% dari total adalah ...",
+    "opsi": ["45°", "60°", "75°", "90°"],
+    "jawaban": "90°",
+    "pembahasan": "25% × 360° = 90°."
+  },
+  {
+    "id": 619,
+    "bab": "Data dan Diagram",
+    "soal": "Data berat badan (kg): 40, 42, 42, 45, 48, 50. Median dari data tersebut adalah ...",
+    "opsi": ["42", "43.5", "44", "45"],
+    "jawaban": "43.5",
+    "pembahasan": "Nilai tengah antara 42 dan 45 adalah 43.5."
+  },
+  {
+    "id": 620,
+    "bab": "Data dan Diagram",
+    "soal": "Jika terdapat data 10, 20, 30, 40, 50, maka rata-rata data adalah ...",
+    "opsi": ["25", "30", "35", "40"],
+    "jawaban": "30",
+    "pembahasan": "Jumlah = 150, banyak data = 5 → 150/5 = 30."
+  },
+  {
+    "id": 621,
+    "bab": "Data dan Diagram",
+    "soal": "Simbol % pada diagram lingkaran menunjukkan ...",
+    "opsi": [
+      "Jumlah total data",
+      "Perbandingan bagian dengan keseluruhan",
+      "Nilai tertinggi",
+      "Jumlah rata-rata"
+    ],
+    "jawaban": "Perbandingan bagian dengan keseluruhan",
+    "pembahasan": "Persentase menunjukkan perbandingan data terhadap total."
+  },
+  {
+    "id": 622,
+    "bab": "Data dan Diagram",
+    "soal": "Sebuah diagram batang menunjukkan tinggi siswa. Sumbu vertikal biasanya menunjukkan ...",
+    "opsi": ["Nama siswa", "Tinggi siswa", "Jenis kelamin", "Kelas"],
+    "jawaban": "Tinggi siswa",
+    "pembahasan": "Sumbu vertikal biasanya untuk nilai numerik (frekuensi atau ukuran)."
+  },
+  {
+    "id": 623,
+    "bab": "Data dan Diagram",
+    "soal": "Jika diketahui total sudut pada diagram lingkaran adalah 360°, maka bagian 1/6 dari total setara dengan ...",
+    "opsi": ["30°", "45°", "50°", "60°"],
+    "jawaban": "60°",
+    "pembahasan": "1/6 × 360° = 60°."
+  },
+  {
+    "id": 624,
+    "bab": "Data dan Diagram",
+    "soal": "Diagram batang cocok digunakan untuk ...",
+    "opsi": [
+      "Menunjukkan bagian terhadap keseluruhan",
+      "Menunjukkan data diskrit",
+      "Menunjukkan tren waktu",
+      "Menunjukkan hubungan antar variabel"
+    ],
+    "jawaban": "Menunjukkan data diskrit",
+    "pembahasan": "Diagram batang digunakan untuk data kategori (diskrit)."
+  },
+  {
+    "id": 625,
+    "bab": "Data dan Diagram",
+    "soal": "Jika nilai rata-rata ujian adalah 75 dan terdapat 5 siswa, maka total nilai siswa adalah ...",
+    "opsi": ["350", "360", "370", "375"],
+    "jawaban": "375",
+    "pembahasan": "Total = rata-rata × banyak data → 75 × 5 = 375."
+  },
+  {
+    "id": 626,
+    "bab": "Data dan Diagram",
+    "soal": "Hasil survei warna favorit: merah (12), biru (8), hijau (10). Warna dengan frekuensi tertinggi adalah ...",
+    "opsi": ["Merah", "Biru", "Hijau", "Semua sama"],
+    "jawaban": "Merah",
+    "pembahasan": "Frekuensi tertinggi menunjukkan warna paling disukai."
+  },
+  {
+    "id": 627,
+    "bab": "Data dan Diagram",
+    "soal": "Pada diagram garis, sumbu mendatar biasanya menunjukkan ...",
+    "opsi": ["Nilai", "Kategori", "Waktu", "Frekuensi"],
+    "jawaban": "Waktu",
+    "pembahasan": "Diagram garis menunjukkan perubahan data terhadap waktu."
+  },
+  {
+    "id": 628,
+    "bab": "Data dan Diagram",
+    "soal": "Jika diketahui modus = 7, median = 8, dan mean = 9, maka urutan nilai yang paling sering muncul adalah ...",
+    "opsi": ["7", "8", "9", "Tidak diketahui"],
+    "jawaban": "7",
+    "pembahasan": "Modus menunjukkan nilai yang paling sering muncul."
+  },
+  {
+    "id": 629,
+    "bab": "Data dan Diagram",
+    "soal": "Tabel yang berisi nilai siswa dan banyak siswa yang mendapat nilai tersebut disebut ...",
+    "opsi": [
+      "Tabel distribusi frekuensi",
+      "Tabel data mentah",
+      "Tabel perbandingan",
+      "Tabel lingkaran"
+    ],
+    "jawaban": "Tabel distribusi frekuensi",
+    "pembahasan": "Tabel distribusi frekuensi menyajikan nilai dan jumlah kemunculannya."
+  },
+  {
+    "id": 630,
+    "bab": "Data dan Diagram",
+    "soal": "Tujuan dari menghitung rata-rata adalah ...",
+    "opsi": [
+      "Mengetahui nilai yang sering muncul",
+      "Mengetahui nilai tengah data",
+      "Mengetahui nilai mewakili seluruh data",
+      "Mengetahui banyaknya data"
+    ],
+    "jawaban": "Mengetahui nilai mewakili seluruh data",
+    "pembahasan": "Rata-rata menunjukkan nilai yang mewakili keseluruhan data."
+  }
+]

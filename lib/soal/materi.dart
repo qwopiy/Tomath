@@ -42,25 +42,3 @@ enum SubBab5 {
   Klasifikasi,
   Diagram
 }
-
-// enum MateriKelas8 {
-//   Bilangan,
-//   PertidaksamaanLinearSatuVariabel,
-//   Fungsi,
-//   SPLDV,
-//   Geometri,
-//   TransformasiGeometri,
-//   Statistika,
-//   Peluang,
-// }
-//
-// enum MateriKelas9 {
-//   EksponenDanLogaritma,
-//   PersamaanKuadrat,
-//   FungsiKuadrat,
-//   BarisanDanDeret,
-//   Geometri,
-//   BangunRuangSisiDatar,
-//   BangunRuangSisiLengkung,
-//   StatistikaDanPeluang,
-// }
