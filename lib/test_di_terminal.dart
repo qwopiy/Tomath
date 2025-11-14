@@ -1,4 +1,4 @@
-import 'soal/problems_generator_kls7/problems_generator_bab0.dart';
+import 'soal/problems_generator/problems_generator_bab0.dart';
 
 void main() {
   print("Testing Bab 0");

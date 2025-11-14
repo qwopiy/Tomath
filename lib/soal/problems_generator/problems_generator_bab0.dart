@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:dart_eval/dart_eval.dart';
-import 'package:tomath/soal/problems_generator_kls7/problems_generator_base.dart';
+import 'package:tomath/soal/problems_generator/problems_generator_base.dart';
 
 class Bab0 extends PGBase {
   Bab0(super.bab, super.subBabAmount);
