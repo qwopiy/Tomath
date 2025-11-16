@@ -42,6 +42,7 @@ class ShopScreen extends StatelessWidget {
             ),
             Expanded(flex: 4,
                 child: PlankInfo(
+                  backgroundImage: 'assets/ui/PapanKayuShortNew.png',
                   child: Column(
                     children: [
                       Expanded(flex: 2,

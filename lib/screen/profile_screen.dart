@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
             Expanded(flex: 8,
               child: PlankInfo(
                 showButton: false,
-                backgroundImage: 'assets/ui/KertasGede.png',
+                backgroundImage: 'assets/ui/PapanKayuShortNew.png',
                 child: Column(
                   children: [
                     Expanded(flex: 1,
