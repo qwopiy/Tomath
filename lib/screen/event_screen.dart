@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tomath/widget/plank_info.dart';
+import '../widget/currency_bar.dart';
 
 class EventScreen extends StatelessWidget {
   const EventScreen({super.key});
@@ -16,55 +18,32 @@ class EventScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Expanded(
-              flex: 2,
-              child: SizedBox.shrink(),
-            ),
-            Expanded(
-              flex: 8,
-              child: Container(
-                margin: const EdgeInsets.only(),
-                // alignment: Alignment.bottomRight,
-                child: Container(
-                  // color: Colors.white,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/ui/PapanKayu.png'),
-                      fit: BoxFit.cover,
+            Expanded(flex: 2,
+              child: Row(
+                children: [
+                  Expanded(flex: 1,
+                    child: CurrencyBar(
+                      backgroundImage: 'assets/ui/kertasPipihPol.png',
+                      currencyIcon: 'assets/ui/currency.png',
+                      amount: 999999,
                     ),
                   ),
-                  // color: Colors.red,
-                  // alignment: Alignment.bottomCenter,
-                  // width: 200,
-                  // height: 150,
-                  // child: InkWell(
-                  //   onTap: () {
-                  //     print('tombol Play ditekan');
-                  //     // context.push('/quiz');
-                  //   },
-                  //   child: Stack(
-                  //     alignment: Alignment.bottomCenter,
-                  //     children: [
-                  //       Image.asset(
-                  //         'assets/ui/play_concept.png',
-                  //         width: 200,
-                  //         height: 150,
-                  //         fit: BoxFit.contain,
-                  //       ),
-                  //       Text('event', style: TextStyle(
-                  //         // fontFamily: 'LuckiestGuy',
-                  //         fontSize: 30,
-                  //         color: Colors.white,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                ),
+                  Expanded(flex: 1,
+                      child: Container(
+                        // color: Colors.red,
+                      )
+                  )
+                ],
               ),
             ),
-            Expanded(
-              flex: 2,
+            Expanded(flex: 8,
+              child: PlankInfo(
+                buttonText: 'Confirm',
+                backgroundImage: 'assets/ui/PapanMadingNew.png',
+
+              ),
+            ),
+            Expanded(flex: 2,
               child: SizedBox.shrink(),
             ),
           ],

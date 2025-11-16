@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tomath/widget/currency_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,14 +17,25 @@ class HomeScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Expanded(
-              flex: 2,
-              child: Container(
-                // decoration: BoxDecoration(color: Colors.red)
+            Expanded(flex: 2,
+              child: Row(
+                children: [
+                  Expanded(flex: 1,
+                    child: CurrencyBar(
+                      backgroundImage: 'assets/ui/kertasPipihPol.png',
+                      currencyIcon: 'assets/ui/currency.png',
+                      amount: 999999,
+                    ),
+                  ),
+                  Expanded(flex: 1,
+                    child: Container(
+                      // color: Colors.red,
+                    )
+                  )
+                ],
               ),
             ),
-            Expanded(
-              flex: 8,
+            Expanded(flex: 8,
               child: Container(
                 margin: const EdgeInsets.only(right: 20.0, bottom: 30.0),
                 alignment: Alignment.bottomRight,
@@ -57,13 +69,10 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: SizedBox.shrink(),
-            ),
-            Expanded(
-              flex: 1,
-              child: Text('halooooo'),
+            Expanded(flex: 2,
+              child: Container(
+                // color: Colors.white,
+              ),
             ),
           ],
         ),
