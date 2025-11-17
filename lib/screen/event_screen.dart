@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tomath/widget/plank_info.dart';
-import '../widget/currency_bar.dart';
 
 class EventScreen extends StatelessWidget {
   const EventScreen({super.key});
@@ -19,22 +18,7 @@ class EventScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(flex: 2,
-              child: Row(
-                children: [
-                  Expanded(flex: 1,
-                    child: CurrencyBar(
-                      backgroundImage: 'assets/ui/kertasPipihPol.png',
-                      currencyIcon: 'assets/ui/currency.png',
-                      amount: 999999,
-                    ),
-                  ),
-                  Expanded(flex: 1,
-                      child: Container(
-                        // color: Colors.red,
-                      )
-                  )
-                ],
-              ),
+              child: SizedBox.shrink(),
             ),
             Expanded(flex: 8,
               child: PlankInfo(

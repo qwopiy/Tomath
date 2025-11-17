@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:go_router/go_router.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomNavbar extends StatelessWidget {
   final int currentIndex;
@@ -80,7 +80,7 @@ class CustomNavbar extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         print(path);
-        // context.go(path);
+        context.go(path);
       },
       child: Transform.translate(
         offset: Offset(0, isActive ? -10 : 0),

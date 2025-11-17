@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widget/currency_bar.dart';
 import '../widget/plank_info.dart';
 
 class TrainingScreen extends StatelessWidget {
@@ -18,23 +17,7 @@ class TrainingScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(flex: 2,
-              child: Row(
-                children: [
-                  Expanded(flex: 1,
-                    child: CurrencyBar(
-                      backgroundImage: 'assets/ui/kertasPipihPol.png',
-                      currencyIcon: 'assets/ui/currency.png',
-                      amount: 999999,
-                    ),
-                  ),
-                  Expanded(flex: 1,
-                      child: Container(
-                        // color: Colors.red,
-                      )
-                  )
-                ],
-              ),
-
+              child: SizedBox.shrink(),
             ),
             Expanded(flex: 4,
               child: SizedBox.shrink(),

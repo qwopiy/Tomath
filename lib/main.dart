@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tomath/screen/event_screen.dart';
-import 'package:tomath/screen/home_screen.dart';
-import 'package:tomath/screen/introduction_screen.dart';
-import 'package:tomath/screen/profile_screen.dart';
-import 'package:tomath/screen/shop_screen.dart';
-import 'package:tomath/screen/training_screen.dart';
+import 'package:tomath/Config/Routes.dart';
 
 void main() {
   runApp(const Tomath());
@@ -14,15 +9,12 @@ class Tomath  extends StatelessWidget {
   const Tomath ({super.key});
 
   @override
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(home:
-      // ShopScreen()
-      // EventScreen()
-      HomeScreen()
-      // TrainingScreen()
-      // IntroductionScreen()
-      // ProfileScreen()
-    );
+    return MaterialApp.router(
+      title: 'Tomath',
 
+      routerConfig: createRouter(),
+    );
   }
 }
