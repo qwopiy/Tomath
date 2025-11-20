@@ -4,10 +4,8 @@ class PlankInfo extends StatelessWidget {
   final Widget? child;
   final double? height;
 
-  /// path gambar background
   final String backgroundImage;
 
-  /// tombol
   final bool showButton;
   final String buttonText;
   final VoidCallback? onButtonTap;

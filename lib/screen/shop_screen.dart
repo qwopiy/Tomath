@@ -86,7 +86,6 @@ class ShopScreen extends StatelessWidget {
                                       ),
                                     ),
 
-
                                     InkWell(
                                       onTap: () {
                                       },
