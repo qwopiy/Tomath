@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       print('tombol Play ditekan');
-                      // context.push('/quiz');
+                      GoRouter.of(context).go('/campaign');
                     },
                     child: Stack(
                       alignment: Alignment.bottomCenter,
