@@ -24,7 +24,6 @@ class EventScreen extends StatelessWidget {
               child: PlankInfo(
                 buttonText: 'Confirm',
                 backgroundImage: 'assets/ui/PapanMadingNew.png',
-
               ),
             ),
             Expanded(flex: 2,
