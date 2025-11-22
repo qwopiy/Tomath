@@ -1,15 +1,13 @@
-import 'soal/problems_generator_kls7/problems_generator_bab0.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'service/database_service.dart';
 
-void main() {
-  print("Testing Bab 0");
-  Bab0 bab0 = Bab0(0, 3);
-  bab0.setQuestion(2);
-  print(bab0.question);
-  print("a = ${bab0.choices[0]}");
-  print("b = ${bab0.choices[1]}");
-  print("c = ${bab0.choices[2]}");
-  print("d = ${bab0.choices[3]}");
-  
-  // print(bab0.getAllFactors(100));
+Future<void> main() async {
+  sqfliteFfiInit();
+  databaseFactory = databaseFactoryFfi;
 
+  final DatabaseService _dbs = DatabaseService.instance;
+
+  List<Map> list = await _dbs.getTitle();
+
+  print(list);
 }
