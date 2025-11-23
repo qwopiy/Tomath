@@ -23,9 +23,9 @@ class _CampaignScreenState extends State<CampaignScreen> {
 
   @override
   void initState() {
-    super.initState();
     qProvider = Provider.of<QuizProvider>(context, listen: false); // untuk mempersingkat method call
     qProvider.reset();
+    super.initState();
   }
 
   @override
@@ -150,25 +150,25 @@ class _CampaignScreenState extends State<CampaignScreen> {
                     ChoiceButton(
                       buttonText: choices[0],
                       onPressed: () {
-                        qProvider.test();
+                        qProvider.nextQuestion();
                       },
                     ),
                     ChoiceButton(
                       buttonText: choices[1],
                       onPressed: () {
-                        print('Pilihan 2 ditekan');
+                        qProvider.nextQuestion();
                       },
                     ),
                     ChoiceButton(
                       buttonText: choices[2],
                       onPressed: () {
-                        print('Pilihan 3 ditekan');
+                        qProvider.nextQuestion();
                       },
                     ),
                     ChoiceButton(
                       buttonText: choices[3],
                       onPressed: () {
-                        print('Pilihan 4 ditekan');
+                        qProvider.nextQuestion();
                       },
                     ),
                   ],
