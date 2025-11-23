@@ -31,6 +31,11 @@ GoRouter createRouter() {
       //   name: 'sign-in',
       //   builder: (context, state) => const QuizScreen(),
       // ),
+      GoRoute(
+        path: AppRoutes.campaign,
+        name: 'sign-in',
+        builder: (context, state) => const CampaignScreen(),
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, child) {
           return HomeAppScaffold(child: child);

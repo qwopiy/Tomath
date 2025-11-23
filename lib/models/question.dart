@@ -1,5 +1,5 @@
 class Question {
-  final String id;
+  final int id;
   final String text;
   final List<String> options;
   final String correctAnswer;
@@ -24,11 +24,13 @@ class Question {
   }
 
   factory Question.fromJSON(Map<String, dynamic> map) {
+    String optionsString = map['options'];
+    List<String> optionsList = optionsString.split(', ');
     return Question(
       id: map['id'],
-      text: map['text'],
-      options: List<String>.from(map['options']),
-      correctAnswer: map['correctAnswer'],
+      text: map['problem'],
+      options: optionsList,
+      correctAnswer: map['answer'],
     );
   }
 }
