@@ -31,7 +31,7 @@ class _CampaignScreenState extends State<CampaignScreen> {
   @override
   Widget build(BuildContext context) {
     questionText = Provider.of<QuizProvider>(context).question;
-    choices = Provider.of<QuizProvider>(context).choices;
+    choices = Provider.of<QuizProvider>(context).options;
     return Scaffold(
       backgroundColor: Color(0xffEED7A1),
       body: Padding(

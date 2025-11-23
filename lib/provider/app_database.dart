@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -22,16 +23,8 @@ class AppDatabase {
   }
 
   Future _createDB(Database db, int version) async {
-    await db.execute('''
-      CREATE TABLE Question (
-        id INTEGER PRIMARY KEY,
-        bab TEXT,
-        problem TEXT, 
-        options TEXT, 
-        answer TEXT,
-        solution TEXT
-      );
-    ''');
+    final txt =  await rootBundle.loadString('assets/data/data.txt');
+    await db.execute(txt);
   }
 
   Future<Database> _initializeDB(String filename) async {
@@ -49,6 +42,16 @@ class AppDatabase {
   Future<List<Map>> getQuestions() async {
     final db = await instance.database;
     return await db.query('Question');
+  }
+
+  Future<List<Map>> getQuestionsByBab(String bab) async {
+    final db = await instance.database;
+    return await db.query('Question', where: 'bab = ?', whereArgs: [bab]);
+  }
+
+  Future<List<Map>> getQuestionsById(int min, int max) async {
+    final db = await instance.database;
+    return await db.rawQuery('SeLECT * FROM Question WHERE id BETWEEN ? AND ?', [min, max]);
   }
 
   Future<Map> getRandomQuestion() async {

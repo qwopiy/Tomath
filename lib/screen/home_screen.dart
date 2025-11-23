@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tomath/provider/quiz_provider.dart';
+import 'package:tomath/screen/campaign_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,6 +33,7 @@ class HomeScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       print('tombol Play ditekan');
+                      QuizProvider().reset();
                       GoRouter.of(context).push('/campaign');
                     },
                     child: Stack(
