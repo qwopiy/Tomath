@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tomath/provider/quiz_provider.dart';
 
 import 'Config/Routes.dart';
 // import 'package:tomath/Config/Routes.dart';
@@ -12,10 +14,17 @@ class Tomath  extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Tomath',
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => QuizProvider(),
+        )
+      ],
+      child: MaterialApp.router(
+        title: 'Tomath',
 
-      routerConfig: createRouter(),
+        routerConfig: createRouter(),
+      ),
     );
   }
 }

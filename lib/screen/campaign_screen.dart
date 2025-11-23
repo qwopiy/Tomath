@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tomath/provider/quiz_provider.dart';
 import 'package:tomath/widget/choice_button.dart';
 
 class CampaignScreen extends StatefulWidget {
@@ -17,8 +19,19 @@ class _CampaignScreenState extends State<CampaignScreen> {
     'Pilihan 4',
   ];
 
+  late QuizProvider qProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    qProvider = Provider.of<QuizProvider>(context, listen: false); // untuk mempersingkat method call
+    qProvider.reset();
+  }
+
   @override
   Widget build(BuildContext context) {
+    questionText = Provider.of<QuizProvider>(context).question;
+    choices = Provider.of<QuizProvider>(context).choices;
     return Scaffold(
       backgroundColor: Color(0xffEED7A1),
       body: Padding(
@@ -137,7 +150,7 @@ class _CampaignScreenState extends State<CampaignScreen> {
                     ChoiceButton(
                       buttonText: choices[0],
                       onPressed: () {
-                        print('Pilihan 1 ditekan');
+                        qProvider.test();
                       },
                     ),
                     ChoiceButton(
