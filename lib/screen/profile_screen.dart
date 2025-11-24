@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tomath/widget/edit_image_popup.dart';
+import 'package:tomath/widget/edit_name_popup.dart';
+import 'package:tomath/widget/edit_title_popup.dart';
 import 'package:tomath/widget/plank_info.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -17,37 +20,100 @@ class ProfileScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Expanded(flex: 2,
-              child: SizedBox.shrink(),
-            ),
-            Expanded(flex: 8,
+            const Spacer(flex: 2),
+
+            Expanded(
+              flex: 8,
               child: PlankInfo(
-                showButton: false,
-                backgroundImage: 'assets/ui/PapanKayuShortNew.png',
+                showLeftButton: false,
+                showRightButton: false,
+                backgroundImage: 'assets/ui/KertasGede.png',
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Expanded(flex: 1,
-                      child: Container(
-                        // color: Colors.white,
-                      ),
+
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/ui/Home.png",
+                          width: MediaQuery.of(context).size.width * 1,
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          fit: BoxFit.fitHeight,
+                        ),
+
+                        Positioned(
+                          right: 10,
+                          top: 40,
+                          child: EditImagePopup(),
+                        )
+                      ],
                     ),
-                    Expanded(flex: 1,
-                      child: Container(
-                        // color: Colors.red,
-                      ),
+
+                    const SizedBox(height: 20),
+
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              "YNKTS",
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                            const SizedBox(height: 10),
+                            Container(
+                              height: 2,
+                              width: 320,
+                              decoration: const BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                      width: 2,
+                                      color: Colors.black,
+                                      style: BorderStyle.solid),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Positioned(
+                          right: 0,
+                          child: EditNamePopup(),
+                        )
+                      ],
                     ),
-                    Expanded(flex: 1,
-                      child: Container(
-                        // color: Colors.green,
+
+                    const SizedBox(height: 10),
+
+                    Container(
+                      width: 320,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Text(
+                            "LEGENDARY",
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+
+                          Positioned(
+                            right: 0,
+                            child: EditTitlePopup(),
+                          ),
+                        ],
                       ),
-                    ),
-                  ]
+                    )
+                  ],
                 ),
               ),
             ),
-            Expanded(flex: 2,
-              child: SizedBox.shrink(),
-            ),
+            const Spacer(flex: 2),
           ],
         ),
       ),

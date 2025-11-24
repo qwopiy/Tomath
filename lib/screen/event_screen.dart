@@ -22,8 +22,20 @@ class EventScreen extends StatelessWidget {
             ),
             Expanded(flex: 8,
               child: PlankInfo(
-                buttonText: 'Confirm',
                 backgroundImage: 'assets/ui/PapanMadingNew.png',
+
+                buttonWidth: 150,
+                buttonHeight: 50,
+
+                showLeftButton: false,
+
+                showRightButton: true,
+                rightButtonText: "Enter",
+                rightButtonOnTap: () {
+                  print("Right button pressed!");
+                },
+                rightButtonAlignment: Alignment.bottomRight,
+                rightButtonPadding: EdgeInsets.only(right: 70, bottom: 65),
 
               ),
             ),

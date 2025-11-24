@@ -13,19 +13,21 @@ class HomeAppbar extends StatelessWidget{
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Expanded(flex: 1,
-            child: CurrencyBar(
-              backgroundImage: 'assets/ui/kertasPipihPol.png',
-              currencyIcon: 'assets/ui/currency.png',
-              amount: 999999,
+            child: Container(
+              // alignment: AlignmentGeometry.topLeft,
+              child: CurrencyBar(
+                backgroundImage: 'assets/ui/kertasPipihPol.png',
+                currencyIcon: 'assets/ui/currency.png',
+                amount: 999999,
+              ),
             ),
           ),
           Expanded(flex: 1,
               child: Container(
-                alignment: AlignmentGeometry.center,
-                color: Colors.green,
-                child: Text('tes'),
-                // child: SettingExample(),
-                // color: Colors.red,
+                alignment: AlignmentGeometry.topRight,
+                // color: Colors.green,
+                // child: Text('tes'),
+                child: SettingButton(),
               )
           )
         ],

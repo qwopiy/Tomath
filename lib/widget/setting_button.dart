@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
 
-class SettingExample extends StatelessWidget {
-  const SettingExample({super.key});
+class SettingButton extends StatelessWidget {
+  const SettingButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: GestureDetector(
-          // Tombol Setting (gunakan gambar sendiri)
-          onTap: () {
-            showDialog(
-              context: context,
-              barrierDismissible: true, // klik luar = tutup
-              builder: (context) => const SettingPopup(),
-            );
-          },
-          child: Image.asset(
-            'assets/ui/SettingButton.png',
-            width: 60,
-            height: 60,
-          ),
-        ),
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          barrierDismissible: true,
+          builder: (context) => const SettingPopup(),
+        );
+      },
+      child: Image.asset(
+        'assets/ui/UI_setting.png',
+        width: 80,
+        height: 80,
       ),
     );
   }
@@ -30,6 +25,7 @@ class SettingExample extends StatelessWidget {
 // ============================
 // POPUP UI
 // ============================
+
 class SettingPopup extends StatelessWidget {
   const SettingPopup({super.key});
 
@@ -45,8 +41,10 @@ class SettingPopup extends StatelessWidget {
               width: 300,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
+                image: const DecorationImage(
+                  image: AssetImage('assets/ui/KertasGede.png'),
+                  fit: BoxFit.cover,
+                ),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -54,7 +52,7 @@ class SettingPopup extends StatelessWidget {
                   const SizedBox(height: 20),
 
                   const Text(
-                    "Settings",
+                    "Setting",
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
