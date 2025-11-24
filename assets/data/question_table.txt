@@ -1,0 +1,8 @@
+CREATE TABLE Question (
+  id INT,
+  bab TEXT,
+  problem TEXT,
+  option TEXT,
+  answer TEXT,
+  solution TEXT
+);

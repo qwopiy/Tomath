@@ -24,7 +24,7 @@ class Question {
   }
 
   factory Question.fromJSON(Map<String, dynamic> map) {
-    String optionsString = map['options'];
+    String optionsString = map['option'];
     List<String> optionsList = optionsString.split(', ');
     return Question(
       id: map['id'],

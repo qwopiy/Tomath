@@ -19,8 +19,8 @@ class QuizProvider extends ChangeNotifier {
 
   int _currentQuestionIndex = 0;
 
-  String _question = '';
-  List<String> _options = [
+  String question = '';
+  List<String> options = [
     '',
     '',
     '',
@@ -29,24 +29,22 @@ class QuizProvider extends ChangeNotifier {
   int _questionRemaining = 5;
   int _health = 3;
 
-  String get question => _question;
-  List<String> get options => _options;
   int get questionRemaining => _questionRemaining;
   int get health => _health;
 
   void setQuestion(String question, List<String> options) {
     if (_health <= 0 || _questionRemaining <= 0) return;
-    _question = _questions[_currentQuestionIndex].text;
-    _options = _questions[_currentQuestionIndex].options;
-    print("Setting question to index $_currentQuestionIndex");
-    print("Question: $question");
-    print("Options: $options");
+    this.question = question;
+    this.options = options;
+    // print("Setting question to index $_currentQuestionIndex");
+    // print("Question: $question");
+    // print("Options: $options");
     notifyListeners();
   }
 
   void nextQuestion() {
     if (_currentQuestionIndex < _questions.length - 1 && (_health > 0 && _questionRemaining > 0)) {
-      print("Next question called");
+      // print("Next question called");
       _currentQuestionIndex++;
       _questionRemaining--;
 
@@ -54,18 +52,22 @@ class QuizProvider extends ChangeNotifier {
 
       setQuestion(_questions[_currentQuestionIndex].text, _questions[_currentQuestionIndex].options);
       notifyListeners();
-      print("Moved to question index $_currentQuestionIndex");
-      print("Question remaining: $_questionRemaining");
+      // print("Moved to question index $_currentQuestionIndex");
+      // print("Question remaining: $_questionRemaining");
     }
   }
 
-  // TOD0: bug: question tak muncul di flutter
   Future<void> reset() async {
     await getQuestionsById(100, 200);
+    // await getQuestionDatabase();
     _questionRemaining = _questions.length;
     _health = 3;
     _currentQuestionIndex = 0;
+    // print("currentQuestionIndex set to $_currentQuestionIndex");
+    // print("Total questions loaded: ${_questions.length}");
+
     setQuestion(_questions[_currentQuestionIndex].text, _questions[_currentQuestionIndex].options);
+    // print("Quiz provider reset complete");
     notifyListeners();
   }
 

@@ -1,12 +1,3 @@
-CREATE TABLE "Question" (
-  id INT,
-  bab TEXT,
-  problem TEXT,
-  option TEXT,
-  answer TEXT,
-  solution TEXT
-);
-
 INSERT INTO Question (id, bab, problem, option, answer, solution)
 VALUES
 (101,'Bilangan Bulat','Hasil dari (-3) + 7 adalah ...','-10, 4, 10, -4','4','Karena -3 + 7 = 4.'),
