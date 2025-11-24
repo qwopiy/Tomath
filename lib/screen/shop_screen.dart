@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tomath/widget/plank_info.dart';
 
+import '../widget/item_card.dart';
+
 class ShopScreen extends StatelessWidget {
   const ShopScreen({super.key});
 
@@ -26,6 +28,20 @@ class ShopScreen extends StatelessWidget {
             Expanded(flex: 4,
                 child: PlankInfo(
                   backgroundImage: 'assets/ui/PapanKayuShortNew.png',
+
+                  buttonWidth: 150,
+                  buttonHeight: 50,
+
+                  showLeftButton: false,
+
+                  showRightButton: true,
+                  rightButtonText: "Confirm",
+                  rightButtonOnTap: () {
+                    print("Confirm Button");
+                  },
+                  rightButtonAlignment: Alignment.bottomRight,
+                  rightButtonPadding: EdgeInsets.only(right: 70, bottom: 55),
+
                   child: Column(
                     children: [
                       Expanded(flex: 2,
@@ -40,98 +56,25 @@ class ShopScreen extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    InkWell(
+                                    ItemCard(
+                                      iconPath: 'assets/ui/Home1.png',
+                                      showCurrency: true,
+                                      priceText: "20.000",
                                       onTap: () {
+                                        print("1");
                                       },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        width: 120,
-                                        height: 120,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage('assets/ui/kertasPipih.png'),
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                              'assets/background/ShopBG.png',
-                                              width: 70,
-                                              height: 70,
-                                            ),
-                                            const SizedBox(height: 2),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  'assets/ui/currency.png',
-                                                  width: 30,
-                                                  height: 30,
-                                                ),
-                                                const SizedBox(width: 4),
-                                                const Text(
-                                                  '10.000',
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+
+                                    ),
+                                    ItemCard(
+                                      iconPath: 'assets/ui/Home.png',
+                                      showCurrency: true,
+                                      priceText: "30.000",
+                                      onTap: () {
+                                        print("2");
+                                      },
+
                                     ),
 
-                                    InkWell(
-                                      onTap: () {
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        width: 120,
-                                        height: 120,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage('assets/ui/kertasPipih.png'),
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                              'assets/background/TrainingBG.png',
-                                              width: 70,
-                                              height: 70,
-                                            ),
-                                            const SizedBox(height: 2),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Image.asset(
-                                                  'assets/ui/currency.png',
-                                                  width: 30,
-                                                  height: 30,
-                                                ),
-                                                const SizedBox(width: 4),
-                                                const Text(
-                                                  '10.000',
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ),

@@ -24,9 +24,12 @@ class TrainingScreen extends StatelessWidget {
             ),
             Flexible(flex: 4,
               child: PlankInfo(
-                // height: 00,
-                buttonText: "Confirm",
-                backgroundImage: 'assets/ui/PapanKayuShort.png',
+                  backgroundImage: 'assets/ui/PapanKayuShort.png',
+
+                  showLeftButton: false,
+                  showRightButton: false,
+
+
                   child: Row(
                       children: [
                         Expanded(flex:1,
@@ -34,7 +37,7 @@ class TrainingScreen extends StatelessWidget {
                             // color: Colors.red,
                           ),
                         ),
-                        Expanded(flex:2,
+                        Expanded(flex:3,
                             child: Column(
                                 children: [
                                   Expanded(flex: 1,
@@ -42,8 +45,9 @@ class TrainingScreen extends StatelessWidget {
                                       // color: Colors.white,
                                     )
                                   ),
-                                  Expanded(flex: 4,
+                                  Expanded(flex: 5,
                                     child: Container(
+                                      padding: const EdgeInsets.all(5),
                                       child: ListView.separated(
                                           itemCount: 5,
                                           separatorBuilder: (context, index) => const SizedBox(height: 12),
@@ -54,7 +58,6 @@ class TrainingScreen extends StatelessWidget {
                                               },
                                               child: Stack(
                                                 alignment: Alignment.centerLeft,
-                                                // TEKS DITEMPATKAN DI KIRI
                                                 children: [
                                                   Image.asset(
                                                     'assets/ui/kertasPipih.png',
@@ -69,7 +72,7 @@ class TrainingScreen extends StatelessWidget {
                                                     child: Text(
                                                       'Nama Item $index',
                                                       style: const TextStyle(
-                                                        color: Colors.white,
+                                                        color: Colors.black,
                                                         fontSize: 22,
                                                         fontWeight: FontWeight.bold,
                                                       ),
@@ -83,21 +86,15 @@ class TrainingScreen extends StatelessWidget {
                                       // color: Colors.red,
                                     )
                                   ),
-                                  Expanded(flex: 3,
+                                  Expanded(flex: 1,
                                     child: Container(
                                         // color: Colors.green,
                                     )
                                   ),
                                 ]
-                                // height: 100,
-                                // width: double.infinity,
-                                // child: Container(
-                                //   color: Colors.green,
-                                //   alignment: Alignment.topCenter,
-                                // )
                             )
                         ),
-                        Expanded(flex:1,
+                        Expanded(flex:2,
                           child: Container(
                             // color: Colors.blue,
                           ),

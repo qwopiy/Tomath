@@ -27,7 +27,7 @@ class HomeAppbar extends StatelessWidget{
                 alignment: AlignmentGeometry.topRight,
                 // color: Colors.green,
                 // child: Text('tes'),
-                child: SettingExample(),
+                child: SettingButton(),
               )
           )
         ],
