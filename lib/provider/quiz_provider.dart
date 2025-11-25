@@ -26,16 +26,19 @@ class QuizProvider extends ChangeNotifier {
     '',
     ''
   ];
+  String correctAnswer = '';
+
   int _questionRemaining = 5;
   int _health = 3;
 
   int get questionRemaining => _questionRemaining;
   int get health => _health;
 
-  void setQuestion(String question, List<String> options) {
+  void setQuestion(String question, List<String> options, String correctAnswer) {
     if (_health <= 0 || _questionRemaining <= 0) return;
     this.question = question;
     this.options = options;
+    this.correctAnswer = correctAnswer;
     // print("Setting question to index $_currentQuestionIndex");
     // print("Question: $question");
     // print("Options: $options");
@@ -50,24 +53,50 @@ class QuizProvider extends ChangeNotifier {
 
       _currentQuestionIndex = Random().nextInt(_questions.length);
 
-      setQuestion(_questions[_currentQuestionIndex].text, _questions[_currentQuestionIndex].options);
+      setQuestion(
+        _questions[_currentQuestionIndex].text,
+        _questions[_currentQuestionIndex].options,
+        _questions[_currentQuestionIndex].correctAnswer
+      );
       notifyListeners();
       // print("Moved to question index $_currentQuestionIndex");
       // print("Question remaining: $_questionRemaining");
     }
   }
 
-  Future<void> reset() async {
-    await getQuestionsById(100, 200);
+  void optionSelected(int index) {
+    if (_health <= 0 || _questionRemaining <= 0) return;
+    String selectedOption = options[index];
+    if (selectedOption != correctAnswer) {
+      _health--;
+      print("correctAnswer: $correctAnswer");
+      print("Incorrect answer selected. Health decreased to $_health");
+    } else {
+      print("Correct answer selected.");
+    }
+    notifyListeners();
+  }
+
+  Future<void> resetQuestion(int idMin, int idMax) async {
+    await getQuestionsById(idMin, idMax);
     // await getQuestionDatabase();
-    _questionRemaining = _questions.length;
-    _health = 3;
-    _currentQuestionIndex = 0;
+    resetStats();
     // print("currentQuestionIndex set to $_currentQuestionIndex");
     // print("Total questions loaded: ${_questions.length}");
 
-    setQuestion(_questions[_currentQuestionIndex].text, _questions[_currentQuestionIndex].options);
+    setQuestion(
+      _questions[_currentQuestionIndex].text,
+      _questions[_currentQuestionIndex].options,
+      _questions[_currentQuestionIndex].correctAnswer
+    );
     // print("Quiz provider reset complete");
+    notifyListeners();
+  }
+
+  Future<void> resetStats() async {
+    _questionRemaining = _questions.length;
+    _health = 3;
+    _currentQuestionIndex = Random().nextInt(_questions.length);
     notifyListeners();
   }
 

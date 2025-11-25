@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tomath/provider/quiz_provider.dart';
 import 'package:tomath/widget/choice_button.dart';
+import 'package:tomath/widget/player_health.dart';
 
 class CampaignScreen extends StatefulWidget {
   const CampaignScreen({super.key});
@@ -19,12 +20,10 @@ class _CampaignScreenState extends State<CampaignScreen> {
     'Pilihan 4',
   ];
 
-  late QuizProvider qProvider;
 
   @override
   void initState() {
-    qProvider = Provider.of<QuizProvider>(context, listen: false); // untuk mempersingkat method call
-    qProvider.reset();
+    Provider.of<QuizProvider>(context, listen: false).resetQuestion(100, 200);
     super.initState();
   }
 
@@ -98,6 +97,7 @@ class _CampaignScreenState extends State<CampaignScreen> {
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
+                                      PlayerHealth(),
                                       Image(image: AssetImage(
                                           'assets/images/FreakyBug.png'),
                                         width: 80,
@@ -154,32 +154,36 @@ class _CampaignScreenState extends State<CampaignScreen> {
                     alignment: Alignment.center,
                     // wrap dari kiri ke kanan, overflow ke bawah
                     child: Wrap(
-                      spacing: 30.0,
-                      runSpacing: 30.0,
+                      spacing: MediaQuery.of(context).size.width / 8,
+                      runSpacing: MediaQuery.of(context).size.width / 8,
                       direction: Axis.horizontal,
                       children: [
                         ChoiceButton(
                           buttonText: choices[0],
                           onPressed: () {
-                            qProvider.nextQuestion();
+                            quizProvider.optionSelected(0);
+                            quizProvider.nextQuestion();
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[1],
                           onPressed: () {
-                            qProvider.nextQuestion();
+                            quizProvider.optionSelected(1);
+                            quizProvider.nextQuestion();
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[2],
                           onPressed: () {
-                            qProvider.nextQuestion();
+                            quizProvider.optionSelected(2);
+                            quizProvider.nextQuestion();
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[3],
                           onPressed: () {
-                            qProvider.nextQuestion();
+                            quizProvider.optionSelected(3);
+                            quizProvider.nextQuestion();
                           },
                         ),
                       ],
