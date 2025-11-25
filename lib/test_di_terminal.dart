@@ -1,13 +1,21 @@
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+// main.dart
+
+import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 import 'service/database_service.dart';
 
 Future<void> main() async {
-  sqfliteFfiInit();
-  databaseFactory = databaseFactoryFfi;
+  WidgetsFlutterBinding.ensureInitialized();
 
   final DatabaseService _dbs = DatabaseService.instance;
+  await _dbs.database;
 
-  List<Map> list = await _dbs.getTitle();
+  // Lakukan query terpisah yang sederhana untuk cek keberadaan data
+  final db = await _dbs.database;
+  final playerCheck = await db.query('player');
+  print('Baris di tabel player: $playerCheck'); // Cek apakah ada baris
 
-  print(list);
+  Map<String, dynamic>? profile = await _dbs.getPlayerProfile();
+  print('Hasil getPlayerProfile: $profile');
 }
