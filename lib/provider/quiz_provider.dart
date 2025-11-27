@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
+import 'package:tomath/widget/result.dart';
 
 import '../models/question.dart';
 import 'app_database.dart';
@@ -45,7 +47,7 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void nextQuestion() {
+  void nextQuestion(BuildContext context) {
     if (_currentQuestionIndex < _questions.length - 1 && (_health > 0 && _questionRemaining > 0)) {
       // print("Next question called");
       _currentQuestionIndex++;
@@ -61,6 +63,25 @@ class QuizProvider extends ChangeNotifier {
       notifyListeners();
       // print("Moved to question index $_currentQuestionIndex");
       // print("Question remaining: $_questionRemaining");
+    } else {
+      // out of questions or health
+      if (_health <= 0) {
+        // Lose
+        showResult(
+            context,
+            'GAME OVER',
+            'You have run out of health.'
+        );
+        print("No health remaining. Game over.");
+      } else {
+        // Win
+        showResult(
+            context,
+            'SUCCESS!',
+            'You answered correctly.'
+        );
+        print("No questions remaining.");
+      }
     }
   }
 
@@ -75,6 +96,17 @@ class QuizProvider extends ChangeNotifier {
       print("Correct answer selected.");
     }
     notifyListeners();
+  }
+  
+  void showResult(BuildContext context, String resultText, String descriptionText) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => ResultPopup(
+        resultText: resultText, 
+        descriptionText: descriptionText
+      ),
+    );
   }
 
   Future<void> resetQuestion(int idMin, int idMax) async {
@@ -98,6 +130,26 @@ class QuizProvider extends ChangeNotifier {
     _health = 3;
     _currentQuestionIndex = Random().nextInt(_questions.length);
     notifyListeners();
+  }
+
+  void setBab(int bab) {
+    switch (bab) {
+      case 1:
+        resetQuestion(100, 200);
+        break;
+      case 2:
+        resetQuestion(200, 300);
+        break;
+      case 3:
+        resetQuestion(300, 400);
+        break;
+      case 4:
+        resetQuestion(400, 500);
+        break;
+      default:
+        resetQuestion(100, 200);
+        break;
+    }
   }
 
   Future<void> getQuestionDatabase() async {

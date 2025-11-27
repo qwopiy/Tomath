@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:tomath/screen/campaign_screen.dart';
+
+import 'package:tomath/widget/game.dart';
 import 'package:tomath/screen/event_screen.dart';
 import 'package:tomath/screen/home_screen.dart';
 import 'package:tomath/screen/profile_screen.dart';
@@ -83,15 +84,6 @@ GoRouter createRouter() {
                 path: AppRoutes.profile,
                 name: 'profile',
                 builder: (context, state) => const ProfileScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: AppRoutes.campaign,
-                name: 'campaign',
-                builder: (context, state) => CampaignScreen(),
               ),
             ],
           ),
