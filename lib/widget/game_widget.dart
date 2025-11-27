@@ -102,7 +102,7 @@ class _GameWidgetState extends State<GameWidget> {
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      PlayerHealth(),
+                                      PlayerHealth(isTraining: widget.isTraining ?? false),
                                       Image(image: AssetImage(
                                           'assets/images/FreakyBug.png'),
                                         width: 80,
@@ -166,29 +166,29 @@ class _GameWidgetState extends State<GameWidget> {
                         ChoiceButton(
                           buttonText: choices[0],
                           onPressed: () {
-                            quizProvider.optionSelected(0);
-                            quizProvider.nextQuestion(context);
+                            quizProvider.optionSelected(0, widget.isTraining, context);
+                            quizProvider.nextQuestion(context, widget.isTraining);
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[1],
                           onPressed: () {
-                            quizProvider.optionSelected(1);
-                            quizProvider.nextQuestion(context);
+                            quizProvider.optionSelected(1, widget.isTraining, context);
+                            quizProvider.nextQuestion(context, widget.isTraining);
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[2],
                           onPressed: () {
-                            quizProvider.optionSelected(2);
-                            quizProvider.nextQuestion(context);
+                            quizProvider.optionSelected(2, widget.isTraining, context);
+                            quizProvider.nextQuestion(context, widget.isTraining);
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[3],
                           onPressed: () {
-                            quizProvider.optionSelected(3);
-                            quizProvider.nextQuestion(context);
+                            quizProvider.optionSelected(3, widget.isTraining, context);
+                            quizProvider.nextQuestion(context, widget.isTraining);
                           },
                         ),
                       ],

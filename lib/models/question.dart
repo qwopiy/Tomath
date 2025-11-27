@@ -3,12 +3,14 @@ class Question {
   final String text;
   final List<String> options;
   final String correctAnswer;
+  final String solutionText;
 
   Question({
     required this.id,
     required this.text,
     required this.options,
     required this.correctAnswer,
+    required this.solutionText,
   });
 
   String getQuestionText() {
@@ -31,6 +33,7 @@ class Question {
       text: map['problem'],
       options: optionsList,
       correctAnswer: map['answer'],
+      solutionText: map['solution'],
     );
   }
 }

@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tomath/screen/campaign_screen.dart';
 
-import 'package:tomath/widget/game.dart';
 import 'package:tomath/screen/event_screen.dart';
 import 'package:tomath/screen/home_screen.dart';
 import 'package:tomath/screen/profile_screen.dart';
 import 'package:tomath/screen/shop_screen.dart';
 import 'package:tomath/screen/training_screen.dart';
 import 'package:tomath/widget/home_app_scaffold.dart';
+
+import '../screen/training_game_screen.dart';
 
 class AppRoutes {
   static const String shop = '/shop';
@@ -17,6 +18,13 @@ class AppRoutes {
   static const String training = '/training';
   static const String profile = '/profile';
   static const String campaign = '/campaign';
+  static const String trainingGame1 = '/traininggame1';
+  static const String trainingGame2 = '/traininggame2';
+  static const String trainingGame3 = '/traininggame3';
+  static const String trainingGame4 = '/traininggame4';
+  static const String trainingGame5 = '/traininggame5';
+  static const String trainingGame6 = '/traininggame6';
+
 }
 
 GoRouter createRouter() {
@@ -34,8 +42,38 @@ GoRouter createRouter() {
       // ),
       GoRoute(
         path: AppRoutes.campaign,
-        name: 'sign-in',
-        builder: (context, state) => const CampaignScreen(),
+        name: 'campaign',
+        builder: (context, state) => const CampaignScreen(bab: 1),
+      ),
+      GoRoute(
+        path: AppRoutes.trainingGame1,
+        name: 'trainingGame1',
+        builder: (context, state) => const TrainingGameScreen(bab: 1),
+      ),
+      GoRoute(
+        path: AppRoutes.trainingGame2,
+        name: 'trainingGame2',
+        builder: (context, state) => const TrainingGameScreen(bab: 2),
+      ),
+      GoRoute(
+        path: AppRoutes.trainingGame3,
+        name: 'trainingGame3',
+        builder: (context, state) => const TrainingGameScreen(bab: 3),
+      ),
+      GoRoute(
+        path: AppRoutes.trainingGame4,
+        name: 'trainingGame4',
+        builder: (context, state) => const TrainingGameScreen(bab: 4),
+      ),
+      GoRoute(
+        path: AppRoutes.trainingGame5,
+        name: 'trainingGame5',
+        builder: (context, state) => const TrainingGameScreen(bab: 5),
+      ),
+      GoRoute(
+        path: AppRoutes.trainingGame6,
+        name: 'trainingGame6',
+        builder: (context, state) => const TrainingGameScreen(bab: 6),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, child) {

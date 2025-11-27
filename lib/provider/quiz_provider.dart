@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
-import 'package:tomath/widget/result.dart';
+import 'package:tomath/widget/result_popup.dart';
+import 'package:tomath/widget/training_popup.dart';
 
 import '../models/question.dart';
 import 'app_database.dart';
@@ -14,7 +14,8 @@ class QuizProvider extends ChangeNotifier {
       id: 0,
       text: '',
       options: ['', '', '', ''],
-      correctAnswer: ''
+      correctAnswer: '',
+      solutionText: '',
     ),
     growable: true
   );
@@ -29,6 +30,7 @@ class QuizProvider extends ChangeNotifier {
     ''
   ];
   String correctAnswer = '';
+  String solutionText = '';
 
   int _questionRemaining = 5;
   int _health = 3;
@@ -36,18 +38,20 @@ class QuizProvider extends ChangeNotifier {
   int get questionRemaining => _questionRemaining;
   int get health => _health;
 
-  void setQuestion(String question, List<String> options, String correctAnswer) {
+  void setQuestion(String question, List<String> options, String correctAnswer, String solutionText) {
     if (_health <= 0 || _questionRemaining <= 0) return;
     this.question = question;
     this.options = options;
     this.correctAnswer = correctAnswer;
+    this.solutionText = solutionText;
     // print("Setting question to index $_currentQuestionIndex");
     // print("Question: $question");
     // print("Options: $options");
     notifyListeners();
   }
 
-  void nextQuestion(BuildContext context) {
+  void nextQuestion(BuildContext context, [bool? isTraining]) {
+    if (isTraining != null && isTraining) return;
     if (_currentQuestionIndex < _questions.length - 1 && (_health > 0 && _questionRemaining > 0)) {
       // print("Next question called");
       _currentQuestionIndex++;
@@ -58,7 +62,8 @@ class QuizProvider extends ChangeNotifier {
       setQuestion(
         _questions[_currentQuestionIndex].text,
         _questions[_currentQuestionIndex].options,
-        _questions[_currentQuestionIndex].correctAnswer
+        _questions[_currentQuestionIndex].correctAnswer,
+        _questions[_currentQuestionIndex].solutionText,
       );
       notifyListeners();
       // print("Moved to question index $_currentQuestionIndex");
@@ -85,15 +90,23 @@ class QuizProvider extends ChangeNotifier {
     }
   }
 
-  void optionSelected(int index) {
+  void optionSelected(int index, [bool? isTraining, BuildContext? context]) {
     if (_health <= 0 || _questionRemaining <= 0) return;
     String selectedOption = options[index];
     if (selectedOption != correctAnswer) {
-      _health--;
+      if (isTraining == null || !isTraining) {
+        _health--;
+      }
       print("correctAnswer: $correctAnswer");
       print("Incorrect answer selected. Health decreased to $_health");
+      if (isTraining != null && context != null && isTraining) {
+        showAnswer(context, false);
+      }
     } else {
       print("Correct answer selected.");
+      if (isTraining != null && context != null && isTraining) {
+        showAnswer(context, true);
+      }
     }
     notifyListeners();
   }
@@ -109,6 +122,18 @@ class QuizProvider extends ChangeNotifier {
     );
   }
 
+  void showAnswer(BuildContext context, bool answeredRight) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => TrainingPopup(
+        resultText: answeredRight ? 'Correct!' : 'Wrong!',
+        descriptionText: 'The correct answer is: $correctAnswer',
+        solutionText: solutionText,
+      ),
+    );
+  }
+
   Future<void> resetQuestion(int idMin, int idMax) async {
     await getQuestionsById(idMin, idMax);
     // await getQuestionDatabase();
@@ -119,7 +144,8 @@ class QuizProvider extends ChangeNotifier {
     setQuestion(
       _questions[_currentQuestionIndex].text,
       _questions[_currentQuestionIndex].options,
-      _questions[_currentQuestionIndex].correctAnswer
+      _questions[_currentQuestionIndex].correctAnswer,
+      _questions[_currentQuestionIndex].solutionText,
     );
     // print("Quiz provider reset complete");
     notifyListeners();

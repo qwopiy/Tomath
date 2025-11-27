@@ -3,14 +3,22 @@ import 'package:provider/provider.dart';
 import 'package:tomath/provider/quiz_provider.dart';
 
 class PlayerHealth extends StatefulWidget {
-  const PlayerHealth({super.key});
+  bool? isTraining;
+  PlayerHealth({
+    super.key,
+    this.isTraining
+  });
 
   @override
   State<PlayerHealth> createState() => _PlayerHealthState();
 }
 
 class _PlayerHealthState extends State<PlayerHealth> {
+  @override
   Widget build(BuildContext context) {
+    if (widget.isTraining == null || widget.isTraining == true) {
+      return Container();
+    }
     return Consumer<QuizProvider>(
       builder: (context, quizProvider, child) {
         int health = Provider
