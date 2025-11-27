@@ -6,9 +6,11 @@ import 'package:tomath/widget/player_health.dart';
 
 class GameWidget extends StatefulWidget {
   final int bab;
+  final bool? isTraining;
   const GameWidget({
     super.key,
     required this.bab,
+    this.isTraining,
   });
 
   @override
