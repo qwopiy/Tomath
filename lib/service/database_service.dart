@@ -42,6 +42,7 @@ class DatabaseService{
                 CREATE TABLE item_skin (
                     item_skin_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     skin_id INTEGER,
+                    cost INTEGER,
                     is_purchased INTEGER,
                     FOREIGN KEY (skin_id) REFERENCES skin(skin_id) ON DELETE CASCADE
                 )
@@ -52,6 +53,7 @@ class DatabaseService{
                 CREATE TABLE item_title (
                     item_title_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     title_id INTEGER,
+                    cost INTEGER,
                     is_purchased INTEGER,
                     FOREIGN KEY (title_id) REFERENCES title(title_id) ON DELETE CASCADE
                 )
@@ -72,11 +74,16 @@ class DatabaseService{
               '''
           );
 
-          await db.insert('skin', {'path': 'a', 'is_unlocked': 1});
+          await db.insert('skin', {'path': 'Tomath', 'is_unlocked': 1});
+          await db.insert('skin', {'path': 'TomathUndead', 'is_unlocked': 0});
+          await db.insert('skin', {'path': 'TomathPairPlay', 'is_unlocked': 0});
 
           await db.insert('title', {'name': 'Traveler', 'is_unlocked': 1});
           await db.insert('title', {'name': 'Ghost Buster', 'is_unlocked': 0});
           await db.insert('title', {'name': 'Borjuis', 'is_unlocked': 0});
+
+          await db.insert('item_skin', {'skin_id': 3, 'cost' : 10000, 'is_purchased': 0});
+          await db.insert('item_title', {'title_id': 3, 'cost' : 7000, 'is_purchased': 0});
 
           await db.insert('player', {'username': 'FreakyBug'});
       },
@@ -117,27 +124,49 @@ class DatabaseService{
     return null;
   }
 
-  Future<List<Map>> getAllTitleUnlocked() async{
+  Future<List<Map>> getItemTitle() async{
     final db = await database;
-    final list = await db.rawQuery('SELECT * FROM title WHERE is_unlocked = 1');
+    final list = await db.rawQuery('''
+      SELECT 
+          IT.item_title_id, 
+          IT.cost, 
+          IT.is_purchased,
+          T.name AS title_name,        
+      FROM 
+          item_title AS IT
+      
+      LEFT JOIN 
+          title AS T ON IT.title_id = T.title_id
+  ''');
     return list;
   }
 
-  Future<List<Map>> getAllTitleUnPurchased() async{
+  Future<List<Map>> getItemSkin() async{
     final db = await database;
-    final list = await db.rawQuery('SELECT * FROM item_title WHERE is_purchased = 0');
+    final list = await db.rawQuery('''
+      SELECT 
+          IS.item_title_id, 
+          IS.cost, 
+          IS.is_purchased,
+          S.path AS skin_path,        
+      FROM 
+          item_skin AS IS
+      
+      LEFT JOIN 
+          skin AS S ON IS.skin_id = S.skin_id
+  ''');
     return list;
   }
 
-  Future<List<Map>> getAllSkinUnlocked() async{
+  Future<List<Map>> getTitle() async{
     final db = await database;
-    final list = await db.rawQuery('SELECT * FROM skin WHERE is_unlocked = 1');
+    final list = await db.rawQuery('SELECT * FROM title');
     return list;
   }
 
-  Future<List<Map>> getAllSkinUnPurchased() async{
+  Future<List<Map>> getSkin() async{
     final db = await database;
-    final list = await db.rawQuery('SELECT * FROM item_skin WHERE is_purchased = 0');
+    final list = await db.rawQuery('SELECT * FROM skin');
     return list;
   }
 

@@ -22,4 +22,9 @@ class Player {
       progress: map['progress'] as int,
     );
   }
+
+  @override
+  String toString() {
+    return 'Player(username: $username, skin_path: $skin_path, title_name: $title_name, currency: $currency, progress: $progress)';
+  }
 }

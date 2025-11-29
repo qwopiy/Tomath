@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:tomath/widget/currency_bar.dart';
-import 'package:tomath/widget/setting_button.dart';
+import 'currency_bar.dart';
+import 'setting_button.dart';
 
 import '../service/app_state_provider.dart';
 

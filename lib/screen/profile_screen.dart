@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../service/app_state_provider.dart';
-import 'package:tomath/widget/edit_image_popup.dart';
-import 'package:tomath/widget/edit_name_popup.dart';
-import 'package:tomath/widget/edit_title_popup.dart';
-import 'package:tomath/widget/plank_info.dart';
+
+import '../widget/edit_image_popup.dart';
+import '../widget/edit_name_popup.dart';
+import '../widget/edit_title_popup.dart';
+import '../widget/plank_info.dart';
+import '../widget/rive_animation.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -41,11 +43,10 @@ class ProfileScreen extends StatelessWidget {
                           Stack(
                             alignment: Alignment.center,
                             children: [
-                              Image.asset(
-                                "assets/ui/Home.png",
-                                width: MediaQuery.of(context).size.width * 1,
-                                height: MediaQuery.of(context).size.height * 0.4,
-                                fit: BoxFit.fitHeight,
+                              SizedBox(
+                                  height: 350,
+                                  width: 350,
+                                  child: CustomRIVEAnimation(artboardName: playerProfile.skin_path)
                               ),
 
                               Positioned(
