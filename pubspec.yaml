@@ -29,6 +29,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   go_router: ^17.0.0
+  shared_preferences: ^2.5.3
+  rive: ^0.14.0-dev.8
   flutter:
     sdk: flutter
 
@@ -41,6 +43,7 @@ dependencies:
   path: ^1.9.1
 
 dev_dependencies:
+  sqflite_common_ffi: ^2.3.3
   flutter_test:
     sdk: flutter
 
@@ -68,6 +71,7 @@ flutter:
     - assets/data/
     - assets/images/
     - assets/ui/
+    - assets/animations/
 
   fonts:
     - family: LuckiestGuy
