@@ -7,6 +7,7 @@ class CustomNavbar extends StatelessWidget {
   const CustomNavbar({super.key, required this.currentIndex});
 
   bool _isTabActive(int index) => index == currentIndex;
+
   double _getButtonWidth(int index) => _isTabActive(index) ? 80 : 70;
 
   @override
@@ -18,15 +19,13 @@ class CustomNavbar extends StatelessWidget {
       child: Stack(
         alignment: Alignment.bottomCenter,
         clipBehavior: Clip.none,
-
-        children:[
+        children: [
           Image.asset(
             'assets/ui/NavbarKayu.png',
             width: screenWidth,
             height: 110,
             fit: BoxFit.cover,
           ),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -37,7 +36,6 @@ class CustomNavbar extends StatelessWidget {
                 iconPath: 'assets/ui/shop.png',
                 buttonText: 'Shop',
               ),
-
               _buildNavItem(
                 context,
                 index: 1,
@@ -73,7 +71,13 @@ class CustomNavbar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem(BuildContext context, {required int index, required String path, required String iconPath, required String buttonText}) {
+  Widget _buildNavItem(
+    BuildContext context, {
+    required int index,
+    required String path,
+    required String iconPath,
+    required String buttonText,
+  }) {
     final isActive = _isTabActive(index);
     final width = _getButtonWidth(index);
 
@@ -85,74 +89,36 @@ class CustomNavbar extends StatelessWidget {
       child: Transform.translate(
         offset: Offset(0, isActive ? -10 : 0),
         child: Stack(
-            clipBehavior: Clip.none,
-            alignment: Alignment.center,
-              children: [
-                Image.asset(
-                  'assets/ui/kertasKecil.png',
-                  width: width + 10,
-                  height: width + 14,
-                  fit: BoxFit.contain,
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            Image.asset(
+              'assets/ui/kertasKecil.png',
+              width: width + 10,
+              height: width + 14,
+              fit: BoxFit.contain,
+            ),
+            Image.asset(
+              iconPath,
+              width: width,
+              height: width,
+              fit: BoxFit.contain,
+            ),
+            Positioned(
+              bottom: 10,
+              left: 0,
+              right: 0,
+              child: Text(
+                buttonText,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
-
-                Image.asset(
-                  iconPath,
-                  width: width,
-                  height: width,
-                  fit: BoxFit.contain,
-                ),
-
-                Positioned(
-                  bottom: 10,
-                  left: 0,
-                  right: 0,
-                  child: Text(
-                    buttonText,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-
-
-
-
-
-
-            // children: [
-            //    Image.asset(
-            //      'assets/ui/kertasKecil.png',
-            //      width: width +10,
-            //      height: width,
-            //      fit: BoxFit.contain,
-            //
-            //    ),
-            //   Column(
-            //     mainAxisSize: MainAxisSize.min,
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Image.asset(
-            //         iconPath,
-            //         width: width,
-            //         height: width-20,
-            //         fit: BoxFit.contain,
-            //       ),
-            //       Text(buttonText,
-            //         textAlign: TextAlign.center,
-            //         style: TextStyle(
-            //           fontSize: 15,
-            //           // fontFamily: 'LuckiestGuy',
-            //           color: Colors.white,
-            //           fontWeight: FontWeight.bold,
-            //         ),
-            //       ),
-            //     ],
-            //   )
-            // ]
+              ),
+            ),
+          ],
         ),
       ),
     );
