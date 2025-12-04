@@ -4,6 +4,7 @@ import 'Config/Routes.dart';
 import 'package:provider/provider.dart';
 import 'service/app_state_provider.dart';
 
+
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await RiveNative.init();
@@ -23,7 +24,7 @@ class Tomath  extends StatelessWidget {
     return MaterialApp.router(
       title: 'Tomath',
 
+      // CampaignScreen();
       routerConfig: createRouter(),
     );
   }
-}
