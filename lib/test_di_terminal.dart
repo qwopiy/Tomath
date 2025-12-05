@@ -1,15 +1,32 @@
-import 'soal/problems_generator_kls7/problems_generator_bab0.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+import 'service/database_service.dart';
 
-void main() {
-  print("Testing Bab 0");
-  Bab0 bab0 = Bab0(0, 3);
-  bab0.setQuestion(2);
-  print(bab0.question);
-  print("a = ${bab0.choices[0]}");
-  print("b = ${bab0.choices[1]}");
-  print("c = ${bab0.choices[2]}");
-  print("d = ${bab0.choices[3]}");
-  
-  // print(bab0.getAllFactors(100));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
+  final databasesPath = await getDatabasesPath();
+  String path = join(databasesPath, "tomath_db.db");
+  await deleteDatabase(path);
+
+  final DatabaseService _dbs = DatabaseService.instance;
+  final db = await _dbs.database;
+
+  final playerCheck = await db.query('player');
+  print('Baris di tabel player: $playerCheck');
+
+  final skinCheck = await db.query('skin');
+  print('Baris di tabel player: $skinCheck');
+
+  final titleCheck = await db.query('title');
+  print('Baris di tabel player: $titleCheck');
+
+  final itemSkinCheck = await db.query('item_skin');
+  print('Baris di tabel player: $itemSkinCheck');
+
+  final itemTitleCheck = await db.query('item_title');
+  print('Baris di tabel player: $itemTitleCheck');
 }
