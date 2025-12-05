@@ -4,9 +4,13 @@ import 'package:tomath/provider/quiz_provider.dart';
 import 'package:tomath/widget/choice_button.dart';
 import 'package:tomath/widget/player_health.dart';
 
+import '../service/app_state_provider.dart';
+import 'rive_animation.dart';
+
 class GameWidget extends StatefulWidget {
   final int bab;
   final bool? isTraining;
+  final double _playerHeight = 150;
   const GameWidget({
     super.key,
     required this.bab,
@@ -38,6 +42,7 @@ class _GameWidgetState extends State<GameWidget> {
       builder: (context, quizProvider, child) {
         questionText = quizProvider.question;
         choices = quizProvider.options;
+
         print("Building CampaignScreen with question: $questionText");
         print("Choices: $choices");
 
@@ -58,33 +63,35 @@ class _GameWidgetState extends State<GameWidget> {
                     // bawah: gambar player dan musuh
                     child: Padding(
                       padding: const EdgeInsets.only(top: 60),
-                      // padding 100 untuk setting
+                      // padding 60 untuk setting
                       child: Column(
                         children: [
                           // atas: soal
                           Expanded(
-                            flex: 6,
+                            flex: 3,
                             child: Container(
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
-                                      'assets/ui/kertasPipih.png'),
-                                  fit: BoxFit.contain,
+                                      'assets/ui/kertasKecil.png'),
+                                  fit: BoxFit.fill,
                                 ),
                               ),
                               alignment: Alignment.center,
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 40, right: 40),
-                                child: Text(
-                                  questionText,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                                    left: 45, right: 55),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: Text(
+                                    questionText,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    maxLines: 4,
                                   ),
-                                  textAlign: TextAlign.center,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ),
@@ -93,28 +100,25 @@ class _GameWidgetState extends State<GameWidget> {
                           Expanded(
                             flex: 4,
                             child: Container(
-                              color: Colors.orange,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/ui/kertasKecil.png'),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment
-                                    .spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   // gambar player
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       PlayerHealth(isTraining: widget.isTraining ?? false),
-                                      Image(image: AssetImage(
-                                          'assets/images/FreakyBug.png'),
-                                        width: 80,
-                                        height: 80,
-                                      ),
-                                      SizedBox(height: 8),
-                                      Text(
-                                        'Player',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                      SizedBox(
+                                        height: widget._playerHeight,
+                                        width: MediaQuery.of(context).size.width / 3,
+                                        child: CustomRIVEAnimation(artboardName: Provider.of<AppStateProvider>(context).player.skin_path),
                                       ),
                                     ],
                                   ),
@@ -122,18 +126,14 @@ class _GameWidgetState extends State<GameWidget> {
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Image(image: AssetImage(
-                                          'assets/images/FreakyBug.png'),
-                                        width: 80,
-                                        height: 80,
+                                      SizedBox(
+                                        height: kToolbarHeight - 20,
+                                        width: MediaQuery.of(context).size.width / 3,
                                       ),
-                                      SizedBox(height: 8),
-                                      Text(
-                                        'Musuh',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                      SizedBox(
+                                        height: widget._playerHeight,
+                                        width: MediaQuery.of(context).size.width / 3,
+                                        child: CustomRIVEAnimation(artboardName: Provider.of<AppStateProvider>(context).player.skin_path),
                                       ),
                                     ],
                                   ),

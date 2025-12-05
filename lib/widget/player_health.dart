@@ -17,7 +17,10 @@ class _PlayerHealthState extends State<PlayerHealth> {
   @override
   Widget build(BuildContext context) {
     if (widget.isTraining == null || widget.isTraining == true) {
-      return Container();
+      return SizedBox(
+        height: kToolbarHeight - 20,
+        width: MediaQuery.of(context).size.width / 3,
+      );
     }
     return Consumer<QuizProvider>(
       builder: (context, quizProvider, child) {
