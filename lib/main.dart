@@ -19,6 +19,7 @@ import 'service/app_state_provider.dart';
 //   runApp(const Tomath());
 // }
 
+
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await AppDatabase.instance.database;
@@ -45,8 +46,7 @@ class Tomath  extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Tomath',
 
-        routerConfig: createRouter(),
-      ),
+      // CampaignScreen();
+      routerConfig: createRouter(),
     );
   }
-}

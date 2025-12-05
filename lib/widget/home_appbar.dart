@@ -29,13 +29,17 @@ class HomeAppbar extends StatelessWidget{
                   ),
                 ),
               ),
-              Expanded(flex: 1,
-                  child: Container(
-                    alignment: AlignmentGeometry.topRight,
-                    // color: Colors.green,
-                    // child: Text('tes'),
-                    child: SettingButton(),
-                  )
+            ),
+          ),
+          Expanded(flex: 1,
+              child: Container(
+                alignment: AlignmentGeometry.topRight,
+                // color: Colors.green,
+                // child: Text('tes'),
+                child: SettingButton(
+                  buttonText: 'Exit',
+                  onPressed: (){},
+                ),
               )
             ],
                 ),
