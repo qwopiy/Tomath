@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tomath/widget/item_card.dart';
 
+import 'rive_animation.dart';
+
 class EditImagePopup extends StatelessWidget {
   const EditImagePopup({super.key});
 
@@ -67,15 +69,15 @@ class ImagePopup extends StatelessWidget {
                          child: Row(
                            children: [
                              ItemCard(
-                               iconPath: 'assets/background/TrainingBG.png',
                                showCurrency: false,
                                onTap: (){},
+                               child: CustomRIVEAnimation(artboardName: 'Tomath'),
                              ),
                              const SizedBox(width: 20),
                              ItemCard(
-                               iconPath: 'assets/background/TrainingBG.png',
                                showCurrency: false,
                                onTap: (){},
+                               child: CustomRIVEAnimation(artboardName: 'Durian'),
 
                              ),
                            ]

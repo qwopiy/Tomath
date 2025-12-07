@@ -17,32 +17,31 @@ class HomeAppbar extends StatelessWidget{
           return SafeArea(
             bottom: false,
             child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(flex: 1,
-                child: Container(
-                  // alignment: AlignmentGeometry.topLeft,
-                  child: CurrencyBar(
-                    backgroundImage: 'assets/ui/kertasPipihPol.png',
-                    currencyIcon: 'assets/ui/currency.png',
-                    amount: playerProfile.currency,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(flex: 1,
+                  child: Container(
+                    // alignment: AlignmentGeometry.topLeft,
+                    child: CurrencyBar(
+                      backgroundImage: 'assets/ui/kertasPipihPol.png',
+                      currencyIcon: 'assets/ui/currency.png',
+                      amount: playerProfile.currency,
+                    ),
                   ),
                 ),
-              ),
+                Expanded(flex: 1,
+                    child: Container(
+                      alignment: AlignmentGeometry.topRight,
+                      // color: Colors.green,
+                      // child: Text('tes'),
+                      child: SettingButton(
+                        buttonText: 'Exit',
+                        onPressed: (){},
+                      ),
+                    )
+                ),
+              ]
             ),
-          ),
-          Expanded(flex: 1,
-              child: Container(
-                alignment: AlignmentGeometry.topRight,
-                // color: Colors.green,
-                // child: Text('tes'),
-                child: SettingButton(
-                  buttonText: 'Exit',
-                  onPressed: (){},
-                ),
-              )
-            ],
-                ),
           );
         }
       );

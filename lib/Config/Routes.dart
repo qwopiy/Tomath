@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:tomath/screen/event_screen.dart';
-import 'package:tomath/screen/home_screen.dart';
-import 'package:tomath/screen/profile_screen.dart';
-import 'package:tomath/screen/shop_screen.dart';
-import 'package:tomath/screen/training_screen.dart';
-import 'package:tomath/widget/home_app_scaffold.dart';
+import '../screen/event_screen.dart';
+import '../screen/home_screen.dart';
+import '../screen/profile_screen.dart';
+import '../screen/shop_screen.dart';
+import '../screen/training_screen.dart';
+import '../screen/campaign_screen.dart';
+import '../widget/home_app_scaffold.dart';
 
 class AppRoutes {
   static const String shop = '/shop';
@@ -14,6 +15,7 @@ class AppRoutes {
   static const String home = '/home';
   static const String training = '/training';
   static const String profile = '/profile';
+  static const String Campaign = '/campaign';
 }
 
 GoRouter createRouter() {
@@ -24,11 +26,11 @@ GoRouter createRouter() {
     initialLocation: AppRoutes.home,
     routes: [
       // contoh buat ntaran
-      // GoRoute(
-      //   path: AppRoutes.quiz,
-      //   name: 'sign-in',
-      //   builder: (context, state) => const QuizScreen(),
-      // ),
+      GoRoute(
+        path: AppRoutes.Campaign,
+        name: 'campaign',
+        builder: (context, state) => const CampaignScreen(),
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, child) {
           return HomeAppScaffold(child: child);
