@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../widget/plank_info.dart';
 
 class TrainingScreen extends StatelessWidget {
@@ -55,6 +56,7 @@ class TrainingScreen extends StatelessWidget {
                                             return InkWell(
                                               onTap: () {
                                                 print("Item $index diklik");
+                                                GoRouter.of(context).push('/traininggame$index');
                                               },
                                               child: Stack(
                                                 alignment: Alignment.centerLeft,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tomath/provider/quiz_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -30,9 +31,9 @@ class HomeScreen extends StatelessWidget {
                   height: 150,
                   child: InkWell(
                     onTap: () {
-                      context.push('/campaign');
                       print('tombol Play ditekan');
-                      // context.push('/quiz');
+                      QuizProvider().resetQuestion(100, 200); // temp: untuk bab 1 (id 100 - 200)
+                      GoRouter.of(context).push('/campaign');
                     },
                     child: Stack(
                       alignment: Alignment.bottomCenter,
