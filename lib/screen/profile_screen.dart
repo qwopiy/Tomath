@@ -8,9 +8,26 @@ import '../widget/edit_title_popup.dart';
 import '../widget/plank_info.dart';
 import '../widget/rive_animation.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  bool _isAttacking = false;
+
+  void _triggerAttack() async {
+    setState(() {
+      _isAttacking = true; 
+    });
+    await Future.delayed(Duration(seconds: 1)); 
+    setState(() {
+      _isAttacking = false; 
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<AppStateProvider>(
@@ -46,17 +63,23 @@ class ProfileScreen extends StatelessWidget {
                               SizedBox(
                                   height: 350,
                                   width: 350,
-                                  child: CustomRIVEAnimation(artboardName: playerProfile.skin_path)
+                                  child: CustomRIVEAnimation(
+                                      artboardName: playerProfile.skin_path,
+                                      isAttack: _isAttacking,
+                                      isGetHit: false,
+                                  )
                               ),
 
                               Positioned(
                                 right: 10,
                                 top: 40,
-                                child: EditImagePopup(),
+                                child: 
+                                  ElevatedButton(onPressed: _triggerAttack, child: child)
+                                  // EditImagePopup(),
                               )
                             ],
                           ),
-
+                          
                           const SizedBox(height: 20),
 
                           Stack(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tomath/screen/campaign_screen.dart';
 
 import '../screen/event_screen.dart';
 import '../screen/home_screen.dart';
@@ -45,7 +44,7 @@ GoRouter createRouter() {
       GoRoute(
         path: AppRoutes.campaign,
         name: 'campaign',
-        builder: (context, state) => const CampaignScreen(bab: 1),
+        builder: (context, state) => const CampaignScreen(),
       ),
       GoRoute(
         path: AppRoutes.trainingGame1,

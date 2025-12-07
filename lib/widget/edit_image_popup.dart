@@ -71,13 +71,21 @@ class ImagePopup extends StatelessWidget {
                              ItemCard(
                                showCurrency: false,
                                onTap: (){},
-                               child: CustomRIVEAnimation(artboardName: 'Tomath'),
+                               child: CustomRIVEAnimation(
+                                 artboardName: 'Tomath',
+                                 isAttack: false,
+                                 isGetHit: false,
+                               ),
                              ),
                              const SizedBox(width: 20),
                              ItemCard(
                                showCurrency: false,
                                onTap: (){},
-                               child: CustomRIVEAnimation(artboardName: 'Durian'),
+                               child: CustomRIVEAnimation(
+                                 artboardName: 'Durian',
+                                 isAttack: false,
+                                 isGetHit: false,
+                               ),
 
                              ),
                            ]
