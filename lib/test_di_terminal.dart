@@ -1,8 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/widgets.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 import 'service/database_service.dart';
 
 Future<void> main() async {
@@ -17,6 +15,9 @@ Future<void> main() async {
 
   final playerCheck = await db.query('player');
   print('Baris di tabel player: $playerCheck');
+
+  final subBabCheck = await db.query('sub_bab');
+  print('Baris di tabel player: $subBabCheck');
 
   final skinCheck = await db.query('skin');
   print('Baris di tabel player: $skinCheck');

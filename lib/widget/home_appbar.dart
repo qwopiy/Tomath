@@ -13,35 +13,36 @@ class HomeAppbar extends StatelessWidget{
       builder: (context, appState, child) {
         final playerProfile = appState.player;
 
-        return SafeArea(
-          bottom: false,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  child: CurrencyBar(
-                    backgroundImage: 'assets/ui/kertasPipihPol.png',
-                    currencyIcon: 'assets/ui/currency.png',
-                    amount: playerProfile.currency,
+          return SafeArea(
+            bottom: false,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(flex: 1,
+                  child: Container(
+                    // alignment: AlignmentGeometry.topLeft,
+                    child: CurrencyBar(
+                      backgroundImage: 'assets/ui/kertasPipihPol.png',
+                      currencyIcon: 'assets/ui/currency.png',
+                      amount: playerProfile.currency,
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  alignment: Alignment.topRight,
-                  child: SettingButton(
-                    buttonText: 'Exit',
-                    onPressed: () {},
-                  ),
+                Expanded(flex: 1,
+                    child: Container(
+                      alignment: AlignmentGeometry.topRight,
+                      // color: Colors.green,
+                      // child: Text('tes'),
+                      child: SettingButton(
+                        buttonText: 'Exit',
+                        onPressed: (){},
+                      ),
+                    )
                 ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
+              ]
+            ),
+          );
+        }
+      );
   }
 }
