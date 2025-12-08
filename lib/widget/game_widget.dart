@@ -118,7 +118,10 @@ class _GameWidgetState extends State<GameWidget> {
                                       SizedBox(
                                         height: widget._playerHeight,
                                         width: MediaQuery.of(context).size.width / 3,
-                                        child: CustomRIVEAnimation(artboardName: Provider.of<AppStateProvider>(context).player.skin_path),
+                                        child: CustomRIVEAnimation(
+                                          artboardName: Provider.of<AppStateProvider>(context).player.skin_path,
+                                          isAttack: false,
+                                          isGetHit: false,),
                                       ),
                                     ],
                                   ),
@@ -133,7 +136,11 @@ class _GameWidgetState extends State<GameWidget> {
                                       SizedBox(
                                         height: widget._playerHeight,
                                         width: MediaQuery.of(context).size.width / 3,
-                                        child: CustomRIVEAnimation(artboardName: Provider.of<AppStateProvider>(context).player.skin_path),
+                                        child: CustomRIVEAnimation(
+                                          artboardName: Provider.of<AppStateProvider>(context).player.skin_path,
+                                          isAttack: false,
+                                          isGetHit: false,
+                                        ),
                                       ),
                                     ],
                                   ),

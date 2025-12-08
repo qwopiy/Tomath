@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                     onTap: () {
                       print('tombol Play ditekan');
                       QuizProvider().resetQuestion(100, 200); // temp: untuk bab 1 (id 100 - 200)
-                      GoRouter.of(context).push('/campaign');
+                      context.push('/campaign');
                     },
                     child: Stack(
                       alignment: Alignment.bottomCenter,
