@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:tomath/Config/Routes.dart';
+import 'package:rive/rive.dart';
+import 'Config/Routes.dart';
+import 'package:provider/provider.dart';
+import 'service/app_state_provider.dart';
 
-void main() {
-  runApp(const Tomath());
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await RiveNative.init();
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => AppStateProvider(),
+      child: const Tomath(),
+    ),
+  );
 }
-
 class Tomath  extends StatelessWidget {
   const Tomath ({super.key});
 
