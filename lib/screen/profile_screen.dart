@@ -8,26 +8,9 @@ import '../widget/edit_title_popup.dart';
 import '../widget/plank_info.dart';
 import '../widget/rive_animation.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
-  bool _isAttacking = false;
-
-  void _triggerAttack() async {
-    setState(() {
-      _isAttacking = true; 
-    });
-    await Future.delayed(Duration(seconds: 1)); 
-    setState(() {
-      _isAttacking = false; 
-    });
-  }
-  
   @override
   Widget build(BuildContext context) {
     return Consumer<AppStateProvider>(
@@ -65,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   width: 350,
                                   child: CustomRIVEAnimation(
                                       artboardName: playerProfile.skin_path,
-                                      isAttack: _isAttacking,
+                                      isAttack: false,
                                       isGetHit: false,
                                   )
                               ),
@@ -73,9 +56,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Positioned(
                                 right: 10,
                                 top: 40,
-                                child: 
-                                  ElevatedButton(onPressed: _triggerAttack, child: child)
-                                  // EditImagePopup(),
+                                child:
+                                  EditImagePopup(),
                               )
                             ],
                           ),

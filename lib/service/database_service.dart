@@ -68,8 +68,32 @@ class DatabaseService{
                     progress INTEGER DEFAULT 1,
                     title_id INTEGER DEFAULT 1,
                     skin_id  INTEGER DEFAULT 1,
+                    FOREIGN KEY (progress) REFERENCES bab(bab_id) ON DELETE CASCADE,
                     FOREIGN KEY (title_id) REFERENCES title(title_id) ON DELETE CASCADE,
                     FOREIGN KEY (skin_id) REFERENCES skin(skin_id) ON DELETE CASCADE
+                )
+              '''
+          );
+          await db.execute(
+              '''
+                CREATE TABLE bab (
+                    bab_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    chapter TEXT
+                )
+              '''
+          );
+          await db.execute(
+              '''
+                CREATE TABLE sub_bab (
+                    sub_bab_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    bab_id INTEGER NOT NULL,
+                    before_winning_info TEXT,
+                    after_winning_info TEXT,
+                    mission TEXT,
+                    material TEXT,
+                    reward INTEGER,
+                    is_finished INTEGER,
+                    FOREIGN KEY (bab_id) REFERENCES bab(bab_id) ON DELETE CASCADE
                 )
               '''
           );
@@ -85,7 +109,44 @@ class DatabaseService{
           await db.insert('item_skin', {'skin_id': 3, 'cost' : 10000, 'is_purchased': 0});
           await db.insert('item_title', {'title_id': 3, 'cost' : 7000, 'is_purchased': 0});
 
+          await db.insert('bab', {'chapter' : 'Bilangan Bulat'});
+          await db.insert('bab', {'chapter' : 'Bilangan Rasional'});
+          await db.insert('bab', {'chapter' : 'Rasio'});
+          await db.insert('bab', {'chapter' : 'UTS'});
+          await db.insert('bab', {'chapter' : 'Bentuk Aljabar'});
+          await db.insert('bab', {'chapter' : 'Kesebangunan'});
+          await db.insert('bab', {'chapter' : 'Data dan Diagram'});
+          await db.insert('bab', {'chapter' : 'UAS'});
+
           await db.insert('player', {'username': 'FreakyBug'});
+
+          await db.insert('sub_bab',{
+            'bab_id' : 1,
+            'before_winning_info' : 'Super Creek, will you?',
+            'after_winning_info' : 'yes ;)',
+            'mission' : 'defeat all the bandits',
+            'material' : 'garis bilangan (penjumlahan, pengurangan)',
+            'reward' : 200,
+            'is_finished' : 0
+          });
+          await db.insert('sub_bab',{
+            'bab_id' : 1,
+            'before_winning_info' : 'do you know why Burger bangor always give 40% discount?',
+            'after_winning_info' : 'isnt the answer obvious?',
+            'mission' : 'defeat all the bandits',
+            'material' : 'perkalian, pembagian',
+            'reward' : 250,
+            'is_finished' : 0
+          });
+          await db.insert('sub_bab',{
+            'bab_id' : 1,
+            'before_winning_info' : 'wow, now i know why you like her',
+            'after_winning_info' : 'nah, if in another universe she doesnt have all that, ill still love her',
+            'mission' : 'defeat all the bandits',
+            'material' : 'fpb, kpk',
+            'reward' : 300,
+            'is_finished' : 0
+          });
       },
       onConfigure: (db) async {
         await db.execute("PRAGMA foreign_keys = ON");
@@ -122,6 +183,23 @@ class DatabaseService{
       return result.first;
     }
     return null;
+  }
+
+  Future<List<Map<String, dynamic>>> getSubBab() async{
+    final db = await database;
+    final List<Map<String, dynamic>> list = await db.rawQuery('''
+        SELECT 
+          SB.*
+        FROM 
+          player AS P
+        JOIN 
+          sub_bab AS SB
+        ON 
+          P.progress = SB.bab_id
+        WHERE 
+          P.player_id = 1
+  ''');
+    return list;
   }
 
   Future<List<Map>> getItemTitle() async{
