@@ -9,19 +9,18 @@ import '../service/app_state_provider.dart';
 class HomeAppbar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return
-      Consumer<AppStateProvider>(
-        builder: (context, appState, child) {
-          final playerProfile = appState.player;
+    return Consumer<AppStateProvider>(
+      builder: (context, appState, child) {
+        final playerProfile = appState.player;
 
-          return SafeArea(
-            bottom: false,
-            child: Row(
+        return SafeArea(
+          bottom: false,
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Expanded(flex: 1,
+              Expanded(
+                flex: 1,
                 child: Container(
-                  // alignment: AlignmentGeometry.topLeft,
                   child: CurrencyBar(
                     backgroundImage: 'assets/ui/kertasPipihPol.png',
                     currencyIcon: 'assets/ui/currency.png',
@@ -29,18 +28,20 @@ class HomeAppbar extends StatelessWidget{
                   ),
                 ),
               ),
-              Expanded(flex: 1,
-                  child: Container(
-                    alignment: AlignmentGeometry.topRight,
-                    // color: Colors.green,
-                    // child: Text('tes'),
-                    child: SettingButton(),
-                  )
-              )
-            ],
+              Expanded(
+                flex: 1,
+                child: Container(
+                  alignment: Alignment.topRight,
+                  child: SettingButton(
+                    buttonText: 'Exit',
+                    onPressed: () {},
+                  ),
                 ),
-          );
-        }
-      );
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

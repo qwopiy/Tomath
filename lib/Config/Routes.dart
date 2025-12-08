@@ -43,7 +43,7 @@ GoRouter createRouter() {
       GoRoute(
         path: AppRoutes.campaign,
         name: 'campaign',
-        builder: (context, state) => const CampaignScreen(bab: 1),
+        builder: (context, state) => const CampaignScreen(),
       ),
       GoRoute(
         path: AppRoutes.trainingGame1,

@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class SettingButton extends StatelessWidget {
-  const SettingButton({super.key});
+  final String buttonText;
+  final VoidCallback onPressed;
+
+  const SettingButton({
+    super.key,
+    required this.buttonText,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -10,38 +17,57 @@ class SettingButton extends StatelessWidget {
         showDialog(
           context: context,
           barrierDismissible: true,
-          builder: (context) => const SettingPopup(),
+          builder: (context) => SettingPopup(
+            buttonText: buttonText,
+            onButtonPressed: onPressed,
+          ),
         );
       },
       child: Image.asset(
         'assets/ui/UI_setting.png',
-        width: 80,
-        height: 80,
+        width: MediaQuery.of(context).size.width * 0.17,
+        height: MediaQuery.of(context).size.width * 0.17,
       ),
     );
   }
 }
 
-// ============================
-// POPUP UI
-// ============================
+class SettingPopup extends StatefulWidget {
+  final String buttonText;
+  final VoidCallback onButtonPressed;
 
-class SettingPopup extends StatelessWidget {
-  const SettingPopup({super.key});
+  const SettingPopup({
+    super.key,
+    required this.buttonText,
+    required this.onButtonPressed,
+  });
+
+  @override
+  State<SettingPopup> createState() => _SettingPopupState();
+}
+
+class _SettingPopupState extends State<SettingPopup> {
+  double soundVolume = 0.7;
+  double musicVolume = 0.5;
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double popupWidth = screenWidth * 0.75;
+    popupWidth = popupWidth < 280 ? 280 : popupWidth;
+
     return Center(
       child: Material(
         color: Colors.transparent,
         child: Stack(
           children: [
-            // Popup Box
+
+            // POPUP BOX
             Container(
-              width: 300,
+              width: popupWidth,
               padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                image: const DecorationImage(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
                   image: AssetImage('assets/ui/KertasGede.png'),
                   fit: BoxFit.cover,
                 ),
@@ -51,40 +77,68 @@ class SettingPopup extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
 
-                  const Text(
+                  Text(
                     "Setting",
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: popupWidth * 0.08,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
 
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 30),
 
-                  _menuItem("Sound"),
-                  const SizedBox(height: 15),
-
-                  _menuItem("Music"),
-                  const SizedBox(height: 15),
-
-                  _menuItem("Exit"),
+                  // SOUND SLIDER
+                  _volumeSlider(
+                    label: "Sound",
+                    value: soundVolume,
+                    onChanged: (v) {
+                      setState(() => soundVolume = v);
+                    },
+                    width: popupWidth,
+                  ),
 
                   const SizedBox(height: 20),
+
+                  // MUSIC SLIDER
+                  _volumeSlider(
+                    label: "Music",
+                    value: musicVolume,
+                    onChanged: (v) {
+                      setState(() => musicVolume = v);
+                    },
+                    width: popupWidth,
+                  ),
+
+                  const SizedBox(height: 25),
+
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: _button(
+                        widget.buttonText,
+                        widget.onButtonPressed,
+                        popupWidth,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
                 ],
               ),
             ),
 
-            // Tombol CLOSE pakai icon bawaan
+            // CLOSE BUTTON (X)
             Positioned(
-              right: 0,
+              right: 10,
               top: 0,
               child: GestureDetector(
                 onTap: () => Navigator.of(context).pop(),
                 child: Container(
                   padding: const EdgeInsets.all(10),
-                  child: const Icon(
+                  child: Icon(
                     Icons.close,
-                    size: 28,
+                    size: popupWidth * 0.15,
                     color: Colors.black,
                   ),
                 ),
@@ -96,22 +150,66 @@ class SettingPopup extends StatelessWidget {
     );
   }
 
-  // Item menu
-  Widget _menuItem(String text) {
+
+  Widget _volumeSlider({
+    required String label,
+    required double value,
+    required Function(double) onChanged,
+    required double width,
+  }) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+      width: width * 0.85,
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            text,
-            style: const TextStyle(fontSize: 18),
+            label,
+            style: TextStyle(
+              fontSize: width * 0.06,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Slider(
+            value: value,
+            min: 0,
+            max: 1,
+            onChanged: onChanged,
+            activeColor: Colors.brown,
+            inactiveColor: Colors.black,
           ),
         ],
       ),
     );
   }
+}
+
+
+Widget _button(String text, VoidCallback onTap, double width) {
+  return InkWell(
+    onTap: onTap,
+    child: Container(
+      width: width * 0.45,
+      height: width * 0.15,
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/ui/NavbarKayu.png'),
+          fit: BoxFit.fill,
+        ),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: width * 0.06,
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+  );
 }

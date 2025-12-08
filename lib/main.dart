@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
-import 'package:tomath/provider/app_database.dart';
-import 'package:tomath/provider/quiz_provider.dart';
+import 'provider/app_database.dart';
+import 'provider/quiz_provider.dart';
 
 import 'Config/Routes.dart';
 import 'service/app_state_provider.dart';
@@ -18,6 +18,7 @@ import 'service/app_state_provider.dart';
 //
 //   runApp(const Tomath());
 // }
+
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,8 +46,10 @@ class Tomath  extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Tomath',
 
-        routerConfig: createRouter(),
-      ),
+      // CampaignScreen();
+      routerConfig: createRouter(),
+
+      )
     );
   }
 }
