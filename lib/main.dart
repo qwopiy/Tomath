@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
-import 'package:tomath/provider/app_database.dart';
-import 'package:tomath/provider/quiz_provider.dart';
+import 'provider/app_database.dart';
+import 'provider/quiz_provider.dart';
 
 import 'Config/Routes.dart';
 import 'service/app_state_provider.dart';
@@ -48,5 +48,8 @@ class Tomath  extends StatelessWidget {
 
       // CampaignScreen();
       routerConfig: createRouter(),
+
+      )
     );
   }
+}
