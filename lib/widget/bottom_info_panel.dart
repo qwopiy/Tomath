@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BottomInfoPanel extends StatelessWidget {
   const BottomInfoPanel({super.key});
@@ -36,7 +37,9 @@ class BottomInfoPanel extends StatelessWidget {
             const SizedBox(height: 12),
 
             InkWell(
-              onTap: () {},
+              onTap: () {
+                context.pop();
+              },
               child: Container(
                 width: 110,
                 height: 45,

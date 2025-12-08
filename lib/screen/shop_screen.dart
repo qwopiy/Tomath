@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tomath/widget/plank_info.dart';
 
+import '../widget/plank_info.dart';
 import '../widget/item_card.dart';
 
 class ShopScreen extends StatelessWidget {
@@ -57,21 +57,21 @@ class ShopScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     ItemCard(
-                                      iconPath: 'assets/ui/Home1.png',
                                       showCurrency: true,
                                       priceText: "20.000",
                                       onTap: () {
                                         print("1");
                                       },
+                                      child: Image.asset('assets/ui/Home1.png'),
 
                                     ),
                                     ItemCard(
-                                      iconPath: 'assets/ui/Home.png',
                                       showCurrency: true,
                                       priceText: "30.000",
                                       onTap: () {
                                         print("2");
                                       },
+                                      child: Image.asset('assets/ui/Home1.png'),
 
                                     ),
 

@@ -46,17 +46,22 @@ class ProfileScreen extends StatelessWidget {
                               SizedBox(
                                   height: 350,
                                   width: 350,
-                                  child: CustomRIVEAnimation(artboardName: playerProfile.skin_path)
+                                  child: CustomRIVEAnimation(
+                                      artboardName: playerProfile.skin_path,
+                                      isAttack: false,
+                                      isGetHit: false,
+                                  )
                               ),
 
                               Positioned(
                                 right: 10,
                                 top: 40,
-                                child: EditImagePopup(),
+                                child:
+                                  EditImagePopup(),
                               )
                             ],
                           ),
-
+                          
                           const SizedBox(height: 20),
 
                           Stack(

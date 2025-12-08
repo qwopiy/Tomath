@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ItemCard extends StatelessWidget {
-  final String iconPath;
+class ItemCard extends StatefulWidget {
+  final Widget child;
+
   final String backgroundPath;
   final bool showCurrency;
   final String priceText;
@@ -9,7 +10,7 @@ class ItemCard extends StatelessWidget {
 
   const ItemCard({
     super.key,
-    required this.iconPath,
+    required this.child,
     this.backgroundPath = 'assets/ui/kertasPipih.png',
     this.showCurrency = true,
     this.priceText = "10.000",
@@ -17,16 +18,21 @@ class ItemCard extends StatelessWidget {
   });
 
   @override
+  State<ItemCard> createState() => _ItemCardState();
+}
+
+class _ItemCardState extends State<ItemCard> {
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
         width: 120,
         height: 120,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(backgroundPath),
+            image: AssetImage(widget.backgroundPath),
             fit: BoxFit.fill,
           ),
         ),
@@ -34,15 +40,15 @@ class ItemCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              iconPath,
-              width: 70,
-              height: 70,
-              fit: BoxFit.contain,
+            SizedBox(
+                width: 100,
+                height: 100,
+                child: widget.child,
             ),
+
             const SizedBox(height: 6),
 
-            if (showCurrency)
+            if (widget.showCurrency)
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -54,7 +60,7 @@ class ItemCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    priceText,
+                    widget.priceText,
                     style: const TextStyle(
                       fontSize: 14,
                       color: Colors.black,

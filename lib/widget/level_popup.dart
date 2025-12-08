@@ -10,7 +10,7 @@ class LevelPopup extends StatelessWidget {
       alignment: const Alignment(0, 0.50),
       child: FractionallySizedBox(
         widthFactor: 1,
-        heightFactor: 0.5,
+        heightFactor: 0.4,
         child: Material(
           color: Colors.transparent,
           child: Container(

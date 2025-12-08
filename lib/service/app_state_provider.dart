@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../models/sub_bab_model.dart';
 import '../service/database_service.dart';
 import '../models/player_model.dart';
+import '../models/sub_bab_model.dart';
 
 class AppStateProvider extends ChangeNotifier {
 
   Player? _player;
+  List<SubBabModel>? _subBabList = [];
   List<Map> _titles = [];
   List<Map> _skins = [];
   List<Map> _itemTitles = [];
@@ -32,6 +35,18 @@ class AppStateProvider extends ChangeNotifier {
       print(_player.toString());
     } else {
       print("Warning: Player profile not found. Check DB initialization.");
+    }
+
+    final List<Map<String, dynamic>>? subBabListMap = await dbs.getSubBab();
+    if (subBabListMap != null) {
+      for(final e in subBabListMap){
+        _subBabList?.add(SubBabModel.fromMap(e));
+      }
+      for(final subBab in _subBabList!){
+        print(subBab.toString());
+      }
+    } else {
+      print("Warning: sub Bab not found. Check DB initialization.");
     }
 
     final titles = await dbs.getTitle();
