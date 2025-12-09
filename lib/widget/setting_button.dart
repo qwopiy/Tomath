@@ -49,83 +49,81 @@ class SettingPopup extends StatefulWidget {
 }
 
 class _SettingPopupState extends State<SettingPopup> {
+  late final appState = Provider.of<AppStateProvider>(context, listen: false);
+  late double soundVolume = appState.currentSoundVolume;
+  late double musicVolume = appState.currentMusicVolume;
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<AppStateProvider>(
-        builder: (context, appState, child) {
-          double soundVolume = appState.currentSoundVolume;
-          double musicVolume = appState.currentMusicVolume;
-
-
-          double screenWidth = MediaQuery.of(context).size.width;
-          double popupWidth = screenWidth * 0.75;
-          popupWidth = popupWidth < 280 ? 280 : popupWidth;
-          return Center(
-            child: Material(
-              color: Colors.transparent,
-              child: Stack(
+    double screenWidth = MediaQuery.of(context).size.width;
+    double popupWidth = screenWidth * 0.75;
+    popupWidth = popupWidth < 280 ? 280 : popupWidth;
+    return Center(
+      child: Material(
+        color: Colors.transparent,
+        child: Stack(
+          children: [
+            // POPUP BOX
+            Container(
+              width: popupWidth,
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/ui/KertasGede.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  // POPUP BOX
-                  Container(
+                  const SizedBox(height: 20),
+
+                  Text(
+                    "Setting",
+                    style: TextStyle(
+                      fontSize: popupWidth * 0.08,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 30),
+
+                  // SOUND SLIDER
+                  _volumeSlider(
+                    label: "Sound",
+                    value: soundVolume,
+                    onChanged: (v) {
+                      setState(() => soundVolume = v);
+                    },
                     width: popupWidth,
-                    padding: const EdgeInsets.all(20),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/ui/KertasGede.png'),
-                        fit: BoxFit.cover,
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // MUSIC SLIDER
+                  _volumeSlider(
+                    label: "Music",
+                    value: musicVolume,
+                    onChanged: (v) {
+                      setState(() => musicVolume = v);
+                    },
+                    width: popupWidth,
+                  ),
+
+                  const SizedBox(height: 25),
+
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: _button(
+                        widget.buttonText,
+                        widget.onButtonPressed,
+                        popupWidth,
                       ),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const SizedBox(height: 20),
-
-                        Text(
-                          "Setting",
-                          style: TextStyle(
-                            fontSize: popupWidth * 0.08,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-
-                        const SizedBox(height: 30),
-
-                        // SOUND SLIDER
-                        _volumeSlider(
-                          label: "Sound",
-                          value: soundVolume,
-                          onChanged: (v) {
-                            setState(() => soundVolume = v);
-                          },
-                          width: popupWidth,
-                        ),
-
-                        const SizedBox(height: 20),
-
-                        // MUSIC SLIDER
-                        _volumeSlider(
-                          label: "Music",
-                          value: musicVolume,
-                          onChanged: (v) {
-                            setState(() => musicVolume = v);
-                          },
-                          width: popupWidth,
-                        ),
-
-                        const SizedBox(height: 25),
-
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: _button(
-                              widget.buttonText,
-                              widget.onButtonPressed,
-                              popupWidth,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
+                  ),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),
@@ -152,8 +150,6 @@ class _SettingPopupState extends State<SettingPopup> {
           ],
         ),
       ),
-    );
-        }
     );
   }
 
@@ -182,12 +178,12 @@ class _SettingPopupState extends State<SettingPopup> {
             ),
           ),
           Slider(
-            activeColor: Colors.brown,
-            inactiveColor: Colors.black,
             value: value,
             min: 0,
             max: 1,
             onChanged: onChanged,
+            activeColor: Colors.brown,
+            inactiveColor: Colors.black,
           ),
         ],
       ),
