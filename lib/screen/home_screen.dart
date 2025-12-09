@@ -45,9 +45,15 @@ class HomeScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                         Text('Play', style: TextStyle(
-                          // fontFamily: 'LuckiestGuy',
+                          fontFamily: 'LuckiestGuy',
                           fontSize: 30,
-                          color: Colors.white,
+                          color: Color(0xFFF7EFD3),
+                          shadows: [
+                            Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+                            Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+                            Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+                            Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+                          ],
                         ),
                         ),
                       ],

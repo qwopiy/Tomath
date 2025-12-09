@@ -32,6 +32,8 @@ class _CampaignScreenState extends State<CampaignScreen> {
           image: DecorationImage(
             image: AssetImage('assets/background/LevelSelectionBG1.png'),
             fit: BoxFit.cover,
+            alignment: Alignment(0.5, 0),
+
           ),
         ),
         child: LayoutBuilder(

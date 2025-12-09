@@ -73,12 +73,6 @@ flutter:
     - assets/ui/
     - assets/animations/
 
-  fonts:
-    - family: LuckiestGuy
-      fonts:
-        - asset: assets/fonts/LuckiestGuy-Regular.ttf
-
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
