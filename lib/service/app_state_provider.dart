@@ -3,9 +3,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/sub_bab_model.dart';
 import '../service/database_service.dart';
 import '../models/player_model.dart';
-import '../models/sub_bab_model.dart';
 
 class AppStateProvider extends ChangeNotifier {
+  static const String _soundVolume = 'sound_volume';
+  static const String _musicVolume = 'music_volume';
+
+  double _currentSoundVolume = 0.5;
+  double _currentMusicVolume = 0.5;
+
+  double get currentMusicVolume => _currentMusicVolume;
+  double get currentSoundVolume => _currentSoundVolume;
 
   Player? _player;
   List<SubBabModel>? _subBabList = [];
@@ -20,7 +27,6 @@ class AppStateProvider extends ChangeNotifier {
   List<Map> get itemTitles => _itemTitles;
   List<Map> get itemSkins => _itemSkins;
 
-
   AppStateProvider() {
     _loadInitialState();
   }
@@ -28,6 +34,10 @@ class AppStateProvider extends ChangeNotifier {
   void _loadInitialState() async {
     final DatabaseService dbs = DatabaseService.instance;
     await dbs.database;
+
+    final prefs = await SharedPreferences.getInstance();
+    _currentSoundVolume = prefs.getDouble(_soundVolume) ?? 0.5;
+    _currentMusicVolume = prefs.getDouble(_musicVolume) ?? 0.5;
 
     final Map<String, dynamic>? profileMap = await dbs.getPlayerProfile();
     if (profileMap != null) {
@@ -63,6 +73,34 @@ class AppStateProvider extends ChangeNotifier {
 
 
     notifyListeners();
+  }
 
+  Future<void> setUsername(String newName) async {
+    if (_player == null) return;
+
+    _player = Player(
+      username: newName,
+      skin_path: _player!.skin_path,
+      title_name: _player!.title_name,
+      currency: _player!.currency,
+      progress:  _player!.progress,
+    );
+
+    final dbs = DatabaseService.instance;
+    await dbs.updatePlayerUsername(newName);
+
+    notifyListeners();
+  }
+
+  Future<void> setVolume(double newSoundVolume, double newMusicVolume) async{
+    _currentSoundVolume =  newSoundVolume;
+    _currentMusicVolume =  newMusicVolume;
+
+    final prefs = await SharedPreferences.getInstance();
+
+    await prefs.setDouble(_soundVolume, newSoundVolume);
+    await prefs.setDouble(_musicVolume, newMusicVolume);
+
+    notifyListeners();
   }
 }

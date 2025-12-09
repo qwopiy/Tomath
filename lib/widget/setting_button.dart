@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../service/app_state_provider.dart';
 
 class SettingButton extends StatelessWidget {
   final String buttonText;
@@ -47,83 +49,83 @@ class SettingPopup extends StatefulWidget {
 }
 
 class _SettingPopupState extends State<SettingPopup> {
-  double soundVolume = 0.7;
-  double musicVolume = 0.5;
-
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double popupWidth = screenWidth * 0.75;
-    popupWidth = popupWidth < 280 ? 280 : popupWidth;
+    return Consumer<AppStateProvider>(
+        builder: (context, appState, child) {
+          double soundVolume = appState.currentSoundVolume;
+          double musicVolume = appState.currentMusicVolume;
 
-    return Center(
-      child: Material(
-        color: Colors.transparent,
-        child: Stack(
-          children: [
 
-            // POPUP BOX
-            Container(
-              width: popupWidth,
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/ui/KertasGede.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
+          double screenWidth = MediaQuery.of(context).size.width;
+          double popupWidth = screenWidth * 0.75;
+          popupWidth = popupWidth < 280 ? 280 : popupWidth;
+          return Center(
+            child: Material(
+              color: Colors.transparent,
+              child: Stack(
                 children: [
-                  const SizedBox(height: 20),
-
-                  Text(
-                    "Setting",
-                    style: TextStyle(
-                      fontSize: popupWidth * 0.08,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-
-                  const SizedBox(height: 30),
-
-                  // SOUND SLIDER
-                  _volumeSlider(
-                    label: "Sound",
-                    value: soundVolume,
-                    onChanged: (v) {
-                      setState(() => soundVolume = v);
-                    },
+                  // POPUP BOX
+                  Container(
                     width: popupWidth,
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  // MUSIC SLIDER
-                  _volumeSlider(
-                    label: "Music",
-                    value: musicVolume,
-                    onChanged: (v) {
-                      setState(() => musicVolume = v);
-                    },
-                    width: popupWidth,
-                  ),
-
-                  const SizedBox(height: 25),
-
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: _button(
-                        widget.buttonText,
-                        widget.onButtonPressed,
-                        popupWidth,
+                    padding: const EdgeInsets.all(20),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/ui/KertasGede.png'),
+                        fit: BoxFit.cover,
                       ),
                     ),
-                  ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(height: 20),
 
-                  const SizedBox(height: 10),
+                        Text(
+                          "Setting",
+                          style: TextStyle(
+                            fontSize: popupWidth * 0.08,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        const SizedBox(height: 30),
+
+                        // SOUND SLIDER
+                        _volumeSlider(
+                          label: "Sound",
+                          value: soundVolume,
+                          onChanged: (v) {
+                            setState(() => soundVolume = v);
+                          },
+                          width: popupWidth,
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        // MUSIC SLIDER
+                        _volumeSlider(
+                          label: "Music",
+                          value: musicVolume,
+                          onChanged: (v) {
+                            setState(() => musicVolume = v);
+                          },
+                          width: popupWidth,
+                        ),
+
+                        const SizedBox(height: 25),
+
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: _button(
+                              widget.buttonText,
+                              widget.onButtonPressed,
+                              popupWidth,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
                 ],
               ),
             ),
@@ -133,7 +135,10 @@ class _SettingPopupState extends State<SettingPopup> {
               right: 10,
               top: 0,
               child: GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
+                onTap: () {
+                  appState.setVolume(soundVolume, musicVolume);
+                  Navigator.of(context).pop();
+                },
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   child: Icon(
@@ -147,6 +152,8 @@ class _SettingPopupState extends State<SettingPopup> {
           ],
         ),
       ),
+    );
+        }
     );
   }
 
