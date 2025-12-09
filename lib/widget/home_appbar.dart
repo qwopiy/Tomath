@@ -9,10 +9,9 @@ import '../service/app_state_provider.dart';
 class HomeAppbar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return
-      Consumer<AppStateProvider>(
-        builder: (context, appState, child) {
-          final playerProfile = appState.player;
+    return Consumer<AppStateProvider>(
+      builder: (context, appState, child) {
+        final playerProfile = appState.player;
 
           return SafeArea(
             bottom: false,
