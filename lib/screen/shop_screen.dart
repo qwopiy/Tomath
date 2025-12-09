@@ -57,7 +57,7 @@ class ShopScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     ItemCard(
-                                      showCurrency: true,
+                                      showCurrency: false,
                                       priceText: "20.000",
                                       onTap: () {
                                         print("1");
@@ -66,7 +66,7 @@ class ShopScreen extends StatelessWidget {
 
                                     ),
                                     ItemCard(
-                                      showCurrency: true,
+                                      showCurrency: false,
                                       priceText: "30.000",
                                       onTap: () {
                                         print("2");
