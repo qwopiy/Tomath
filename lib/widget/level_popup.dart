@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../models/sub_bab_model.dart';
+
 class LevelPopup extends StatelessWidget {
+  final SubBabModel subBab;
   final int level;
-  const LevelPopup({super.key, required this.level});
+  const LevelPopup({super.key, required this.level, required this.subBab});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,7 @@ class LevelPopup extends StatelessWidget {
                           const SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              "Bandit attacked the city. Defeat them to find clues about your sister",
+                              subBab.is_finished == 1 ? subBab.before_winning_info : subBab.before_winning_info,
                               style: TextStyle(
                                 fontSize: textSize,
                                 color: Colors.black,
@@ -81,7 +84,7 @@ class LevelPopup extends StatelessWidget {
                       SizedBox(height: gap),
                       // MISSION
                       Text(
-                        "MISSION:",
+                        "MISSION: ",
                         style: TextStyle(
                           fontSize: textSize,
                           color: Colors.black,
@@ -89,7 +92,7 @@ class LevelPopup extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "DEFEAT THE BANDIT",
+                        subBab.mission,
                         style: TextStyle(
                           fontSize: textSize,
                           color: Colors.black,
@@ -107,7 +110,7 @@ class LevelPopup extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "QUESTION EXAMPLE",
+                        subBab.material,
                         style: TextStyle(
                           fontSize: textSize,
                           color: Colors.black,
@@ -134,7 +137,7 @@ class LevelPopup extends StatelessWidget {
                           ),
                           SizedBox(width: w * 0.01),
                           Text(
-                            "100",
+                            subBab.reward.toString(),
                             style: TextStyle(
                               fontSize: w * 0.07,
                               fontWeight: FontWeight.bold,

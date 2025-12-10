@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/sub_bab_model.dart';
@@ -5,8 +8,12 @@ import '../service/database_service.dart';
 import '../models/player_model.dart';
 
 class AppStateProvider extends ChangeNotifier {
-  static const String _soundVolume = 'sound_volume';
-  static const String _musicVolume = 'music_volume';
+  static const String _soundVolumeKey = 'sound_volume';
+  static const String _musicVolumeKey = 'music_volume';
+  static const String _buttonCampaignPosKey = 'button_campaign_pos';
+
+  List<({double top, double right})> _currentButtonCampaignPos = [];
+  List<({double top, double right})> get currentButtonCampaignPos => _currentButtonCampaignPos;
 
   double _currentSoundVolume = 0.5;
   double _currentMusicVolume = 0.5;
@@ -22,6 +29,7 @@ class AppStateProvider extends ChangeNotifier {
   List<Map> _itemSkins = [];
 
   Player get player => _player!;
+  List<SubBabModel> get subBabList => _subBabList!;
   List<Map> get titles => _titles;
   List<Map> get skins => _skins;
   List<Map> get itemTitles => _itemTitles;
@@ -36,8 +44,8 @@ class AppStateProvider extends ChangeNotifier {
     await dbs.database;
 
     final prefs = await SharedPreferences.getInstance();
-    _currentSoundVolume = prefs.getDouble(_soundVolume) ?? 0.5;
-    _currentMusicVolume = prefs.getDouble(_musicVolume) ?? 0.5;
+    _currentSoundVolume = prefs.getDouble(_soundVolumeKey) ?? 0.5;
+    _currentMusicVolume = prefs.getDouble(_musicVolumeKey) ?? 0.5;
 
     final Map<String, dynamic>? profileMap = await dbs.getPlayerProfile();
     if (profileMap != null) {
@@ -58,6 +66,8 @@ class AppStateProvider extends ChangeNotifier {
     } else {
       print("Warning: sub Bab not found. Check DB initialization.");
     }
+
+    initializePositions( _subBabList!.length);
 
     final titles = await dbs.getTitle();
     _titles = titles;
@@ -98,9 +108,85 @@ class AppStateProvider extends ChangeNotifier {
 
     final prefs = await SharedPreferences.getInstance();
 
-    await prefs.setDouble(_soundVolume, newSoundVolume);
-    await prefs.setDouble(_musicVolume, newMusicVolume);
+    await prefs.setDouble(_soundVolumeKey, newSoundVolume);
+    await prefs.setDouble(_musicVolumeKey, newMusicVolume);
 
+    notifyListeners();
+  }
+
+  Future<void> initializePositions(int itemCount) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    if (prefs.containsKey(_buttonCampaignPosKey)) {
+      String? jsonString = prefs.getString(_buttonCampaignPosKey);
+
+      if (jsonString != null) {
+        List<dynamic> decodedList = jsonDecode(jsonString);
+
+        if (decodedList.length == itemCount) {
+          _currentButtonCampaignPos = decodedList.map((item) {
+            return (
+            top: (item['top'] as num).toDouble(),
+            right: (item['right'] as num).toDouble(),
+            );
+          }).toList();
+
+          notifyListeners();
+          return;
+        }
+      }
+    }
+
+    _generateNewPositions(itemCount);
+  }
+
+  Future<void> _savePositionsToPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    List<Map<String, double>> mapList = _currentButtonCampaignPos.map((pos) {
+      return {
+        'top': pos.top,
+        'right': pos.right,
+      };
+    }).toList();
+
+    String jsonString = jsonEncode(mapList);
+
+    await prefs.setString(_buttonCampaignPosKey, jsonString);
+  }
+
+  void _generateNewPositions(int itemCount) {
+    final Random random = Random();
+    _currentButtonCampaignPos.clear();
+
+    double topCurrentMin = 0.3;
+    double topCurrentMax = 0.4;
+
+    for (int index = 0; index < itemCount; index++) {
+      double rightCurrentMin;
+      double rightCurrentMax;
+
+      if ((index + 1) % 2 == 1) {
+        rightCurrentMin = 0.3;
+        rightCurrentMax = 0.5;
+      } else {
+        rightCurrentMin = 0.0;
+        rightCurrentMax = 0.2;
+      }
+
+      double topRange = topCurrentMax - topCurrentMin;
+      double rightRange = rightCurrentMax - rightCurrentMin;
+
+      double topRandomDouble = topCurrentMin + (random.nextDouble() * topRange);
+      double rightRandomDouble = rightCurrentMin + (random.nextDouble() * rightRange);
+
+      _currentButtonCampaignPos.add((top: topRandomDouble, right: rightRandomDouble));
+
+      topCurrentMin -= 0.1;
+      topCurrentMax -= 0.1;
+    }
+
+    _savePositionsToPrefs();
     notifyListeners();
   }
 }

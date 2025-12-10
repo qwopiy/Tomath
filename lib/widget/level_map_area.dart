@@ -1,22 +1,84 @@
 import 'package:flutter/material.dart';
-import 'level_button.dart';
+import 'package:provider/provider.dart';
 
-class LevelMapArea extends StatelessWidget {
+import '../models/sub_bab_model.dart';
+import '../service/app_state_provider.dart';
+import 'level_button.dart';
+import 'level_popup.dart';
+
+class LevelMapArea extends StatefulWidget {
   final BoxConstraints constraints;
-  final List<bool> levelActive;
-  final Function(int) onPressed;
 
   const LevelMapArea({
     super.key,
     required this.constraints,
-    required this.levelActive,
-    required this.onPressed,
   });
 
   @override
+  State<LevelMapArea> createState() => _LevelMapAreaState();
+}
+
+class _LevelMapAreaState extends State<LevelMapArea> {
+
+  void _openPopup(int _level, SubBabModel _subBab) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: Colors.transparent,
+      builder: (_) => LevelPopup(level: _level, subBab: _subBab),
+    );
+  }
+
+  bool isEnabled(int is_playable){
+    if(is_playable == 1){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+  List<Widget> asignSubBabButton(BuildContext context, double w, double h) {
+    final appState = Provider.of<AppStateProvider>(context, listen: true);
+    final positions = appState.currentButtonCampaignPos;
+    List<SubBabModel> subBabList = appState.subBabList;
+
+    if (positions.isEmpty || positions.length != subBabList.length) {
+      return [];
+    }
+
+    List<Widget> positionedButtons = [];
+
+    for (int i= 0; i < subBabList.length; i++) {
+      final pos = positions[i];
+
+      final subBab = subBabList[i];
+      bool enabled = isEnabled(subBab.is_playable);
+      print(enabled);
+
+      positionedButtons.add(
+        Positioned(
+          top: h * pos.top,
+          right: w * pos.right,
+          child: LevelButton(
+            enabled: enabled,
+            onTap: (){
+              print('SubBab Index: $i,  ditekan');
+              _openPopup((i + 1), subBab);
+            },
+          ),
+        ),
+      );
+    }
+
+    return positionedButtons;
+  }
+
+
+  @override
   Widget build(BuildContext context) {
-    double w = constraints.maxWidth;
-    double h = constraints.maxHeight;
+    double w = widget.constraints.maxWidth;
+    double h = widget.constraints.maxHeight;
 
     return SizedBox(
       height: h * 0.50,
@@ -25,44 +87,10 @@ class LevelMapArea extends StatelessWidget {
           Expanded(child: Container()),
 
           SizedBox(
-            width: w * 0.55,
+            width: w * 0.7,
             child: Stack(
               children: [
-                Positioned(
-                  top: h * 0.05,
-                  left: w * 0.05,
-                  child: LevelButton(
-                    enabled: levelActive[0],
-                    onTap: () => onPressed(1),
-                  ),
-                ),
-
-                Positioned(
-                  top: h * 0.08,
-                  right: w * 0.03,
-                  child: LevelButton(
-                    enabled: levelActive[1],
-                    onTap: () => onPressed(2),
-                  ),
-                ),
-
-                Positioned(
-                  bottom: h * 0.10,
-                  left: w * 0.05,
-                  child: LevelButton(
-                    enabled: levelActive[2],
-                    onTap: () => onPressed(3),
-                  ),
-                ),
-
-                Positioned(
-                  bottom: h * 0.12,
-                  right: w * 0.07,
-                  child: LevelButton(
-                    enabled: levelActive[3],
-                    onTap: () => onPressed(4),
-                  ),
-                ),
+                ...asignSubBabButton(context, w, h),
               ],
             ),
           ),
@@ -73,3 +101,4 @@ class LevelMapArea extends StatelessWidget {
     );
   }
 }
+
