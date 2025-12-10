@@ -46,7 +46,6 @@ class ShopScreen extends StatelessWidget {
                     children: [
                       Expanded(flex: 2,
                         child: Container(
-                          // color: Colors.green,
                           child: Row(
                             children: [
                               Expanded(flex: 1,

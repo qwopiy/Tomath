@@ -107,7 +107,7 @@ class LevelPopup extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "QUESTION EXAMPLE",
+                        "GARIS BILANGAN (PENJUMLAHAN, PENGURANGAN)",
                         style: TextStyle(
                           fontSize: textSize,
                           color: Colors.black,
