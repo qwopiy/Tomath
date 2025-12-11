@@ -42,6 +42,8 @@ class QuizProvider extends ChangeNotifier {
     if (_health <= 0 || _questionRemaining <= 0) return;
     this.question = question;
     this.options = options;
+    this.options.shuffle();
+
     this.correctAnswer = correctAnswer;
     this.solutionText = solutionText;
     // print("Setting question to index $_currentQuestionIndex");
@@ -94,8 +96,7 @@ class QuizProvider extends ChangeNotifier {
 
   void optionSelected(int index, [bool? isTraining, BuildContext? context]) {
     if (_health <= 0 || _questionRemaining <= 0) return;
-    String selectedOption = options[index];
-    if (selectedOption != correctAnswer) {
+    if (!isCorrectAnswer(index)) {
       if (isTraining == null || !isTraining) {
         _health--;
       }
@@ -111,6 +112,10 @@ class QuizProvider extends ChangeNotifier {
       }
     }
     notifyListeners();
+  }
+
+  bool isCorrectAnswer(int index) {
+    return options[index] == correctAnswer;
   }
   
   void showResult(BuildContext context, String resultText, String descriptionText, int reward) {

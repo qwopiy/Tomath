@@ -31,9 +31,9 @@ class HomeScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       print('tombol Play ditekan');
-                      context.push('/campaign');
+                      // context.push('/campaign');
                       // Testing soal
-                      // context.push('/campaigngame11');
+                      context.push('/campaigngame11');
                     },
                     child: Stack(
                       alignment: Alignment.bottomCenter,
