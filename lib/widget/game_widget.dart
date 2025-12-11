@@ -9,11 +9,13 @@ import 'rive_animation.dart';
 
 class GameWidget extends StatefulWidget {
   final int bab;
+  final int subBab;
   final bool? isTraining;
   final double _playerHeight = 150;
   const GameWidget({
     super.key,
     required this.bab,
+    required this.subBab,
     this.isTraining,
   });
 
@@ -32,7 +34,7 @@ class _GameWidgetState extends State<GameWidget> {
 
   @override
   void initState() {
-    Provider.of<QuizProvider>(context, listen: false).setBab(widget.bab);
+    Provider.of<QuizProvider>(context, listen: false).setBab(widget.bab, widget.subBab);
     super.initState();
   }
 

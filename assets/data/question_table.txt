@@ -1,6 +1,7 @@
 CREATE TABLE Question (
   id INT,
   bab TEXT,
+  sub_bab TEXT,
   problem TEXT,
   option TEXT,
   answer TEXT,

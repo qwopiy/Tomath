@@ -134,8 +134,8 @@ class QuizProvider extends ChangeNotifier {
     );
   }
 
-  Future<void> resetQuestion(int idMin, int idMax) async {
-    await getQuestionsById(idMin, idMax);
+  Future<void> resetQuestion(int bab, int subBab) async {
+    await getQuestionsByBabSubBab(bab, subBab);
     // await getQuestionDatabase();
     resetStats();
     // print("currentQuestionIndex set to $_currentQuestionIndex");
@@ -158,24 +158,8 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setBab(int bab) {
-    switch (bab) {
-      case 1:
-        resetQuestion(100, 200);
-        break;
-      case 2:
-        resetQuestion(200, 300);
-        break;
-      case 3:
-        resetQuestion(300, 400);
-        break;
-      case 4:
-        resetQuestion(400, 500);
-        break;
-      default:
-        resetQuestion(100, 200);
-        break;
-    }
+  void setBab(int bab ,int subBab) {
+    resetQuestion(bab, subBab);
   }
 
   Future<void> getQuestionDatabase() async {
@@ -185,8 +169,8 @@ class QuizProvider extends ChangeNotifier {
       .toList();
   }
 
-  Future<void> getQuestionsById(int min, int max) async {
-    final questionMaps = await AppDatabase.instance.getQuestionsById(min, max);
+  Future<void> getQuestionsByBabSubBab(int bab, int subBab) async {
+    final questionMaps = await AppDatabase.instance.getQuestionsByBabAndSubBab(bab, subBab);
     _questions = questionMaps
       .map((m) => Question.fromJSON(m as Map<String, dynamic>))
       .toList();

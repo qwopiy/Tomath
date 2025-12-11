@@ -25,8 +25,13 @@ class AppDatabase {
   Future _createDB(Database db, int version) async {
     final tableQuery =  await rootBundle.loadString('assets/data/question_table.txt');
     await db.rawQuery(tableQuery);
-    final dataQuery =  await rootBundle.loadString('assets/data/question_data.txt');
-    await db.rawQuery(dataQuery);
+    print("Question table created.");
+    for (int i = 1; i <= 6; i++) {
+      for (int j = 1; j <= 3; j++) {
+        String dataQuery =  await rootBundle.loadString('assets/data/question_data_bab${i}_subbab$j.txt');
+        await db.rawQuery(dataQuery);
+      }
+    }
   }
 
   Future<Database> _initializeDB(String filename) async {
@@ -51,11 +56,22 @@ class AppDatabase {
     return await db.query('Question', where: 'bab = ?', whereArgs: [bab]);
   }
 
-  Future<List<Map>> getQuestionsById(int min, int max) async {
+  Future<List<Map>> getQuestionsBySubBab(String subBab) async {
+    final db = await instance.database;
+    return await db.query('Question', where: 'sub_bab = ?', whereArgs: [subBab]);
+  }
+
+  Future<List<Map>> getQuestionsById(String min, String max) async {
     final db = await instance.database;
     final list = await db.rawQuery('SELECT * FROM Question WHERE id BETWEEN $min AND $max');
     // print(list);
     return list;
+  }
+
+  Future<List<Map>> getQuestionsByBabAndSubBab(int bab, int subBab) async {
+    String minId = "$bab${subBab}001";
+    String maxId = "$bab${subBab}050";
+    return await getQuestionsById(minId, maxId);
   }
 
   Future<Map> getRandomQuestion() async {
