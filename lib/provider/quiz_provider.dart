@@ -9,7 +9,7 @@ import 'app_database.dart';
 
 class QuizProvider extends ChangeNotifier {
   List<Question> _questions = List.filled(
-    30,
+    50,
     Question(
       id: 0,
       text: '',
@@ -32,7 +32,7 @@ class QuizProvider extends ChangeNotifier {
   String correctAnswer = '';
   String solutionText = '';
 
-  int _questionRemaining = 5;
+  int _questionRemaining = 10;
   int _health = 3;
 
   int get questionRemaining => _questionRemaining;
@@ -73,17 +73,19 @@ class QuizProvider extends ChangeNotifier {
       if (_health <= 0) {
         // Lose
         showResult(
-            context,
-            'GAME OVER',
-            'You have run out of health.'
+          context,
+          'GAME OVER',
+          'You have run out of health.',
+          0
         );
         print("No health remaining. Game over.");
       } else {
         // Win
         showResult(
-            context,
-            'SUCCESS!',
-            'You answered correctly.'
+          context,
+          'SUCCESS!',
+          'You answered correctly.',
+          100
         );
         print("No questions remaining.");
       }
@@ -111,13 +113,14 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
   
-  void showResult(BuildContext context, String resultText, String descriptionText) {
+  void showResult(BuildContext context, String resultText, String descriptionText, int reward) {
     showDialog(
       context: context,
       barrierDismissible: true,
       builder: (context) => ResultPopup(
         resultText: resultText, 
-        descriptionText: descriptionText
+        descriptionText: descriptionText,
+        reward: reward,
       ),
     );
   }
@@ -170,7 +173,7 @@ class QuizProvider extends ChangeNotifier {
   }
 
   Future<void> getQuestionsByBabSubBab(int bab, int subBab) async {
-    final questionMaps = await AppDatabase.instance.getQuestionsByBabAndSubBab(bab, subBab);
+    final questionMaps = await AppDatabase.instance.getQuestionsByBabSubBab(bab, subBab);
     _questions = questionMaps
       .map((m) => Question.fromJSON(m as Map<String, dynamic>))
       .toList();

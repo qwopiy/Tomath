@@ -68,7 +68,7 @@ class AppDatabase {
     return list;
   }
 
-  Future<List<Map>> getQuestionsByBabAndSubBab(int bab, int subBab) async {
+  Future<List<Map>> getQuestionsByBabSubBab(int bab, int subBab) async {
     String minId = "$bab${subBab}001";
     String maxId = "$bab${subBab}050";
     return await getQuestionsById(minId, maxId);
