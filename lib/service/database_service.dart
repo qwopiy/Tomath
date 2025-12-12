@@ -120,7 +120,7 @@ class DatabaseService{
           await db.insert('bab', {'chapter' : 'Data dan Diagram'});
           await db.insert('bab', {'chapter' : 'UAS'});
 
-          await db.insert('player', {'username': 'FreakyBug'});
+          await db.insert('player', {'username': 'FreakyBug', 'currency' : 9999999});
 
           await db.insert('sub_bab',{
             'bab_id' : 1,
@@ -244,15 +244,15 @@ class DatabaseService{
     return list;
   }
 
-  Future<List<Map>> getTitle() async{
+  Future<List<Map<String, dynamic>>> getTitle() async{
     final db = await database;
-    final list = await db.rawQuery('SELECT * FROM title');
+    final List<Map<String, dynamic>> list = await db.rawQuery('SELECT * FROM title');
     return list;
   }
 
-  Future<List<Map>> getSkin() async{
+  Future<List<Map<String, dynamic>>> getSkin() async{
     final db = await database;
-    final list = await db.rawQuery('SELECT * FROM skin');
+    final List<Map<String, dynamic>> list = await db.rawQuery('SELECT * FROM skin');
     return list;
   }
 

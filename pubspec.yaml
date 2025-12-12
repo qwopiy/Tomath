@@ -70,6 +70,7 @@ flutter:
     - assets/background/
     - assets/data/
     - assets/images/
+    - assets/images/character/
     - assets/ui/
     - assets/animations/
 

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../service/app_state_provider.dart';
+import 'item_card.dart';
 
 class EditTitlePopup extends StatelessWidget {
   const EditTitlePopup({super.key});
@@ -24,8 +28,46 @@ class EditTitlePopup extends StatelessWidget {
   }
 }
 
-class TitlePopup extends StatelessWidget {
+class TitlePopup extends StatefulWidget {
   const TitlePopup({super.key});
+
+  @override
+  State<TitlePopup> createState() => _TitlePopupState();
+}
+
+class _TitlePopupState extends State<TitlePopup> {
+  late final appState = Provider.of<AppStateProvider>(context, listen: true);
+
+  late String currentTitle = appState.player.title_name;
+  late String chosenTitleName = '';
+  int chosenTitleId = 1;
+
+  List<Widget> asignTitle(BuildContext context) {
+    final _titles = appState.titles;
+
+    List<Widget> titles = [];
+
+    for(final title in _titles!){
+      if(title.is_unlocked != 1) continue;
+
+      titles.add(
+        ItemCard(
+          onTap: (){
+            chosenTitleName = title.name;
+            chosenTitleId = title.title_id;
+            print('chosenTitleName: $chosenTitleName');
+          },
+          showCurrency: false,
+          child:
+            Text(
+              title.name,
+            ),
+        ),
+      );
+    }
+
+    return titles;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +106,12 @@ class TitlePopup extends StatelessWidget {
                         ),
                         Expanded(flex: 6,
                           child: Container(
-                            // color: Colors.white,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ...asignTitle(context),
+                              ],
+                            ),
                           ),
                         ),
                         Expanded(flex: 3,
@@ -73,7 +120,13 @@ class TitlePopup extends StatelessWidget {
                               children: [
                                 _button("Back", () => Navigator.pop(context)),
                                 const SizedBox(width: 15),
-                                _button("Confirm", () => Navigator.pop(context)),
+                                _button("Confirm", (){
+                                  if(currentTitle != chosenTitleName && chosenTitleName != ''){
+                                    appState.setPlayerTitle(chosenTitleName, chosenTitleId);
+                                  }
+                                  Navigator.pop(context);
+
+                                }),
                               ],
                             )
                         ),
@@ -119,3 +172,4 @@ class TitlePopup extends StatelessWidget {
     );
   }
 }
+

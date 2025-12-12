@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Title;
 import 'package:shared_preferences/shared_preferences.dart';
+import '../models/costumable_model.dart';
 import '../models/sub_bab_model.dart';
 import '../service/database_service.dart';
 import '../models/player_model.dart';
@@ -23,15 +24,15 @@ class AppStateProvider extends ChangeNotifier {
 
   Player? _player;
   List<SubBabModel>? _subBabList = [];
-  List<Map> _titles = [];
-  List<Map> _skins = [];
+  List<Title>? _titles = [];
+  List<Skin>? _skins = [];
   List<Map> _itemTitles = [];
   List<Map> _itemSkins = [];
 
   Player get player => _player!;
   List<SubBabModel> get subBabList => _subBabList!;
-  List<Map> get titles => _titles;
-  List<Map> get skins => _skins;
+  List<Title>? get titles => _titles;
+  List<Skin>? get skins => _skins;
   List<Map> get itemTitles => _itemTitles;
   List<Map> get itemSkins => _itemSkins;
 
@@ -67,20 +68,65 @@ class AppStateProvider extends ChangeNotifier {
       print("Warning: sub Bab not found. Check DB initialization.");
     }
 
+    final List<Map<String, dynamic>>? titlesMap = await dbs.getTitle();
+    if (titlesMap != null) {
+      for(final e in titlesMap){
+        _titles?.add(Title.fromMap(e));
+      }
+      for(final title in _titles!){
+        print(title.toString());
+      }
+    } else {
+      print("Warning: title not found. Check DB initialization.");
+    }
+
+    final List<Map<String, dynamic>>? skinsMap = await dbs.getSkin();
+    if (skinsMap != null) {
+      for(final e in skinsMap){
+        _skins?.add(Skin.fromMap(e));
+      }
+      for(final skin in _skins!){
+        print(skin.toString());
+      }
+    } else {
+      print("Warning: skin not found. Check DB initialization.");
+    }
+
     initializePositions( _subBabList!.length);
 
-    final titles = await dbs.getTitle();
-    _titles = titles;
+    notifyListeners();
+  }
 
-    final skins = await dbs.getSkin();
-    _skins = skins;
+  Future<void> setPlayerTitle(String newTitleName, int newTitleId) async {
+    if (_player == null) return;
 
-    // final itemTitles = await dbs.getItemTitle();
-    // _itemTitles = itemTitles;
-    //
-    // final itemSkins = await dbs.getItemSkin();
-    // _itemSkins = itemSkins;
+    _player = Player(
+      username: _player!.username,
+      skin_path: _player!.skin_path,
+      title_name: newTitleName,
+      currency: _player!.currency,
+      progress:  _player!.progress,
+    );
 
+    final dbs = DatabaseService.instance;
+    await dbs.updatePlayerTitle(newTitleId);
+
+    notifyListeners();
+  }
+
+  Future<void> setPlayerSkin(String newSkinName, int newSkinId) async {
+    if (_player == null) return;
+
+    _player = Player(
+      username: _player!.username,
+      skin_path: newSkinName,
+      title_name: _player!.title_name,
+      currency: _player!.currency,
+      progress:  _player!.progress,
+    );
+
+    final dbs = DatabaseService.instance;
+    await dbs.updatePlayerSkin(newSkinId);
 
     notifyListeners();
   }

@@ -12,11 +12,13 @@ class LevelPopup extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final isLandscape = size.width > size.height;
 
+    final String enemy = subBab.enemy;
+
     return Align(
-      alignment: const Alignment(0, 0.50),
+      alignment: const Alignment(0, 0),
       child: FractionallySizedBox(
         widthFactor: isLandscape ? 0.8 : 1,
-        heightFactor: isLandscape ? 0.85 : 0.6,
+        heightFactor: isLandscape ? 0.85 : 0.75,
         child: Material(
           color: Colors.transparent,
           child: Container(
@@ -42,11 +44,11 @@ class LevelPopup extends StatelessWidget {
                       Row(
                         children: [
                           Container(
-                            width: isLandscape ? 45 : 60,
-                            height: isLandscape ? 45 : 60,
-                            decoration: const BoxDecoration(
+                            width: isLandscape ? 45 : 100,
+                            height: isLandscape ? 45 : 100,
+                            decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage('assets/ui/Home.png'),
+                                image: AssetImage('assets/images/character/$enemy.png'),
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -54,7 +56,8 @@ class LevelPopup extends StatelessWidget {
                           const SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              subBab.is_finished == 1 ? subBab.before_winning_info : subBab.before_winning_info,
+                              // subBab.is_finished == 1 ? subBab.before_winning_info : subBab.before_winning_info,
+                              'nah, if in another universe she doesnt have all that, ill still love her ',
                               style: TextStyle(
                                 fontSize: textSize,
                                 color: Colors.black,

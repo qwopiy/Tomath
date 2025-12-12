@@ -35,7 +35,7 @@ class CurrencyBar extends StatelessWidget {
           Positioned.fill(
             child: Row(
               children: [
-                SizedBox(width: barHeight * 0.50),
+                SizedBox(width: barHeight * 0.80),
                 Expanded(
                   child: Text(
                     amount.toString(),
@@ -52,7 +52,7 @@ class CurrencyBar extends StatelessWidget {
           ),
           Positioned(
             top: -barHeight * 0.15,
-            left: -14,
+            left: -20,
 
             child: Image.asset(
               currencyIcon,
