@@ -20,7 +20,6 @@ class HomeAppbar extends StatelessWidget{
               children: [
                 Expanded(flex: 1,
                   child: Container(
-                    // alignment: AlignmentGeometry.topLeft,
                     child: CurrencyBar(
                       backgroundImage: 'assets/ui/kertasPipihPol.png',
                       currencyIcon: 'assets/ui/currency.png',
@@ -31,8 +30,6 @@ class HomeAppbar extends StatelessWidget{
                 Expanded(flex: 1,
                     child: Container(
                       alignment: AlignmentGeometry.topRight,
-                      // color: Colors.green,
-                      // child: Text('tes'),
                       child: SettingButton(
                         buttonText: 'Exit',
                         onPressed: (){},

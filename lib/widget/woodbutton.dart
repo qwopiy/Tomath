@@ -19,8 +19,8 @@ class WoodButton extends StatelessWidget {
         width: 110,
         height: 45,
         alignment: Alignment.center,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
+        decoration: BoxDecoration(
+          image: const DecorationImage(
             image: AssetImage('assets/ui/NavbarKayu.png'),
             fit: BoxFit.fill,
           ),

@@ -113,8 +113,15 @@ class CustomNavbar extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 15,
-                  color: Colors.white,
+                  color: Color(0xFFF7EFD3),
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'LuckiestGuy',
+                  shadows: [
+                    Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+                    Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+                    Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+                    Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+                  ],
                 ),
               ),
             ),

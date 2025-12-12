@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../provider/quiz_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -45,9 +46,15 @@ class HomeScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                         Text('Play', style: TextStyle(
-                          // fontFamily: 'LuckiestGuy',
+                          fontFamily: 'LuckiestGuy',
                           fontSize: 30,
-                          color: Colors.white,
+                          color: Color(0xFFF7EFD3),
+                          shadows: [
+                            Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+                            Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+                            Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+                            Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+                          ],
                         ),
                         ),
                       ],

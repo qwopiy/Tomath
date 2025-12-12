@@ -122,9 +122,16 @@ class PlankInfo extends StatelessWidget {
         child: Text(
           text,
           style: const TextStyle(
-            fontSize: 18,
-            color: Colors.white,
+            fontSize: 20,
+            color: Color(0xFFF7EFD3),
             fontWeight: FontWeight.bold,
+            fontFamily: 'LuckiestGuy',
+            shadows: [
+              Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+              Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+              Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+              Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+            ],
           ),
         ),
       ),
