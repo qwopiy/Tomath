@@ -11,14 +11,16 @@ class GameWidget extends StatefulWidget {
   final int bab;
   final int subBab;
   final bool? isTraining;
-  final double _playerHeight = 150;
+  final bool? isEvent;
   final String? enemyType;
+  final double _playerHeight = 150;
   const GameWidget({
     super.key,
     required this.bab,
     required this.subBab,
-    this.enemyType,
     this.isTraining,
+    this.isEvent,
+    this.enemyType,
   });
 
   @override
@@ -100,6 +102,15 @@ class _GameWidgetState extends State<GameWidget> {
     });
   }
 
+  Future<void> _chooseOption(BuildContext context, QuizProvider quizProvider, int option) async {
+    if (_inAnimation) return;
+    quizProvider.optionSelected(option, widget.isTraining, context);
+    await triggerAnimationFromAnswer(quizProvider, option);
+    if (context.mounted) {
+      quizProvider.nextQuestion(context, widget.isTraining, widget.isEvent);
+    }
+  }
+
   @override
   void initState() {
     Provider.of<QuizProvider>(context, listen: false).setBab(widget.bab, widget.subBab);
@@ -113,8 +124,8 @@ class _GameWidgetState extends State<GameWidget> {
         questionText = quizProvider.question;
         choices = quizProvider.options;
 
-        print("Building CampaignScreen with question: $questionText");
-        print("Choices: $choices");
+        // print("Building CampaignScreen with question: $questionText");
+        // print("Choices: $choices");
 
         return Scaffold(
           backgroundColor: Color(0xffEED7A1),
@@ -244,45 +255,25 @@ class _GameWidgetState extends State<GameWidget> {
                         ChoiceButton(
                           buttonText: choices[0],
                           onPressed: () async {
-                            if (_inAnimation) return;
-                            quizProvider.optionSelected(0, widget.isTraining, context);
-                            await triggerAnimationFromAnswer(quizProvider, 0);
-                            if (context.mounted) {
-                              quizProvider.nextQuestion(context, widget.isTraining);
-                            }
+                            _chooseOption(context, quizProvider, 0);
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[1],
                           onPressed: () async {
-                            if (_inAnimation) return;
-                            quizProvider.optionSelected(1, widget.isTraining, context);
-                            await triggerAnimationFromAnswer(quizProvider, 1);
-                            if (context.mounted) {
-                              quizProvider.nextQuestion(context, widget.isTraining);
-                            }
+                            _chooseOption(context, quizProvider, 1);
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[2],
                           onPressed: () async {
-                            if (_inAnimation) return;
-                            quizProvider.optionSelected(2, widget.isTraining, context);
-                            await triggerAnimationFromAnswer(quizProvider, 2);
-                            if (context.mounted) {
-                              quizProvider.nextQuestion(context, widget.isTraining);
-                            }
+                            _chooseOption(context, quizProvider, 2);
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[3],
                           onPressed: () async {
-                            if (_inAnimation) return;
-                            quizProvider.optionSelected(3, widget.isTraining, context);
-                            await triggerAnimationFromAnswer(quizProvider, 3);
-                            if (context.mounted) {
-                              quizProvider.nextQuestion(context, widget.isTraining);
-                            }
+                            _chooseOption(context, quizProvider, 3);
                           },
                         ),
                       ],

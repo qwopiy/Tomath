@@ -52,9 +52,15 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void nextQuestion(BuildContext context, [bool? isTraining]) {
+  void nextQuestion(BuildContext context, [bool? isTraining, bool? isEvent]) {
     if (isTraining != null && isTraining) return;
-    if (_currentQuestionIndex < _questions.length - 1 && (_health > 0 && _questionRemaining > 0)) {
+    int rewards;
+    if (isEvent != null && isEvent) {
+      rewards = 1000;
+    } else {
+      rewards = 200;
+    }
+    if (_currentQuestionIndex < _questions.length - 1 && (_health > 0 && _questionRemaining > 1)) {
       // print("Next question called");
       _currentQuestionIndex++;
       _questionRemaining--;
@@ -69,7 +75,7 @@ class QuizProvider extends ChangeNotifier {
       );
       notifyListeners();
       // print("Moved to question index $_currentQuestionIndex");
-      // print("Question remaining: $_questionRemaining");
+      print("Question remaining: $_questionRemaining");
     } else {
       // out of questions or health
       if (_health <= 0) {
@@ -78,7 +84,7 @@ class QuizProvider extends ChangeNotifier {
           context,
           'GAME OVER',
           'You have run out of health.',
-          0
+          0,
         );
         print("No health remaining. Game over.");
       } else {
@@ -87,7 +93,7 @@ class QuizProvider extends ChangeNotifier {
           context,
           'SUCCESS!',
           'You answered correctly.',
-          100
+          rewards,
         );
         print("No questions remaining.");
       }
@@ -100,13 +106,13 @@ class QuizProvider extends ChangeNotifier {
       if (isTraining == null || !isTraining) {
         _health--;
       }
-      print("correctAnswer: $correctAnswer");
-      print("Incorrect answer selected. Health decreased to $_health");
+      // print("correctAnswer: $correctAnswer");
+      // print("Incorrect answer selected. Health decreased to $_health");
       if (isTraining != null && context != null && isTraining) {
         showAnswer(context, false);
       }
     } else {
-      print("Correct answer selected.");
+      // print("Correct answer selected.");
       if (isTraining != null && context != null && isTraining) {
         showAnswer(context, true);
       }
@@ -162,7 +168,7 @@ class QuizProvider extends ChangeNotifier {
   }
 
   Future<void> resetStats() async {
-    _questionRemaining = _questions.length;
+    _questionRemaining = 3; // batas 10 pertanyaan
     _health = 3;
     _currentQuestionIndex = Random().nextInt(_questions.length);
     notifyListeners();
