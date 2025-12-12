@@ -16,6 +16,7 @@ class ProfileScreen extends StatelessWidget {
     return Consumer<AppStateProvider>(
         builder: (context, appState, child) {
           final playerProfile = appState.player;
+          final playerSkin = playerProfile.skin_path;
 
           return Scaffold(
             backgroundColor: const Color(0xffe8b882),
@@ -46,11 +47,7 @@ class ProfileScreen extends StatelessWidget {
                               SizedBox(
                                   height: 350,
                                   width: 350,
-                                  child: CustomRIVEAnimation(
-                                      artboardName: playerProfile.skin_path,
-                                      isAttack: false,
-                                      isGetHit: false,
-                                  )
+                                  child: Image.asset('assets/images/character/$playerSkin.png'),
                               ),
 
                               Positioned(

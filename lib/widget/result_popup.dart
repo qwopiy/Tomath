@@ -4,12 +4,13 @@ import 'package:go_router/go_router.dart';
 class ResultPopup extends StatelessWidget {
   final String resultText;
   final String descriptionText;
-  final int reward = 0; // Example reward value
+  final int reward;
 
   const ResultPopup({
     super.key,
     required this.resultText,
     required this.descriptionText,
+    required this.reward,
   });
 
   @override

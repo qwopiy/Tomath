@@ -77,7 +77,7 @@ class _CustomRIVEAnimationState extends State<CustomRIVEAnimation> {
     }
     return RiveWidget(
       controller: controller,
-      fit: Fit.contain,
+      fit: Fit.fill,
     );
   }
 }

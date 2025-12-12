@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../service/app_state_provider.dart';
 
 class SettingButton extends StatelessWidget {
   final String buttonText;
@@ -47,21 +49,20 @@ class SettingPopup extends StatefulWidget {
 }
 
 class _SettingPopupState extends State<SettingPopup> {
-  double soundVolume = 0.7;
-  double musicVolume = 0.5;
+  late final appState = Provider.of<AppStateProvider>(context, listen: false);
+  late double soundVolume = appState.currentSoundVolume;
+  late double musicVolume = appState.currentMusicVolume;
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double popupWidth = screenWidth * 0.75;
     popupWidth = popupWidth < 280 ? 280 : popupWidth;
-
     return Center(
       child: Material(
         color: Colors.transparent,
         child: Stack(
           children: [
-
             // POPUP BOX
             Container(
               width: popupWidth,
@@ -122,7 +123,6 @@ class _SettingPopupState extends State<SettingPopup> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 10),
                 ],
               ),
@@ -133,7 +133,10 @@ class _SettingPopupState extends State<SettingPopup> {
               right: 10,
               top: 0,
               child: GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
+                onTap: () {
+                  appState.setVolume(soundVolume, musicVolume);
+                  Navigator.of(context).pop();
+                },
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   child: Icon(
@@ -206,8 +209,15 @@ Widget _button(String text, VoidCallback onTap, double width) {
         text,
         style: TextStyle(
           fontSize: width * 0.06,
-          color: Colors.white,
+          color: Color(0xFFF7EFD3),
           fontWeight: FontWeight.bold,
+          fontFamily: 'LuckiestGuy',
+          shadows: [
+            Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+            Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+            Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+            Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+          ],
         ),
       ),
     ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'woodbutton.dart';
+
 class BottomInfoPanel extends StatelessWidget {
   const BottomInfoPanel({super.key});
 
@@ -36,30 +38,12 @@ class BottomInfoPanel extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            InkWell(
+            WoodButton(
+              text: "Back",
               onTap: () {
                 context.pop();
               },
-              child: Container(
-                width: 110,
-                height: 45,
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/ui/NavbarKayu.png'),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                child: const Text(
-                  "Back",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
+            )
           ],
         ),
       ),

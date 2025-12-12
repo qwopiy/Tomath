@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tomath/provider/quiz_provider.dart';
+import '../provider/quiz_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -32,8 +32,9 @@ class HomeScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       print('tombol Play ditekan');
-                      QuizProvider().resetQuestion(100, 200); // temp: untuk bab 1 (id 100 - 200)
-                      context.push('/campaign');
+                      // context.push('/campaign');
+                      // Testing soal
+                      context.push('/campaigngame11');
                     },
                     child: Stack(
                       alignment: Alignment.bottomCenter,
@@ -45,9 +46,15 @@ class HomeScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                         Text('Play', style: TextStyle(
-                          // fontFamily: 'LuckiestGuy',
+                          fontFamily: 'LuckiestGuy',
                           fontSize: 30,
-                          color: Colors.white,
+                          color: Color(0xFFF7EFD3),
+                          shadows: [
+                            Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+                            Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+                            Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+                            Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+                          ],
                         ),
                         ),
                       ],

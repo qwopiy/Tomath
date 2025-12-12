@@ -15,8 +15,8 @@ class LevelButton extends StatelessWidget {
     return GestureDetector(
       onTap: enabled ? onTap : null,
       child: Container(
-        width: 70,
-        height: 70,
+        width: 45,
+        height: 45,
         decoration: BoxDecoration(
           color: enabled ? Colors.white : Colors.grey.shade500,
           shape: BoxShape.circle,
