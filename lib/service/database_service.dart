@@ -89,9 +89,11 @@ class DatabaseService{
                     bab_id INTEGER NOT NULL,
                     before_winning_info TEXT,
                     after_winning_info TEXT,
+                    enemy TEXT,
                     mission TEXT,
                     material TEXT,
                     reward INTEGER,
+                    is_playable INTEGER,
                     is_finished INTEGER,
                     FOREIGN KEY (bab_id) REFERENCES bab(bab_id) ON DELETE CASCADE
                 )
@@ -99,11 +101,11 @@ class DatabaseService{
           );
 
           await db.insert('skin', {'path': 'Tomath', 'is_unlocked': 1});
-          await db.insert('skin', {'path': 'TomathUndead', 'is_unlocked': 0});
+          await db.insert('skin', {'path': 'TomathUndead', 'is_unlocked': 1});
           await db.insert('skin', {'path': 'TomathPairPlay', 'is_unlocked': 0});
 
           await db.insert('title', {'name': 'Traveler', 'is_unlocked': 1});
-          await db.insert('title', {'name': 'Ghost Buster', 'is_unlocked': 0});
+          await db.insert('title', {'name': 'Ghost Buster', 'is_unlocked': 1});
           await db.insert('title', {'name': 'Borjuis', 'is_unlocked': 0});
 
           await db.insert('item_skin', {'skin_id': 3, 'cost' : 10000, 'is_purchased': 0});
@@ -118,33 +120,39 @@ class DatabaseService{
           await db.insert('bab', {'chapter' : 'Data dan Diagram'});
           await db.insert('bab', {'chapter' : 'UAS'});
 
-          await db.insert('player', {'username': 'FreakyBug'});
+          await db.insert('player', {'username': 'FreakyBug', 'currency' : 9999999});
 
           await db.insert('sub_bab',{
             'bab_id' : 1,
             'before_winning_info' : 'Super Creek, will you?',
             'after_winning_info' : 'yes ;)',
+            'enemy ' : 'Durian',
             'mission' : 'defeat all the bandits',
             'material' : 'garis bilangan (penjumlahan, pengurangan)',
             'reward' : 200,
+            'is_playable' : 1,
             'is_finished' : 0
           });
           await db.insert('sub_bab',{
             'bab_id' : 1,
             'before_winning_info' : 'do you know why Burger bangor always give 40% discount?',
             'after_winning_info' : 'isnt the answer obvious?',
+            'enemy ' : 'Rambutan',
             'mission' : 'defeat all the bandits',
             'material' : 'perkalian, pembagian',
             'reward' : 250,
+            'is_playable' : 0,
             'is_finished' : 0
           });
           await db.insert('sub_bab',{
             'bab_id' : 1,
             'before_winning_info' : 'wow, now i know why you like her',
             'after_winning_info' : 'nah, if in another universe she doesnt have all that, ill still love her',
+            'enemy ' : 'Cactus',
             'mission' : 'defeat all the bandits',
             'material' : 'fpb, kpk',
             'reward' : 300,
+            'is_playable' : 0,
             'is_finished' : 0
           });
       },
@@ -209,7 +217,7 @@ class DatabaseService{
           IT.item_title_id, 
           IT.cost, 
           IT.is_purchased,
-          T.name AS title_name,        
+          T.name AS name,        
       FROM 
           item_title AS IT
       
@@ -226,7 +234,7 @@ class DatabaseService{
           IS.item_title_id, 
           IS.cost, 
           IS.is_purchased,
-          S.path AS skin_path,        
+          S.path AS name,        
       FROM 
           item_skin AS IS
       
@@ -236,15 +244,15 @@ class DatabaseService{
     return list;
   }
 
-  Future<List<Map>> getTitle() async{
+  Future<List<Map<String, dynamic>>> getTitle() async{
     final db = await database;
-    final list = await db.rawQuery('SELECT * FROM title');
+    final List<Map<String, dynamic>> list = await db.rawQuery('SELECT * FROM title');
     return list;
   }
 
-  Future<List<Map>> getSkin() async{
+  Future<List<Map<String, dynamic>>> getSkin() async{
     final db = await database;
-    final list = await db.rawQuery('SELECT * FROM skin');
+    final List<Map<String, dynamic>> list = await db.rawQuery('SELECT * FROM skin');
     return list;
   }
 

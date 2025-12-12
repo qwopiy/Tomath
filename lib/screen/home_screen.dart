@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tomath/provider/quiz_provider.dart';
+import '../provider/quiz_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
