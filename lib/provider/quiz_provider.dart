@@ -9,7 +9,7 @@ import 'app_database.dart';
 
 class QuizProvider extends ChangeNotifier {
   List<Question> _questions = List.filled(
-    30,
+    50,
     Question(
       id: 0,
       text: '',
@@ -32,7 +32,7 @@ class QuizProvider extends ChangeNotifier {
   String correctAnswer = '';
   String solutionText = '';
 
-  int _questionRemaining = 5;
+  int _questionRemaining = 10;
   int _health = 3;
 
   int get questionRemaining => _questionRemaining;
@@ -42,6 +42,8 @@ class QuizProvider extends ChangeNotifier {
     if (_health <= 0 || _questionRemaining <= 0) return;
     this.question = question;
     this.options = options;
+    this.options.shuffle();
+
     this.correctAnswer = correctAnswer;
     this.solutionText = solutionText;
     // print("Setting question to index $_currentQuestionIndex");
@@ -50,9 +52,15 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void nextQuestion(BuildContext context, [bool? isTraining]) {
+  void nextQuestion(BuildContext context, [bool? isTraining, bool? isEvent]) {
     if (isTraining != null && isTraining) return;
-    if (_currentQuestionIndex < _questions.length - 1 && (_health > 0 && _questionRemaining > 0)) {
+    int rewards;
+    if (isEvent != null && isEvent) {
+      rewards = 1000;
+    } else {
+      rewards = 200;
+    }
+    if (_currentQuestionIndex < _questions.length - 1 && (_health > 0 && _questionRemaining > 1)) {
       // print("Next question called");
       _currentQuestionIndex++;
       _questionRemaining--;
@@ -67,23 +75,25 @@ class QuizProvider extends ChangeNotifier {
       );
       notifyListeners();
       // print("Moved to question index $_currentQuestionIndex");
-      // print("Question remaining: $_questionRemaining");
+      print("Question remaining: $_questionRemaining");
     } else {
       // out of questions or health
       if (_health <= 0) {
         // Lose
         showResult(
-            context,
-            'GAME OVER',
-            'You have run out of health.'
+          context,
+          'GAME OVER',
+          'You have run out of health.',
+          0,
         );
         print("No health remaining. Game over.");
       } else {
         // Win
         showResult(
-            context,
-            'SUCCESS!',
-            'You answered correctly.'
+          context,
+          'SUCCESS!',
+          'You answered correctly.',
+          rewards,
         );
         print("No questions remaining.");
       }
@@ -92,37 +102,43 @@ class QuizProvider extends ChangeNotifier {
 
   void optionSelected(int index, [bool? isTraining, BuildContext? context]) {
     if (_health <= 0 || _questionRemaining <= 0) return;
-    String selectedOption = options[index];
-    if (selectedOption != correctAnswer) {
+    if (!isCorrectAnswer(index)) {
       if (isTraining == null || !isTraining) {
         _health--;
       }
-      print("correctAnswer: $correctAnswer");
-      print("Incorrect answer selected. Health decreased to $_health");
+      // print("correctAnswer: $correctAnswer");
+      // print("Incorrect answer selected. Health decreased to $_health");
       if (isTraining != null && context != null && isTraining) {
         showAnswer(context, false);
       }
     } else {
-      print("Correct answer selected.");
+      // print("Correct answer selected.");
       if (isTraining != null && context != null && isTraining) {
         showAnswer(context, true);
       }
     }
     notifyListeners();
   }
+
+  bool isCorrectAnswer(int index) {
+    return options[index] == correctAnswer;
+  }
   
-  void showResult(BuildContext context, String resultText, String descriptionText) {
+  void showResult(BuildContext context, String resultText, String descriptionText, int reward) {
     showDialog(
       context: context,
       barrierDismissible: true,
       builder: (context) => ResultPopup(
         resultText: resultText, 
-        descriptionText: descriptionText
+        descriptionText: descriptionText,
+        reward: reward,
       ),
     );
   }
 
-  void showAnswer(BuildContext context, bool answeredRight) {
+  void showAnswer(BuildContext context, bool answeredRight) async {
+    await Future.delayed(Duration(seconds: 1));
+    if (!context.mounted) return;
     showDialog(
       context: context,
       barrierDismissible: true,
@@ -134,8 +150,8 @@ class QuizProvider extends ChangeNotifier {
     );
   }
 
-  Future<void> resetQuestion(int idMin, int idMax) async {
-    await getQuestionsById(idMin, idMax);
+  Future<void> resetQuestion(int bab, int subBab) async {
+    await getQuestionsByBabSubBab(bab, subBab);
     // await getQuestionDatabase();
     resetStats();
     // print("currentQuestionIndex set to $_currentQuestionIndex");
@@ -152,30 +168,14 @@ class QuizProvider extends ChangeNotifier {
   }
 
   Future<void> resetStats() async {
-    _questionRemaining = _questions.length;
+    _questionRemaining = 3; // batas 10 pertanyaan
     _health = 3;
     _currentQuestionIndex = Random().nextInt(_questions.length);
     notifyListeners();
   }
 
-  void setBab(int bab) {
-    switch (bab) {
-      case 1:
-        resetQuestion(100, 200);
-        break;
-      case 2:
-        resetQuestion(200, 300);
-        break;
-      case 3:
-        resetQuestion(300, 400);
-        break;
-      case 4:
-        resetQuestion(400, 500);
-        break;
-      default:
-        resetQuestion(100, 200);
-        break;
-    }
+  void setBab(int bab ,int subBab) {
+    resetQuestion(bab, subBab);
   }
 
   Future<void> getQuestionDatabase() async {
@@ -185,8 +185,8 @@ class QuizProvider extends ChangeNotifier {
       .toList();
   }
 
-  Future<void> getQuestionsById(int min, int max) async {
-    final questionMaps = await AppDatabase.instance.getQuestionsById(min, max);
+  Future<void> getQuestionsByBabSubBab(int bab, int subBab) async {
+    final questionMaps = await AppDatabase.instance.getQuestionsByBabSubBab(bab, subBab);
     _questions = questionMaps
       .map((m) => Question.fromJSON(m as Map<String, dynamic>))
       .toList();
