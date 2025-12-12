@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tomath/widget/game_widget.dart';
 
-class TrainingGameScreen extends StatelessWidget{
+class CampaignGameScreen extends StatelessWidget{
   final int bab;
   final int subBab;
-  const TrainingGameScreen({
+  const CampaignGameScreen({
     super.key,
     required this.bab,
     required this.subBab,
@@ -15,8 +15,8 @@ class TrainingGameScreen extends StatelessWidget{
     return GameWidget(
       bab: bab,
       subBab: subBab,
-      isTraining: true,
-      // TODO: enemy type: "Pisang" pas ada
+      // isEvent: false,
+      // isTraining: false,
     );
   }
 }

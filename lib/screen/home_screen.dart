@@ -32,8 +32,9 @@ class HomeScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       print('tombol Play ditekan');
-                      QuizProvider().resetQuestion(100, 200); // temp: untuk bab 1 (id 100 - 200)
-                      context.push('/campaign');
+                      // context.push('/campaign');
+                      // Testing soal
+                      context.push('/campaigngame11');
                     },
                     child: Stack(
                       alignment: Alignment.bottomCenter,

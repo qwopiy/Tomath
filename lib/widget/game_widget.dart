@@ -9,12 +9,18 @@ import 'rive_animation.dart';
 
 class GameWidget extends StatefulWidget {
   final int bab;
+  final int subBab;
   final bool? isTraining;
+  final bool? isEvent;
+  final String? enemyType;
   final double _playerHeight = 150;
   const GameWidget({
     super.key,
     required this.bab,
+    required this.subBab,
     this.isTraining,
+    this.isEvent,
+    this.enemyType,
   });
 
   @override
@@ -22,6 +28,13 @@ class GameWidget extends StatefulWidget {
 }
 
 class _GameWidgetState extends State<GameWidget> {
+  late final appProvider = Provider.of<AppStateProvider>(context);
+  bool _inAnimation = false;
+  bool _isPlayerAttacking = false;
+  bool _isPlayerGetHit = false;
+  bool _isEnemyAttacking = false;
+  bool _isEnemyGetHit = false;
+
   String questionText = 'Question not loaded';
   List<String> choices = [
     'Pilihan 1',
@@ -30,9 +43,77 @@ class _GameWidgetState extends State<GameWidget> {
     'Pilihan 4',
   ];
 
+  void _triggerPlayerAttack() async {
+    setState(() {
+      _isPlayerAttacking = true;
+    });
+    await Future.delayed(Duration(seconds: 1));
+    setState(() {
+      _isPlayerAttacking = false;
+    });
+  }
+
+  void _triggerPlayerGetHit() async {
+    setState(() {
+      _isPlayerGetHit = true;
+    });
+    await Future.delayed(Duration(milliseconds: 400));
+    setState(() {
+      _isPlayerGetHit = false;
+    });
+  }
+
+  void _triggerEnemyAttack() async {
+    setState(() {
+      _isEnemyAttacking = true;
+    });
+    await Future.delayed(Duration(seconds: 1));
+    setState(() {
+      _isEnemyAttacking = false;
+    });
+  }
+
+  void _triggerEnemyGetHit() async {
+    setState(() {
+      _isEnemyGetHit = true;
+    });
+    await Future.delayed(Duration(milliseconds: 400));
+    setState(() {
+      _isEnemyGetHit = false;
+    });
+  }
+
+  Future<void> triggerAnimationFromAnswer(QuizProvider qp,int index) async {
+    setState(() {
+      _inAnimation = true;
+    });
+    if (qp.isCorrectAnswer(index)){
+      _triggerPlayerAttack();
+    await Future.delayed(Duration(milliseconds: 400));
+      _triggerEnemyGetHit();
+    } else {
+      _triggerEnemyAttack();
+    await Future.delayed(Duration(milliseconds: 400));
+      _triggerPlayerGetHit();
+    }
+    await Future.delayed(Duration(seconds: 1));
+    setState(() {
+      _inAnimation = false;
+    });
+  }
+
+  Future<void> _chooseOption(BuildContext context, QuizProvider quizProvider, int option) async {
+    if (_inAnimation) return;
+    quizProvider.optionSelected(option, widget.isTraining, context);
+    await triggerAnimationFromAnswer(quizProvider, option);
+    if (context.mounted) {
+      quizProvider.nextQuestion(context, widget.isTraining, widget.isEvent);
+    }
+  }
+
   @override
   void initState() {
-    Provider.of<QuizProvider>(context, listen: false).setBab(widget.bab);
+    Provider.of<QuizProvider>(context, listen: false).setBab(widget.bab, widget.subBab);
     super.initState();
   }
 
@@ -43,8 +124,8 @@ class _GameWidgetState extends State<GameWidget> {
         questionText = quizProvider.question;
         choices = quizProvider.options;
 
-        print("Building CampaignScreen with question: $questionText");
-        print("Choices: $choices");
+        // print("Building CampaignScreen with question: $questionText");
+        // print("Choices: $choices");
 
         return Scaffold(
           backgroundColor: Color(0xffEED7A1),
@@ -119,9 +200,10 @@ class _GameWidgetState extends State<GameWidget> {
                                         height: widget._playerHeight,
                                         width: MediaQuery.of(context).size.width / 3,
                                         child: CustomRIVEAnimation(
-                                          artboardName: Provider.of<AppStateProvider>(context).player.skin_path,
-                                          isAttack: false,
-                                          isGetHit: false,),
+                                          artboardName: appProvider.player.skin_path,
+                                          isAttack: _isPlayerAttacking,
+                                          isGetHit: _isPlayerGetHit,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -137,9 +219,9 @@ class _GameWidgetState extends State<GameWidget> {
                                         height: widget._playerHeight,
                                         width: MediaQuery.of(context).size.width / 3,
                                         child: CustomRIVEAnimation(
-                                          artboardName: Provider.of<AppStateProvider>(context).player.skin_path,
-                                          isAttack: false,
-                                          isGetHit: false,
+                                          artboardName: widget.enemyType ?? "Rambutan",
+                                          isAttack: _isEnemyAttacking,
+                                          isGetHit: _isEnemyGetHit,
                                         ),
                                       ),
                                     ],
@@ -172,30 +254,26 @@ class _GameWidgetState extends State<GameWidget> {
                       children: [
                         ChoiceButton(
                           buttonText: choices[0],
-                          onPressed: () {
-                            quizProvider.optionSelected(0, widget.isTraining, context);
-                            quizProvider.nextQuestion(context, widget.isTraining);
+                          onPressed: () async {
+                            _chooseOption(context, quizProvider, 0);
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[1],
-                          onPressed: () {
-                            quizProvider.optionSelected(1, widget.isTraining, context);
-                            quizProvider.nextQuestion(context, widget.isTraining);
+                          onPressed: () async {
+                            _chooseOption(context, quizProvider, 1);
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[2],
-                          onPressed: () {
-                            quizProvider.optionSelected(2, widget.isTraining, context);
-                            quizProvider.nextQuestion(context, widget.isTraining);
+                          onPressed: () async {
+                            _chooseOption(context, quizProvider, 2);
                           },
                         ),
                         ChoiceButton(
                           buttonText: choices[3],
-                          onPressed: () {
-                            quizProvider.optionSelected(3, widget.isTraining, context);
-                            quizProvider.nextQuestion(context, widget.isTraining);
+                          onPressed: () async {
+                            _chooseOption(context, quizProvider, 3);
                           },
                         ),
                       ],
