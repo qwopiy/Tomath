@@ -124,8 +124,8 @@ class DatabaseService{
 
           await db.insert('sub_bab',{
             'bab_id' : 1,
-            'before_winning_info' : 'Super Creek, will you?',
-            'after_winning_info' : 'yes ;)',
+            'before_winning_info' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus arcu tortor, nec efficitur ante tincidunt at. ',
+            'after_winning_info' : 'Integer et metus eu felis maximus convallis. Morbi suscipit interdum ipsum. In eget placerat nibh',
             'enemy ' : 'Durian',
             'mission' : 'defeat all the bandits',
             'material' : 'garis bilangan (penjumlahan, pengurangan)',
@@ -135,8 +135,8 @@ class DatabaseService{
           });
           await db.insert('sub_bab',{
             'bab_id' : 1,
-            'before_winning_info' : 'do you know why Burger bangor always give 40% discount?',
-            'after_winning_info' : 'isnt the answer obvious?',
+            'before_winning_info' : 'Sed ultricies lorem nisl, sodales rhoncus arcu consectetur quis. Vestibulum eget ipsum in diam vulputate maximus',
+            'after_winning_info' : 'Aliquam faucibus facilisis blandit. Proin sagittis faucibus gravida. In ut eleifend eros. Proin suscipit ex sed lorem volutpat, ac imperdiet justo euismod',
             'enemy ' : 'Rambutan',
             'mission' : 'defeat all the bandits',
             'material' : 'perkalian, pembagian',
@@ -146,8 +146,8 @@ class DatabaseService{
           });
           await db.insert('sub_bab',{
             'bab_id' : 1,
-            'before_winning_info' : 'wow, now i know why you like her',
-            'after_winning_info' : 'nah, if in another universe she doesnt have all that, ill still love her',
+            'before_winning_info' : ' Nullam tempus eget sapien in accumsan. Vivamus commodo nisi ut neque auctor vulputate. Vestibulum pulvinar purus a placerat condimentum.',
+            'after_winning_info' : 'In commodo mauris dolor, eu imperdiet ipsum eleifend vitae. Aenean sed malesuada nulla, non euismod libero. Duis ac orci ornare, placerat erat at, fringilla orci',
             'enemy ' : 'Cactus',
             'mission' : 'defeat all the bandits',
             'material' : 'fpb, kpk',
@@ -193,7 +193,7 @@ class DatabaseService{
     return null;
   }
 
-  Future<List<Map<String, dynamic>>> getSubBab() async{
+  Future<List<Map<String, dynamic>>?> getSubBab() async{
     final db = await database;
     final List<Map<String, dynamic>> list = await db.rawQuery('''
         SELECT 
@@ -207,53 +207,68 @@ class DatabaseService{
         WHERE 
           P.player_id = 1
   ''');
-    return list;
+    if (list.isNotEmpty) {
+      return list;
+    }
+    return null;
   }
 
-  Future<List<Map>> getItemTitle() async{
+  Future<List<Map<String, dynamic>>?> getItemTitle() async{
     final db = await database;
-    final list = await db.rawQuery('''
+    final List<Map<String, dynamic>> list = await db.rawQuery('''
       SELECT 
-          IT.item_title_id, 
-          IT.cost, 
-          IT.is_purchased,
-          T.name AS name,        
+          TI.item_title_id AS id, 
+          TI.title_id AS content_id,
+          TI.cost, 
+          TI.is_purchased,
+          T.name AS name        
       FROM 
-          item_title AS IT
-      
+          item_title AS TI
       LEFT JOIN 
-          title AS T ON IT.title_id = T.title_id
+          title AS T ON TI.title_id = T.title_id
   ''');
-    return list;
+    if (list.isNotEmpty) {
+      return list;
+    }
+    return null;
   }
 
-  Future<List<Map>> getItemSkin() async{
+  Future<List<Map<String, dynamic>>?> getItemSkin() async{
     final db = await database;
-    final list = await db.rawQuery('''
+    final List<Map<String, dynamic>> list = await db.rawQuery('''
       SELECT 
-          IS.item_title_id, 
-          IS.cost, 
-          IS.is_purchased,
-          S.path AS name,        
+          SI.item_skin_id AS id,
+          SI.skin_id AS content_id, 
+          SI.cost, 
+          SI.is_purchased,
+          S.path AS name        
       FROM 
-          item_skin AS IS
-      
+          item_skin AS SI
       LEFT JOIN 
-          skin AS S ON IS.skin_id = S.skin_id
+          skin AS S ON SI.skin_id = S.skin_id
   ''');
-    return list;
+    if (list.isNotEmpty) {
+      return list;
+    }
+    return null;
   }
 
-  Future<List<Map<String, dynamic>>> getTitle() async{
+  Future<List<Map<String, dynamic>>?> getTitle() async{
     final db = await database;
     final List<Map<String, dynamic>> list = await db.rawQuery('SELECT * FROM title');
-    return list;
+    if (list.isNotEmpty) {
+      return list;
+    }
+    return null;
   }
 
-  Future<List<Map<String, dynamic>>> getSkin() async{
+  Future<List<Map<String, dynamic>>?> getSkin() async{
     final db = await database;
     final List<Map<String, dynamic>> list = await db.rawQuery('SELECT * FROM skin');
-    return list;
+    if (list.isNotEmpty) {
+      return list;
+    }
+    return null;
   }
 
   Future<void> updateUnlockedTitle(int id) async{
