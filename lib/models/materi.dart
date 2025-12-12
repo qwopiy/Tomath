@@ -1,44 +1,19 @@
 // Materi kelas 7
-enum Bab {
-  BilanganBulat,
-  BilanganRasional,
-  Rasio,
-  BilanganAljabar,
-  Kesebangunan,
-  DataDanDiagram,
-}
-
-enum SubBab0 {
-  PenjumlahanDanPengurangan,
-  PerkalianDanPembagian,
-  FPBDanKPK,
-}
-
-enum SubBab1 {
-  Konversi,
-  Perbandingan,
-  Perhitungan,
-}
-
-enum SubBab2 {
-  Dasar,
-  Skala,
-}
-
-enum SubBab3 {
-  Dasar,
-  Sifat,
-  Permodelan,
-}
-
-enum SubBab4 {
-  Sudut,
-  Dasar,
-  Segitiga,
-}
-
-enum SubBab5 {
-  Statistika,
-  Klasifikasi,
-  Diagram
+class Materi {
+  static const List<String> bab = [
+    'Bilangan Bulat',
+    'Bilangan Rasional',
+    'Rasio',
+    'Aljabar',
+    'Kesebangunan',
+    'Data dan Diagram'
+  ];
+  static const List<List<String>> subBab = [
+    ['Penjumlahan dan Pengurangan','Perkalian dan Pembagian','KPK dan FPB'],
+    ['Konversi','Perbandingan','Perhitungan'],
+    ['Konsep Rasio','Skala','Perbandingan Berbalik Nilai'],
+    ['Dasar Aljabar','Sifat Aljabar','Pemodelan Aljabar'],
+    ['Hubungan Sudut','Dasar Kesebangunan','Kesebangunan Segitiga'],
+    ['Statistika','Jenis Data','Diagram']
+  ];
 }

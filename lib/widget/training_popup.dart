@@ -70,9 +70,11 @@ class TrainingPopup extends StatelessWidget {
                 bottom: 10,
                 right: 10,
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    final quiz = Provider.of<QuizProvider>(context, listen: false);
                     GoRouter.of(context).pop();
-                    Provider.of<QuizProvider>(context, listen: false).nextQuestion(context);
+                    await Future.delayed(const Duration(milliseconds: 300));
+                    quiz.nextQuestion(context);
                   },
                   child: Container(
                       width: 100,

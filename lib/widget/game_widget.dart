@@ -12,10 +12,12 @@ class GameWidget extends StatefulWidget {
   final int subBab;
   final bool? isTraining;
   final double _playerHeight = 150;
+  final String? enemyType;
   const GameWidget({
     super.key,
     required this.bab,
     required this.subBab,
+    this.enemyType,
     this.isTraining,
   });
 
@@ -206,7 +208,7 @@ class _GameWidgetState extends State<GameWidget> {
                                         height: widget._playerHeight,
                                         width: MediaQuery.of(context).size.width / 3,
                                         child: CustomRIVEAnimation(
-                                          artboardName: "Rambutan",
+                                          artboardName: widget.enemyType ?? "Rambutan",
                                           isAttack: _isEnemyAttacking,
                                           isGetHit: _isEnemyGetHit,
                                         ),

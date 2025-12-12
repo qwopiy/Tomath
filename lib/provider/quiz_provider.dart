@@ -130,7 +130,9 @@ class QuizProvider extends ChangeNotifier {
     );
   }
 
-  void showAnswer(BuildContext context, bool answeredRight) {
+  void showAnswer(BuildContext context, bool answeredRight) async {
+    await Future.delayed(Duration(seconds: 1));
+    if (!context.mounted) return;
     showDialog(
       context: context,
       barrierDismissible: true,

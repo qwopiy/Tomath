@@ -16,6 +16,7 @@ class TrainingGameScreen extends StatelessWidget{
       bab: bab,
       subBab: subBab,
       isTraining: true,
+      // TODO: enemy type: "Pisang" pas ada
     );
   }
 }
