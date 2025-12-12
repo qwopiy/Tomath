@@ -44,31 +44,6 @@ class BottomInfoPanel extends StatelessWidget {
                 context.pop();
               },
             )
-
-            // InkWell(
-            //   onTap: () {
-            //     context.pop();
-            //   },
-            //   child: Container(
-            //     width: 110,
-            //     height: 45,
-            //     alignment: Alignment.center,
-            //     decoration: const BoxDecoration(
-            //       image: DecorationImage(
-            //         image: AssetImage('assets/ui/NavbarKayu.png'),
-            //         fit: BoxFit.fill,
-            //       ),
-            //     ),
-            //     child: const Text(
-            //       "Back",
-            //       style: TextStyle(
-            //         fontSize: 18,
-            //         color: Colors.white,
-            //         fontWeight: FontWeight.bold,
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

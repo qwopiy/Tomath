@@ -3,8 +3,16 @@ import 'package:flutter/material.dart';
 import '../widget/plank_info.dart';
 import '../widget/item_card.dart';
 
-class ShopScreen extends StatelessWidget {
+class ShopScreen extends StatefulWidget {
   const ShopScreen({super.key});
+
+  @override
+  State<ShopScreen> createState() => _ShopScreenState();
+}
+
+class _ShopScreenState extends State<ShopScreen> {
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +34,8 @@ class ShopScreen extends StatelessWidget {
               child: SizedBox.shrink(),
             ),
             Expanded(flex: 4,
-                child: PlankInfo(
+              child:
+              PlankInfo(
                   backgroundImage: 'assets/ui/PapanKayuShortNew.png',
 
                   buttonWidth: 150,
@@ -45,54 +54,52 @@ class ShopScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Expanded(flex: 2,
-                        child: Container(
-                          // color: Colors.green,
-                          child: Row(
-                            children: [
-                              Expanded(flex: 1,
-                                child: Container(),
-                              ),
-                              Expanded(flex: 3,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    ItemCard(
-                                      showCurrency: false,
-                                      priceText: "20.000",
-                                      onTap: () {
-                                        print("1");
-                                      },
-                                      child: Image.asset('assets/ui/Home1.png'),
-
-                                    ),
-                                    ItemCard(
-                                      showCurrency: false,
-                                      priceText: "30.000",
-                                      onTap: () {
-                                        print("2");
-                                      },
-                                      child: Image.asset('assets/ui/Home1.png'),
-
-                                    ),
-
-                                  ],
+                          child: Container(
+                            // color: Colors.green,
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1,
+                                  child: Container(),
                                 ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Container(),
-                              ),
-                            ],
-                          ),
+                                Expanded(flex: 3,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      // ItemCard(
+                                      //   showCurrency: false,
+                                      //   priceText: "20.000",
+                                      //   onTap: () {
+                                      //     print("1");
+                                      //   },
+                                      //   child: Image.asset('assets/ui/Home1.png'),
+                                      //
+                                      // ),
+                                      // ItemCard(
+                                      //   showCurrency: false,
+                                      //   priceText: "30.000",
+                                      //   onTap: () {
+                                      //     print("2");
+                                      //   },
+                                      //   child: Image.asset('assets/ui/Home1.png'),
+                                      // ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                              ],
+                            ),
 
-                        )
+                          )
                       ),
                       Expanded(flex: 1,
-                        child: SizedBox.shrink()
+                          child: SizedBox.shrink()
                       ),
                     ],
                   )
-                ),
+              ),
             ),
             Expanded(flex: 2,
               child: SizedBox.shrink(),

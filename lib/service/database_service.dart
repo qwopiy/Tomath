@@ -217,7 +217,7 @@ class DatabaseService{
           IT.item_title_id, 
           IT.cost, 
           IT.is_purchased,
-          T.name AS title_name,        
+          T.name AS name,        
       FROM 
           item_title AS IT
       
@@ -234,7 +234,7 @@ class DatabaseService{
           IS.item_title_id, 
           IS.cost, 
           IS.is_purchased,
-          S.path AS skin_path,        
+          S.path AS name,        
       FROM 
           item_skin AS IS
       
