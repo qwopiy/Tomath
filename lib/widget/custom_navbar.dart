@@ -83,7 +83,6 @@ class CustomNavbar extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        print(path);
         context.go(path);
       },
       child: Transform.translate(

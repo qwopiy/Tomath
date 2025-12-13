@@ -10,18 +10,10 @@ import '../service/database_service.dart';
 import '../models/player_model.dart';
 
 class AppStateProvider extends ChangeNotifier {
-  static const String _soundVolumeKey = 'sound_volume';
-  static const String _musicVolumeKey = 'music_volume';
   static const String _buttonCampaignPosKey = 'button_campaign_pos';
 
   List<({double top, double right})> _currentButtonCampaignPos = [];
   List<({double top, double right})> get currentButtonCampaignPos => _currentButtonCampaignPos;
-
-  double _currentSoundVolume = 0.5;
-  double _currentMusicVolume = 0.5;
-
-  double get currentMusicVolume => _currentMusicVolume;
-  double get currentSoundVolume => _currentSoundVolume;
 
   Player? _player;
   List<SubBabModel>? _subBabList = [];
@@ -44,8 +36,6 @@ class AppStateProvider extends ChangeNotifier {
     await dbs.database;
 
     final prefs = await SharedPreferences.getInstance();
-    _currentSoundVolume = prefs.getDouble(_soundVolumeKey) ?? 0.5;
-    _currentMusicVolume = prefs.getDouble(_musicVolumeKey) ?? 0.5;
 
     final Map<String, dynamic>? profileMap = await dbs.getPlayerProfile();
     if (profileMap != null) {
@@ -180,18 +170,6 @@ class AppStateProvider extends ChangeNotifier {
 
     final dbs = DatabaseService.instance;
     await dbs.updatePlayerUsername(newName);
-
-    notifyListeners();
-  }
-
-  Future<void> setVolume(double newSoundVolume, double newMusicVolume) async{
-    _currentSoundVolume =  newSoundVolume;
-    _currentMusicVolume =  newMusicVolume;
-
-    final prefs = await SharedPreferences.getInstance();
-
-    await prefs.setDouble(_soundVolumeKey, newSoundVolume);
-    await prefs.setDouble(_musicVolumeKey, newMusicVolume);
 
     notifyListeners();
   }

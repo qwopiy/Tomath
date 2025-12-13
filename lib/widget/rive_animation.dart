@@ -39,8 +39,6 @@ class _CustomRIVEAnimationState extends State<CustomRIVEAnimation> {
       stateMachineSelector: StateMachineSelector.byName('State Machine 1'),
     );
 
-
-
       _isAttack = controller.stateMachine.boolean('isAttack');
       _isAttack?.value = false;
 
@@ -54,6 +52,7 @@ class _CustomRIVEAnimationState extends State<CustomRIVEAnimation> {
   @override
   void dispose() {
     _isAttack?.dispose();
+    _isGetHit?.dispose();
     file.dispose();
     controller.dispose();
     super.dispose();

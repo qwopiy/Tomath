@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../service/app_state_provider.dart';
+import '../service/audio_provider.dart';
 
 class SettingButton extends StatelessWidget {
   final String buttonText;
@@ -49,9 +50,9 @@ class SettingPopup extends StatefulWidget {
 }
 
 class _SettingPopupState extends State<SettingPopup> {
-  late final appState = Provider.of<AppStateProvider>(context, listen: false);
-  late double soundVolume = appState.currentSoundVolume;
-  late double musicVolume = appState.currentMusicVolume;
+  late final appState = Provider.of<AudioProvider>(context, listen: false);
+  late double bgmVolume = appState.bgmVolume;
+  late double sfxVolume = appState.sfxVolume;
 
   @override
   Widget build(BuildContext context) {
@@ -88,24 +89,24 @@ class _SettingPopupState extends State<SettingPopup> {
 
                   const SizedBox(height: 30),
 
-                  // SOUND SLIDER
+                  // BGM SLIDER
                   _volumeSlider(
-                    label: "Sound",
-                    value: soundVolume,
+                    label: "BGM",
+                    value: bgmVolume,
                     onChanged: (v) {
-                      setState(() => soundVolume = v);
+                      setState(() => bgmVolume = v);
                     },
                     width: popupWidth,
                   ),
 
                   const SizedBox(height: 20),
 
-                  // MUSIC SLIDER
+                  // SFX SLIDER
                   _volumeSlider(
-                    label: "Music",
-                    value: musicVolume,
+                    label: "SFX",
+                    value: sfxVolume,
                     onChanged: (v) {
-                      setState(() => musicVolume = v);
+                      setState(() => sfxVolume = v);
                     },
                     width: popupWidth,
                   ),
@@ -134,7 +135,8 @@ class _SettingPopupState extends State<SettingPopup> {
               top: 0,
               child: GestureDetector(
                 onTap: () {
-                  appState.setVolume(soundVolume, musicVolume);
+                  appState.setBgmVolume(bgmVolume);
+                  appState.setSfxVolume(sfxVolume);
                   Navigator.of(context).pop();
                 },
                 child: Container(

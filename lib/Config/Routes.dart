@@ -44,12 +44,6 @@ GoRouter createRouter() {
     navigatorKey: rootNavigatorKey,
     initialLocation: AppRoutes.home,
     routes: [
-      // contoh buat ntaran
-      // GoRoute(
-      //   path: AppRoutes.quiz,
-      //   name: 'sign-in',
-      //   builder: (context, state) => const QuizScreen(),
-      // ),
       GoRoute(
         path: AppRoutes.campaign,
         name: 'campaign',
@@ -122,9 +116,6 @@ GoRouter createRouter() {
         ],
       ),
     ],
-
-
-
 
     errorBuilder: (context, state) => Scaffold(
       body: Center(

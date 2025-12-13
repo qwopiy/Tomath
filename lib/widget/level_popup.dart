@@ -56,8 +56,7 @@ class LevelPopup extends StatelessWidget {
                           const SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              // subBab.is_finished == 1 ? subBab.before_winning_info : subBab.before_winning_info,
-                              'nah, if in another universe she doesnt have all that, ill still love her ',
+                              subBab.is_finished == 1 ? subBab.before_winning_info : subBab.before_winning_info,
                               style: TextStyle(
                                 fontSize: textSize,
                                 color: Colors.black,

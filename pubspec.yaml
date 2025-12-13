@@ -41,6 +41,7 @@ dependencies:
   provider: ^6.1.5+1
   sqflite: ^2.4.2
   path: ^1.9.1
+  audioplayers: ^6.5.1
 
 dev_dependencies:
   sqflite_common_ffi: ^2.3.3
@@ -71,6 +72,9 @@ flutter:
     - assets/data/
     - assets/images/
     - assets/images/character/
+    - assets/audio/
+    - assets/audio/bgm/
+    - assets/audio/sfx/
     - assets/ui/
     - assets/animations/
 
