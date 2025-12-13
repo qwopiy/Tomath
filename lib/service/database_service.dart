@@ -193,6 +193,15 @@ class DatabaseService{
     return null;
   }
 
+  Future<List<Map<String, dynamic>>?> getBab() async{
+    final db = await database;
+    final List<Map<String, dynamic>> list = await db.rawQuery('SELECT * FROM bab');
+    if (list.isNotEmpty) {
+      return list;
+    }
+    return null;
+  }
+
   Future<List<Map<String, dynamic>>?> getSubBab() async{
     final db = await database;
     final List<Map<String, dynamic>> list = await db.rawQuery('''
@@ -291,6 +300,26 @@ class DatabaseService{
     );
   }
 
+  Future<void> updatePurchasedTitle(int id) async{
+    final db = await database;
+    await db.update(
+        'item_title',
+        {'is_purchased': 1},
+        where: 'item_title_id = ?',
+        whereArgs: [id]
+    );
+  }
+
+  Future<void> updatePurchasedSkin(int id) async{
+    final db = await database;
+    await db.update(
+        'item_skin',
+        {'is_purchased': 1},
+        where: 'item_skin_id = ?',
+        whereArgs: [id]
+    );
+  }
+
   Future<void> updatePlayerUsername(String username) async{
     final db = await database;
     await db.update(
@@ -320,5 +349,27 @@ class DatabaseService{
         whereArgs: [1]
     );
   }
+
+  Future<void> updatePlayerCurrency(int newCurrency) async{
+    final db = await database;
+    await db.update(
+        'player',
+        {'currency': newCurrency},
+        where: 'player_id = ?',
+        whereArgs: [1]
+    );
+  }
+
+  Future<void> updatePlayerProgress(int _progress) async{
+    final db = await database;
+    await db.update(
+        'player',
+        {'prograss': _progress},
+        where: 'player_id = ?',
+        whereArgs: [1]
+    );
+  }
+
+
 
 }

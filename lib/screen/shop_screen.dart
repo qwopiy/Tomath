@@ -15,7 +15,7 @@ class ShopScreen extends StatefulWidget {
 class _ShopScreenState extends State<ShopScreen> {
   late final appState = Provider.of<AppStateProvider>(context, listen: true);
 
-  // late String chosenItemName = '';
+  int chosenContentId = 0;
   int chosenItemId = 0;
   int chosenItemCategory = 0;
   int cost = 0;
@@ -40,7 +40,8 @@ class _ShopScreenState extends State<ShopScreen> {
       items.add(
         ItemCard(
           onTap: (){
-            chosenItemId = item.content_id;
+            chosenItemId = item.item_id;
+            chosenContentId = item.content_id;
             chosenItemCategory = item.item_category;
             cost = item.cost;
           },
@@ -88,13 +89,21 @@ class _ShopScreenState extends State<ShopScreen> {
                   rightButtonOnTap: () {
                     if(cost == 0) return;
 
-                    if(chosenItemCategory == 1){
-                      appState.updateTitle(chosenItemId);
-                    }else if(chosenItemCategory == 2){
-                      appState.updateSkin(chosenItemId);
+                    if(appState.player.currency >= cost){
+                      appState.updatePlayerCurrency(-(cost));
+
+                      if(chosenItemCategory == 1){
+                        appState.updateShopItem(chosenItemId ,chosenContentId, 1);
+                      }else if(chosenItemCategory == 2){
+                        appState.updateShopItem(chosenItemId, chosenContentId, 2);
+                      }
+                    }else{
+                      print('ga ada duid');
+                      return;
                     }
 
-                    print("Confirm Button");
+                    cost = 0;
+                    print("barang kebeli");
                   },
                   rightButtonAlignment: Alignment.bottomRight,
                   rightButtonPadding: EdgeInsets.only(right: 70, bottom: 55),
