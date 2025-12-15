@@ -15,15 +15,13 @@ import 'setting_button.dart';
 class GameWidget extends StatefulWidget {
   final int bab;
   final int subBab;
-  final bool? isTraining;
-  final bool? isEvent;
+  final GameType gameType;
   final String? enemyType;
   const GameWidget({
     super.key,
     required this.bab,
     required this.subBab,
-    this.isTraining,
-    this.isEvent,
+    required this.gameType,
     this.enemyType,
   });
 
@@ -38,7 +36,7 @@ class _GameWidgetState extends State<GameWidget> {
   bool _essayQuestion = true;
   late String answer;
 
-  final double _playerHeight = 100;
+  late double _playerHeight;
 
   bool _inAnimation = false;
   bool _isPlayerAttacking = false;
@@ -115,7 +113,7 @@ class _GameWidgetState extends State<GameWidget> {
 
   Future<void> _chooseOption(BuildContext context, QuizProvider quizProvider, int option) async {
     if (_inAnimation) return;
-    quizProvider.optionSelected(option, widget.subBab, widget.isTraining ?? false, context);
+    quizProvider.optionSelected(option, widget.subBab, widget.gameType, context);
     await triggerAnimationFromAnswer(quizProvider, quizProvider.isCorrectAnswer(option));
     if (context.mounted) {
       if (canBeEssay) {
@@ -123,14 +121,14 @@ class _GameWidgetState extends State<GameWidget> {
           _essayQuestion = Random().nextBool();
         });
       }
-      quizProvider.nextQuestion(context, widget.subBab, widget.isTraining ?? false, widget.isEvent);
+      quizProvider.nextQuestion(context, widget.subBab, widget.gameType);
     }
 
   }
 
   Future<void> _answerGiven(BuildContext context, QuizProvider quizProvider, String input) async {
     if (_inAnimation) return;
-    quizProvider.answerGiven(input, widget.subBab, widget.isTraining ?? false, context);
+    quizProvider.answerGiven(input, widget.subBab, widget.gameType, context);
     await triggerAnimationFromAnswer(quizProvider, quizProvider.validateAnswer(input));
     if (context.mounted) {
       if (canBeEssay) {
@@ -138,7 +136,7 @@ class _GameWidgetState extends State<GameWidget> {
           _essayQuestion = Random().nextBool();
         });
       }
-      quizProvider.nextQuestion(context, widget.subBab, widget.isTraining ?? false, widget.isEvent);
+      quizProvider.nextQuestion(context, widget.subBab, widget.gameType);
     }
 
   }
@@ -274,16 +272,17 @@ class _GameWidgetState extends State<GameWidget> {
 
   @override
   void initState() {
-    Provider.of<QuizProvider>(context, listen: false).setBab(widget.bab, widget.subBab);
+    Provider.of<QuizProvider>(context, listen: false).setBankSoal(widget.gameType ,widget.bab, widget.subBab);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    _playerHeight = MediaQuery.of(context).size.width / 4 - 10;
     return Consumer<QuizProvider>(
       builder: (context, quizProvider, child) {
-        questionText = quizProvider.question;
-        choices = quizProvider.options;
+        questionText = quizProvider.currentQuestion.text;
+        choices = quizProvider.currentQuestion.options;
 
         // print("Building CampaignScreen with question: $questionText");
         // print("Choices: $choices");
@@ -298,127 +297,124 @@ class _GameWidgetState extends State<GameWidget> {
                 // atas: gambar player, musuh, soal
                 Expanded(
                   flex: 6,
-                  child: Container(
-                    // color: Colors.blue,
-                    // layar atas dibagi 2 juga
-                    // atas: soal
-                    // bawah: gambar player dan musuh
-                    child: Column(
-                      children: [
-                        // setting
-                        SizedBox(
-                          height: 60,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              SettingButton(
-                                buttonText: 'Beranda',
-                                onPressed: () {
-                                  GoRouter.of(context).go('/home');
-                                },
+                  // layar atas dibagi 2 juga
+                  // atas: soal
+                  // bawah: gambar player dan musuh
+                  child: Column(
+                    children: [
+                      // setting
+                      SizedBox(
+                        height: 60,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SettingButton(
+                              buttonText: 'Beranda',
+                              onPressed: () {
+                                GoRouter.of(context).go('/home');
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      // atas: soal
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                'assets/ui/kertasKecil.png'
                               ),
-                            ],
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 45, right: 55),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Text(
+                                questionText,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: 'LuckiestGuy',
+                                ),
+                                textAlign: TextAlign.center,
+                                maxLines: 4,
+                              ),
+                            ),
                           ),
                         ),
-                        // atas: soal
-                        Expanded(
-                          flex: 3,
+                      ),
+                      // bawah: gambar player dan musuh
+                      Expanded(
+                        flex: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 50, right: 50),
                           child: Container(
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage(
                                   'assets/ui/kertasKecil.png'
                                 ),
-                                fit: BoxFit.fill,
+                                fit: BoxFit.fitWidth,
                               ),
                             ),
-                            alignment: Alignment.center,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 45, right: 55),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: Text(
-                                  questionText,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontFamily: 'LuckiestGuy',
-                                  ),
-                                  textAlign: TextAlign.center,
-                                  maxLines: 4,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // gambar player
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Transform.translate(
+                                      offset: const Offset(20, 20),
+                                      child: PlayerHealth(gameType: widget.gameType,),
+                                    ),
+                                    SizedBox(
+                                      height: _playerHeight,
+                                      width: _playerHeight,
+                                      child: Transform.translate(
+                                        offset: const Offset(20, -20),
+                                        child: CustomRIVEAnimation(
+                                          artboardName: appProvider.player.skin_path,
+                                          isAttack: _isPlayerAttacking,
+                                          isGetHit: _isPlayerGetHit,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
+                                // gambar musuh
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    SizedBox(
+                                      height: 20,
+                                      width: MediaQuery.of(context).size.width / 3,
+                                    ),
+                                    SizedBox(
+                                      height: _playerHeight,
+                                      width: _playerHeight,
+                                      child: Transform.translate(
+                                        offset: const Offset(-25, -20),
+                                        child: CustomRIVEAnimation(
+                                          artboardName: widget.enemyType ?? 'Rambutan',
+                                          isAttack: _isEnemyAttacking,
+                                          isGetHit: _isEnemyGetHit,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                        // bawah: gambar player dan musuh
-                        Expanded(
-                          flex: 4,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 50, right: 50),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    'assets/ui/kertasKecil.png'
-                                  ),
-                                  fit: BoxFit.fitWidth,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  // gambar player
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Transform.translate(
-                                        offset: const Offset(20, 20),
-                                        child: PlayerHealth(isTraining: widget.isTraining ?? false),
-                                      ),
-                                      SizedBox(
-                                        height: _playerHeight,
-                                        width: _playerHeight,
-                                        child: Transform.translate(
-                                          offset: const Offset(20, -20),
-                                          child: CustomRIVEAnimation(
-                                            artboardName: appProvider.player.skin_path,
-                                            isAttack: _isPlayerAttacking,
-                                            isGetHit: _isPlayerGetHit,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  // gambar musuh
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      SizedBox(
-                                        height: 20,
-                                        width: MediaQuery.of(context).size.width / 3,
-                                      ),
-                                      SizedBox(
-                                        height: _playerHeight,
-                                        width: _playerHeight,
-                                        child: Transform.translate(
-                                          offset: const Offset(-20, -20),
-                                          child: CustomRIVEAnimation(
-                                            artboardName: widget.enemyType ?? 'Rambutan',
-                                            isAttack: _isEnemyAttacking,
-                                            isGetHit: _isEnemyGetHit,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 // bawah: pilihan jawaban
@@ -433,38 +429,6 @@ class _GameWidgetState extends State<GameWidget> {
                     ),
                     alignment: Alignment.center,
                     child: answerWidget(quizProvider, _essayQuestion),
-                    // wrap dari kiri ke kanan, overflow ke bawah
-                    // child: Wrap(
-                    //   spacing: MediaQuery.of(context).size.width / 8,
-                    //   runSpacing: MediaQuery.of(context).size.width / 8,
-                    //   direction: Axis.horizontal,
-                    //   children: [
-                    //     ChoiceButton(
-                    //       buttonText: choices[0],
-                    //       onPressed: () async {
-                    //         _chooseOption(context, quizProvider, 0);
-                    //       },
-                    //     ),
-                    //     ChoiceButton(
-                    //       buttonText: choices[1],
-                    //       onPressed: () async {
-                    //         _chooseOption(context, quizProvider, 1);
-                    //       },
-                    //     ),
-                    //     ChoiceButton(
-                    //       buttonText: choices[2],
-                    //       onPressed: () async {
-                    //         _chooseOption(context, quizProvider, 2);
-                    //       },
-                    //     ),
-                    //     ChoiceButton(
-                    //       buttonText: choices[3],
-                    //       onPressed: () async {
-                    //         _chooseOption(context, quizProvider, 3);
-                    //       },
-                    //     ),
-                    //   ],
-                    // ),
                   ),
                 ),
               ],

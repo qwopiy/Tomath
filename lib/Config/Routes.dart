@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../screen/campaign_game_screen.dart';
+import '../models/materi.dart';
+import '../screen/game_screen.dart';
 import '../screen/event_screen.dart';
 import '../screen/home_screen.dart';
 import '../screen/profile_screen.dart';
@@ -9,8 +10,6 @@ import '../screen/shop_screen.dart';
 import '../screen/training_screen.dart';
 import '../screen/campaign_screen.dart';
 import '../widget/home_app_scaffold.dart';
-
-import '../screen/training_game_screen.dart';
 
 class AppRoutes {
   static const String shop = '/shop';
@@ -35,6 +34,16 @@ class AppRoutes {
     ['/traininggame51', '/traininggame52', '/traininggame53'],
     ['/traininggame61', '/traininggame62', '/traininggame63'],
   ];
+  static const List<List<String>> eventGame = [
+    ['/eventgame11', '/eventgame12', '/eventgame13'],
+    ['/eventgame21', '/eventgame22', '/eventgame23'],
+    ['/eventgame31', '/eventgame32', '/eventgame33'],
+    ['/eventgame41', '/eventgame42', '/eventgame43'],
+    ['/eventgame51', '/eventgame52', '/eventgame53'],
+    ['/eventgame61', '/eventgame62', '/eventgame63'],
+  ];
+  static const String utsGame = 'uts';
+  static const String uasGame = 'uas';
 }
 
 GoRouter createRouter() {
@@ -54,15 +63,53 @@ GoRouter createRouter() {
           GoRoute(
             path: AppRoutes.campaignGame[i][j],
             name: 'campaigngame${i + 1}${j + 1}',
-            builder: (context, state) => CampaignGameScreen(bab: i + 1, subBab: j + 1),
+            builder: (context, state) => GameScreen(
+              gameType: GameType.campaign,
+              bab: i + 1,
+              subBab: j + 1
+            ),
           ),
       for (int i = 0; i <= 5; i++)
         for (int j = 0; j <= 2; j++)
           GoRoute(
             path: AppRoutes.trainingGame[i][j],
             name: 'traininggame${i + 1}${j + 1}',
-            builder: (context, state) => TrainingGameScreen(bab: i + 1, subBab: j + 1),
+            builder: (context, state) => GameScreen(
+              gameType: GameType.training,
+              bab: i + 1,
+              subBab: j + 1,
+              enemyType: 'Banana',
+            ),
           ),
+      for (int i = 0; i <= 5; i++)
+        for (int j = 0; j <= 2; j++)
+          GoRoute(
+            path: AppRoutes.eventGame[i][j],
+            name: 'eventgame${i + 1}${j + 1}',
+            builder: (context, state) => GameScreen(
+              gameType: GameType.event,
+              bab: i + 1,
+              subBab: j + 1,
+            ),
+          ),
+      GoRoute(
+        path: AppRoutes.utsGame,
+        name: 'utsgame',
+        builder: (context, state) => GameScreen(
+          gameType: GameType.UTS,
+          bab: 0,
+          subBab: 0,
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.uasGame,
+        name: 'uasgame',
+        builder: (context, state) => GameScreen(
+          gameType: GameType.UAS,
+          bab: 0,
+          subBab: 0,
+        ),
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, child) {
           return HomeAppScaffold(child: child);

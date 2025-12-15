@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../models/materi.dart';
 import '../provider/quiz_provider.dart';
 
 class PlayerHealth extends StatefulWidget {
-  final bool? isTraining;
+  final GameType? gameType;
   const PlayerHealth({
     super.key,
-    this.isTraining
+    this.gameType
   });
 
   @override
@@ -16,7 +17,7 @@ class PlayerHealth extends StatefulWidget {
 class _PlayerHealthState extends State<PlayerHealth> {
   @override
   Widget build(BuildContext context) {
-    if (widget.isTraining == null || widget.isTraining == true) {
+    if (widget.gameType == GameType.training) {
       return SizedBox(
         height: 20,
         width: MediaQuery.of(context).size.width / 3,
