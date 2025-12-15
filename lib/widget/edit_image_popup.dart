@@ -106,12 +106,15 @@ class _ImagePopupState extends State<ImagePopup> {
                             )
                         ),
                         Expanded(flex: 6,
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ...asignSkin(context),
-                              ]
-                          ),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    ...asignSkin(context),
+                                  ]
+                              ),
+                            )
                         ),
                         Expanded(flex: 3,
                             child: Row(
@@ -125,7 +128,7 @@ class _ImagePopupState extends State<ImagePopup> {
                                   }
                                   Navigator.pop(context);}),
                               ],
-                            )
+                            ),
                         ),
                       ],
                       // color: Colors.green

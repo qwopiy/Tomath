@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
 import '../widget/game_widget.dart';
 
-class TrainingGameScreen extends StatelessWidget{
+class EventGameScreen extends StatelessWidget{
   final int bab;
   final int subBab;
-  const TrainingGameScreen({
+  const EventGameScreen({
     super.key,
     required this.bab,
     required this.subBab,
@@ -16,8 +15,7 @@ class TrainingGameScreen extends StatelessWidget{
     return GameWidget(
       bab: bab,
       subBab: subBab,
-      isTraining: true,
-      enemyType: "Banana"
+      isEvent: true,
     );
   }
 }

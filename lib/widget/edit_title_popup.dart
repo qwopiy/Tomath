@@ -116,7 +116,8 @@ class _TitlePopupState extends State<TitlePopup> {
                             )
                         ),
                         Expanded(flex: 6,
-                          child: Container(
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [

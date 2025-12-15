@@ -6,7 +6,7 @@ import 'package:rive/rive.dart';
 import 'provider/app_database.dart';
 import 'provider/quiz_provider.dart';
 import 'service/app_state_provider.dart';
-import 'Config/Routes.dart';
+import 'service/audio_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +35,9 @@ class Tomath extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => QuizProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => AudioProvider(),
+        )
       ],
       child: MaterialApp.router(
         title: 'Tomath',

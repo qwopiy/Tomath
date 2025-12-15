@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tomath/provider/quiz_provider.dart';
+import '../provider/quiz_provider.dart';
 
 class PlayerHealth extends StatefulWidget {
-  bool? isTraining;
-  PlayerHealth({
+  final bool? isTraining;
+  const PlayerHealth({
     super.key,
     this.isTraining
   });
@@ -18,7 +18,7 @@ class _PlayerHealthState extends State<PlayerHealth> {
   Widget build(BuildContext context) {
     if (widget.isTraining == null || widget.isTraining == true) {
       return SizedBox(
-        height: kToolbarHeight - 20,
+        height: 20,
         width: MediaQuery.of(context).size.width / 3,
       );
     }
@@ -31,20 +31,31 @@ class _PlayerHealthState extends State<PlayerHealth> {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Center(
+              child: Text(
+                'HP : ',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontFamily: 'LuckiestGuy',
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
             Icon(
               Icons.favorite,
               color: (health > 0) ? Colors.red : Colors.black,
-              size: kToolbarHeight - 20,
+              size: 20,
             ),
             Icon(
               Icons.favorite,
               color: (health > 1) ? Colors.red : Colors.black,
-              size: kToolbarHeight - 20,
+              size: 20,
             ),
             Icon(
               Icons.favorite,
               color: (health > 2) ? Colors.red : Colors.black,
-              size: kToolbarHeight - 20,
+              size: 20,
             ),
           ],
         );

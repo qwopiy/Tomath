@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
+import '../service/app_state_provider.dart';
 
 class ResultPopup extends StatelessWidget {
+  final int level;
   final String resultText;
   final String descriptionText;
-  final int reward = 0; // Example reward value
+  final int reward;
 
   const ResultPopup({
     super.key,
+    required this.level,
     required this.resultText,
     required this.descriptionText,
+    required this.reward,
   });
 
   @override
   Widget build(BuildContext context) {
+    final appStateProvider = Provider.of<AppStateProvider>(context, listen: false);
     return Center(
       child: Material(
         color: Colors.transparent,
@@ -90,6 +97,8 @@ class ResultPopup extends StatelessWidget {
               right: 10,
               child: GestureDetector(
                 onTap: () {
+                  appStateProvider.updatePlayableLevel(level);
+                  appStateProvider.updatePlayerCurrency(reward);
                   GoRouter.of(context).go('/home');
                 },
                 child: Container(

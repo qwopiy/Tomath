@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:tomath/widget/custom_navbar.dart';
 import 'package:tomath/widget/home_appbar.dart';
+
+import '../service/audio_provider.dart';
 
 
 class HomeAppScaffold extends StatefulWidget {
@@ -14,6 +17,14 @@ class HomeAppScaffold extends StatefulWidget {
 }
 
 class _HomeAppScaffoldState extends State<HomeAppScaffold> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<AudioProvider>().playBgm(AppMusic.homeTheme);
+    });
+  }
+
   int _getTabIndex(String location) {
     if (location.startsWith('/shop')) return 0;
     if (location.startsWith('/event')) return 1;

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../service/app_state_provider.dart';
 import '../widget/plank_info.dart';
 import '../widget/item_card.dart';
 import '../service/app_state_provider.dart';

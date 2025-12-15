@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:tomath/provider/quiz_provider.dart';
+import '../provider/quiz_provider.dart';
 
 class TrainingPopup extends StatelessWidget {
+  final int subBab;
   final String resultText;
   final String descriptionText;
   final String solutionText;
 
   const TrainingPopup({
     super.key,
+    required this.subBab,
     required this.resultText,
     required this.descriptionText,
     required this.solutionText,
@@ -70,9 +72,13 @@ class TrainingPopup extends StatelessWidget {
                 bottom: 10,
                 right: 10,
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    final quiz = Provider.of<QuizProvider>(context, listen: false);
                     GoRouter.of(context).pop();
-                    Provider.of<QuizProvider>(context, listen: false).nextQuestion(context);
+                    await Future.delayed(const Duration(milliseconds: 300));
+                    if (context.mounted) {
+                      quiz.nextQuestion(context, subBab);
+                    }
                   },
                   child: Container(
                       width: 100,
