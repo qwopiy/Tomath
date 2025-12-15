@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../provider/quiz_provider.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../service/audio_provider.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,11 +37,11 @@ class HomeScreen extends StatelessWidget {
                   width: 200,
                   height: 150,
                   child: InkWell(
-                    onTap: () {
+                    onTap: () async {
                       print('tombol Play ditekan');
-                      // context.push('/campaign');
-                      // Testing soal
-                      context.push('/campaigngame11');
+                      await context.push('/campaign');
+
+                      context.read<AudioProvider>().playBgm(AppMusic.homeTheme);
                     },
                     child: Stack(
                       alignment: Alignment.bottomCenter,

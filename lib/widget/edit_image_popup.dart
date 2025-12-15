@@ -106,29 +106,29 @@ class _ImagePopupState extends State<ImagePopup> {
                             )
                         ),
                         Expanded(flex: 6,
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ...asignSkin(context),
-                              ]
-                          ),
-                        ),
-                        Expanded(flex: 3,
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  _button("Back", () => Navigator.pop(context)),
-                                  const SizedBox(width: 15),
-                                  _button("Confirm", (){
-                                    if(currentSkin != chosenSkinName && chosenSkinName != ''){
-                                      appState.setPlayerSkin(chosenSkinName, chosenSkinId);
-                                    }
-                                    Navigator.pop(context);}),
-                                ],
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    ...asignSkin(context),
+                                  ]
                               ),
                             )
+                        ),
+                        Expanded(flex: 3,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _button("Back", () => Navigator.pop(context)),
+                                const SizedBox(width: 15),
+                                _button("Confirm", (){
+                                  if(currentSkin != chosenSkinName && chosenSkinName != ''){
+                                    appState.setPlayerSkin(chosenSkinName, chosenSkinId);
+                                  }
+                                  Navigator.pop(context);}),
+                              ],
+                            ),
                         ),
                       ],
                       // color: Colors.green

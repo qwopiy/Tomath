@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../service/audio_provider.dart';
 import '../widget/bottom_info_panel.dart';
 import '../widget/level_map_area.dart';
 
@@ -11,6 +13,13 @@ class CampaignScreen extends StatefulWidget {
 }
 
 class _CampaignScreenState extends State<CampaignScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<AudioProvider>().playBgm(AppMusic.gameTheme);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

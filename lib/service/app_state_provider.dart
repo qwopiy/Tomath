@@ -10,18 +10,10 @@ import '../service/database_service.dart';
 import '../models/player_model.dart';
 
 class AppStateProvider extends ChangeNotifier {
-  static const String _soundVolumeKey = 'sound_volume';
-  static const String _musicVolumeKey = 'music_volume';
   static const String _buttonCampaignPosKey = 'button_campaign_pos';
 
   List<({double top, double right})> _currentButtonCampaignPos = [];
   List<({double top, double right})> get currentButtonCampaignPos => _currentButtonCampaignPos;
-
-  double _currentSoundVolume = 0.5;
-  double _currentMusicVolume = 0.5;
-
-  double get currentMusicVolume => _currentMusicVolume;
-  double get currentSoundVolume => _currentSoundVolume;
 
   Player? _player;
   List<SubBabModel>? _subBabList = [];
@@ -44,8 +36,6 @@ class AppStateProvider extends ChangeNotifier {
     await dbs.database;
 
     final prefs = await SharedPreferences.getInstance();
-    _currentSoundVolume = prefs.getDouble(_soundVolumeKey) ?? 0.5;
-    _currentMusicVolume = prefs.getDouble(_musicVolumeKey) ?? 0.5;
 
     final Map<String, dynamic>? profileMap = await dbs.getPlayerProfile();
     if (profileMap != null) {
@@ -71,6 +61,15 @@ class AppStateProvider extends ChangeNotifier {
 
     getSkins(dbs);
 
+    getShopItem(dbs);
+
+    initializePositions( _subBabList!.length);
+
+    notifyListeners();
+  }
+
+  Future<void> getShopItem(DatabaseService dbs) async{
+    _shopItems = [];
     final List<Map<String, dynamic>>? itemTitlesMap = await dbs.getItemTitle();
     final List<Map<String, dynamic>>? itemSkinsMap = await dbs.getItemSkin();
     if(itemTitlesMap != null){
@@ -92,10 +91,6 @@ class AppStateProvider extends ChangeNotifier {
     for(final item in _shopItems!){
       print(item.toString());
     }
-
-    initializePositions( _subBabList!.length);
-
-    notifyListeners();
   }
 
   Future<void> getTitles(DatabaseService dbs) async{
@@ -193,14 +188,83 @@ class AppStateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> setVolume(double newSoundVolume, double newMusicVolume) async{
-    _currentSoundVolume =  newSoundVolume;
-    _currentMusicVolume =  newMusicVolume;
+  Future<void> updateShopItem(int item_id, int content_id, int category) async{
+    final dbs = DatabaseService.instance;
+    if(category == 1){
+      await dbs.updatePurchasedTitle(item_id);
+      updateTitle(content_id);
+    }else if (category == 2){
+      await dbs.updatePurchasedSkin(item_id);
+      updateSkin(content_id);
+    }
+    getShopItem(dbs);
+  }
 
-    final prefs = await SharedPreferences.getInstance();
+  Future<void> updatePlayerProgress() async{
+    if (_player == null) return;
 
-    await prefs.setDouble(_soundVolumeKey, newSoundVolume);
-    await prefs.setDouble(_musicVolumeKey, newMusicVolume);
+    _player = Player(
+      username: _player!.username,
+      skin_path: _player!.skin_path,
+      title_name: _player!.title_name,
+      currency: _player!.currency,
+      progress:  _player!.progress + 1,
+    );
+
+    final dbs = DatabaseService.instance;
+    await dbs.updatePlayerProgress(_player!.progress + 1);
+
+    notifyListeners();
+  }
+
+  Future<void> updatePlayableLevel(int level) async{
+    final dbs = DatabaseService.instance;
+    for(int i = level; i <= level + 1; i++){
+      if(i > 3) return;
+
+      int _is_playable = 0;
+      int _is_finished = 0;
+      if(i == level){
+        _is_playable = 1;
+        _is_finished = 1;
+      }else{
+        _is_playable = 1;
+        _is_finished = 0;
+      }
+
+      _subBabList![i] = SubBabModel(
+        sub_bab_id: _subBabList![i].sub_bab_id,
+        bab_id: _subBabList![i].bab_id,
+        before_winning_info: _subBabList![i].before_winning_info,
+        after_winning_info: _subBabList![i].after_winning_info,
+        enemy: _subBabList![i].enemy,
+        mission: _subBabList![i].mission,
+        material: _subBabList![i].material,
+        reward: _subBabList![i].reward,
+        is_playable: _is_playable,
+        is_finished: _is_finished,
+      );
+
+      dbs.updatePlayableSubBab(_is_playable, _is_finished, _subBabList![i].sub_bab_id);
+    }
+    notifyListeners();
+  }
+
+  Future<void> updatePlayerCurrency(int amount) async{
+    if (_player == null) return;
+
+    int newCurrency = _player!.currency + amount;
+
+    _player = Player(
+      username: _player!.username,
+      skin_path: _player!.skin_path,
+      title_name: _player!.title_name,
+      currency: newCurrency,
+      progress:  _player!.progress + 1,
+    );
+
+    final dbs = DatabaseService.instance;
+    await dbs.updatePlayerCurrency(newCurrency);
 
     notifyListeners();
   }

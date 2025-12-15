@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:tomath/widget/result_popup.dart';
-import 'package:tomath/widget/training_popup.dart';
+import '../widget/result_popup.dart';
+import '../widget/training_popup.dart';
 
 import '../models/question.dart';
 import 'app_database.dart';
@@ -35,6 +35,8 @@ class QuizProvider extends ChangeNotifier {
   int _questionRemaining = 10;
   int _health = 3;
 
+  int get currentQuestionIndex => _currentQuestionIndex;
+
   int get questionRemaining => _questionRemaining;
   int get health => _health;
 
@@ -52,7 +54,7 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void nextQuestion(BuildContext context, [bool? isTraining, bool? isEvent]) {
+  void nextQuestion(BuildContext context, int level, [bool? isTraining, bool? isEvent]) {
     if (isTraining != null && isTraining) return;
     int rewards;
     if (isEvent != null && isEvent) {
@@ -63,7 +65,7 @@ class QuizProvider extends ChangeNotifier {
     if (_currentQuestionIndex < _questions.length - 1 && (_health > 0 && _questionRemaining > 1)) {
       // print("Next question called");
       _currentQuestionIndex++;
-      _questionRemaining--;
+      if (isTraining != null && !isTraining) _questionRemaining--;
 
       _currentQuestionIndex = Random().nextInt(_questions.length);
 
@@ -85,6 +87,7 @@ class QuizProvider extends ChangeNotifier {
           'GAME OVER',
           'You have run out of health.',
           0,
+          level
         );
         print("No health remaining. Game over.");
       } else {
@@ -94,13 +97,28 @@ class QuizProvider extends ChangeNotifier {
           'SUCCESS!',
           'You answered correctly.',
           rewards,
+          level
         );
         print("No questions remaining.");
       }
     }
   }
 
-  void optionSelected(int index, [bool? isTraining, BuildContext? context]) {
+  bool validateAnswer(String input) {
+    String inputLower = input.toLowerCase();
+
+    // Remove non-numeric characters dari input
+    String inputNum = inputLower.replaceAll(RegExp(r'[^0-9]'), '');
+    if (input == '' || inputNum == '') return false;
+
+    String correctAnswerLower = correctAnswer.toLowerCase();
+
+    return (inputLower == correctAnswerLower) ||
+        (correctAnswerLower.contains(inputLower)) ||
+        (correctAnswerLower.contains(inputNum));
+  }
+
+  void optionSelected(int index, int level, [bool? isTraining, BuildContext? context]) {
     if (_health <= 0 || _questionRemaining <= 0) return;
     if (!isCorrectAnswer(index)) {
       if (isTraining == null || !isTraining) {
@@ -109,12 +127,32 @@ class QuizProvider extends ChangeNotifier {
       // print("correctAnswer: $correctAnswer");
       // print("Incorrect answer selected. Health decreased to $_health");
       if (isTraining != null && context != null && isTraining) {
-        showAnswer(context, false);
+        showAnswer(context, false, level);
       }
     } else {
       // print("Correct answer selected.");
       if (isTraining != null && context != null && isTraining) {
-        showAnswer(context, true);
+        showAnswer(context, true, level);
+      }
+    }
+    notifyListeners();
+  }
+
+  void answerGiven(String input, int level, [bool? isTraining, BuildContext? context]) {
+    if (_health <= 0 || _questionRemaining <= 0) return;
+    if (!validateAnswer(input)) {
+      if (isTraining == null || !isTraining) {
+        _health--;
+      }
+      // print("correctAnswer: $correctAnswer");
+      // print("Incorrect answer selected. Health decreased to $_health");
+      if (isTraining != null && context != null && isTraining) {
+        showAnswer(context, false, level);
+      }
+    } else {
+      // print("Correct answer selected.");
+      if (isTraining != null && context != null && isTraining) {
+        showAnswer(context, true, level);
       }
     }
     notifyListeners();
@@ -123,29 +161,31 @@ class QuizProvider extends ChangeNotifier {
   bool isCorrectAnswer(int index) {
     return options[index] == correctAnswer;
   }
-  
-  void showResult(BuildContext context, String resultText, String descriptionText, int reward) {
+
+  void showResult(BuildContext context, String resultText, String descriptionText, int reward, int level) {
     showDialog(
       context: context,
       barrierDismissible: true,
       builder: (context) => ResultPopup(
-        resultText: resultText, 
+        level: level,
+        resultText: resultText,
         descriptionText: descriptionText,
         reward: reward,
       ),
     );
   }
 
-  void showAnswer(BuildContext context, bool answeredRight) async {
+  void showAnswer(BuildContext context, bool answeredRight, int level) async {
     await Future.delayed(Duration(seconds: 1));
     if (!context.mounted) return;
     showDialog(
       context: context,
       barrierDismissible: true,
       builder: (context) => TrainingPopup(
-        resultText: answeredRight ? 'Correct!' : 'Wrong!',
-        descriptionText: 'The correct answer is: $correctAnswer',
+        resultText: answeredRight ? 'Benar!' : 'Salah!',
+        descriptionText: 'Jawaban yang benar adalah: $correctAnswer',
         solutionText: solutionText,
+        subBab: level
       ),
     );
   }
@@ -168,7 +208,7 @@ class QuizProvider extends ChangeNotifier {
   }
 
   Future<void> resetStats() async {
-    _questionRemaining = 3; // batas 10 pertanyaan
+    _questionRemaining = 10; // batas 10 pertanyaan
     _health = 3;
     _currentQuestionIndex = Random().nextInt(_questions.length);
     notifyListeners();
