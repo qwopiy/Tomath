@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../models/materi.dart';
 import '../provider/quiz_provider.dart';
 
 class TrainingPopup extends StatelessWidget {
@@ -75,7 +76,7 @@ class TrainingPopup extends StatelessWidget {
                   onTap: () async {
                     final quiz = Provider.of<QuizProvider>(context, listen: false);
                     GoRouter.of(context).pop();
-                    await Future.delayed(const Duration(milliseconds: 300));
+                    await Future.delayed(const Duration(milliseconds: 100)); // delay agar jawaban selanjutnya tidak langsung nampak
                     if (context.mounted) {
                       quiz.nextQuestion(context, subBab);
                     }
