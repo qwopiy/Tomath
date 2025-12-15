@@ -58,10 +58,21 @@ class _TitlePopupState extends State<TitlePopup> {
             print('chosenTitleName: $chosenTitleName');
           },
           showCurrency: false,
-          child:
-            Text(
+
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
               title.name,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: "Baskerville",
+              )
             ),
+          ),
+
         ),
       );
     }
@@ -77,7 +88,7 @@ class _TitlePopupState extends State<TitlePopup> {
       // y: vertical (-1 atas, 1 bawah)
 
       child: FractionallySizedBox(
-        widthFactor: 1.2,
+        widthFactor: 1,
         heightFactor: 0.4,
         child: Material(
           color: Colors.transparent,
@@ -85,7 +96,7 @@ class _TitlePopupState extends State<TitlePopup> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             decoration: BoxDecoration(
               image: const DecorationImage(
-                image: AssetImage('assets/ui/PapanKayuShort.png'),
+                image: AssetImage('assets/ui/Mading_small.png'),
                 fit: BoxFit.fill,
               ),
             ),
@@ -119,9 +130,9 @@ class _TitlePopupState extends State<TitlePopup> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                _button("Back", () => Navigator.pop(context)),
+                                _button("Kembali", () => Navigator.pop(context)),
                                 const SizedBox(width: 15),
-                                _button("Confirm", (){
+                                _button("Konfirmasi", (){
                                   if(currentTitle != chosenTitleName && chosenTitleName != ''){
                                     appState.setPlayerTitle(chosenTitleName, chosenTitleId);
                                   }
