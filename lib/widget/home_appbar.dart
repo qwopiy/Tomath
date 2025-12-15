@@ -31,7 +31,7 @@ class HomeAppbar extends StatelessWidget{
                     child: Container(
                       alignment: AlignmentGeometry.topRight,
                       child: SettingButton(
-                        buttonText: 'Exit',
+                        buttonText: 'Keluar',
                         onPressed: (){},
                       ),
                     )

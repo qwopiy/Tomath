@@ -69,7 +69,7 @@ class _SettingPopupState extends State<SettingPopup> {
               padding: const EdgeInsets.all(20),
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/ui/KertasGede.png'),
+                  image: AssetImage('assets/ui/kertas_small.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -79,10 +79,11 @@ class _SettingPopupState extends State<SettingPopup> {
                   const SizedBox(height: 20),
 
                   Text(
-                    "Setting",
+                    "Pengaturan",
                     style: TextStyle(
                       fontSize: popupWidth * 0.08,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontFamily: "LuckiestGuy",
                     ),
                   ),
 
@@ -174,7 +175,7 @@ class _SettingPopupState extends State<SettingPopup> {
             label,
             style: TextStyle(
               fontSize: width * 0.06,
-              fontWeight: FontWeight.bold,
+              fontFamily: "LuckiestGuy",
             ),
           ),
           Slider(
@@ -210,7 +211,7 @@ Widget _button(String text, VoidCallback onTap, double width) {
         style: TextStyle(
           fontSize: width * 0.06,
           color: Color(0xFFF7EFD3),
-          fontWeight: FontWeight.bold,
+          // fontWeight: FontWeight.bold,
           fontFamily: 'LuckiestGuy',
           shadows: [
             Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),

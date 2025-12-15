@@ -25,11 +25,10 @@ class TrainingScreen extends StatelessWidget {
             ),
             Flexible(flex: 4,
               child: PlankInfo(
-                  backgroundImage: 'assets/ui/PapanKayuShort.png',
+                  backgroundImage: 'assets/ui/Mading_medium.png',
 
                   showLeftButton: false,
                   showRightButton: false,
-
 
                   child: Row(
                       children: [

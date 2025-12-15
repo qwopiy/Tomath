@@ -49,7 +49,7 @@ class _NamePopupState extends State<NamePopup> {
             // y: vertical (-1 atas, 1 bawah)
 
             child: FractionallySizedBox(
-              widthFactor: 1.2,
+              widthFactor: 1,
               heightFactor: 0.4,
               child: Material(
                 color: Colors.transparent,
@@ -57,7 +57,7 @@ class _NamePopupState extends State<NamePopup> {
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                   decoration: BoxDecoration(
                     image: const DecorationImage(
-                      image: AssetImage('assets/ui/PapanKayuShort.png'),
+                      image: AssetImage('assets/ui/Mading_small.png'),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -114,9 +114,9 @@ class _NamePopupState extends State<NamePopup> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      _button("Back", () => Navigator.pop(context)),
+                                      _button("Kembali", () => Navigator.pop(context)),
                                       const SizedBox(width: 15),
-                                      _button("Confirm", () {
+                                      _button("Konfirmasi", () {
                                         appState.setUsername(controller.text);
                                         Navigator.pop(context);
                                       }),

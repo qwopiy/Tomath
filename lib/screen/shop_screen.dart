@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../widget/plank_info.dart';
 import '../widget/item_card.dart';
+import '../service/app_state_provider.dart';
 
 class ShopScreen extends StatefulWidget {
   const ShopScreen({super.key});
@@ -11,11 +11,10 @@ class ShopScreen extends StatefulWidget {
 }
 
 class _ShopScreenState extends State<ShopScreen> {
-
-
-
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: const Color(0xffe8b882),
       body: Container(
@@ -27,83 +26,99 @@ class _ShopScreenState extends State<ShopScreen> {
         ),
         child: Column(
           children: [
-            Expanded(flex: 2,
-              child: SizedBox.shrink(),
-            ),
-            Expanded(flex: 4,
-              child: SizedBox.shrink(),
-            ),
-            Expanded(flex: 4,
-              child:
-              PlankInfo(
-                  backgroundImage: 'assets/ui/PapanKayuShortNew.png',
+            const Spacer(flex: 2),
+            const Spacer(flex: 4),
+            Expanded(
+              flex: 5,
+              child: PlankInfo(
+                backgroundImage: 'assets/ui/Mading_small.png',
 
-                  buttonWidth: 150,
-                  buttonHeight: 50,
+                buttonWidth: size.width * 0.35,
+                buttonHeight: size.height * 0.06,
 
-                  showLeftButton: false,
+                showLeftButton: false,
+                showRightButton: true,
+                rightButtonText: "Konfirmasi",
+                rightButtonOnTap: () {
+                  print("Confirm Button");
+                },
+                rightButtonAlignment: Alignment.bottomRight,
+                rightButtonPadding: EdgeInsets.only(
+                  right: size.width * 0.2,
+                  bottom: size.height * 0.05,
+                ),
 
-                  showRightButton: true,
-                  rightButtonText: "Confirm",
-                  rightButtonOnTap: () {
-                    print("Confirm Button");
-                  },
-                  rightButtonAlignment: Alignment.bottomRight,
-                  rightButtonPadding: EdgeInsets.only(right: 70, bottom: 55),
-
-                  child: Column(
-                    children: [
-                      Expanded(flex: 2,
-                          child: Container(
-                            // color: Colors.green,
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1,
-                                  child: Container(),
-                                ),
-                                Expanded(flex: 3,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      // ItemCard(
-                                      //   showCurrency: false,
-                                      //   priceText: "20.000",
-                                      //   onTap: () {
-                                      //     print("1");
-                                      //   },
-                                      //   child: Image.asset('assets/ui/Home1.png'),
-                                      //
-                                      // ),
-                                      // ItemCard(
-                                      //   showCurrency: false,
-                                      //   priceText: "30.000",
-                                      //   onTap: () {
-                                      //     print("2");
-                                      //   },
-                                      //   child: Image.asset('assets/ui/Home1.png'),
-                                      // ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                              ],
-                            ),
-
+                //isi papan
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.145,
+                    vertical: size.height * 0.10,
+                  ),
+                  child: GridView(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.05,
+                      vertical: size.height * 0.01,
+                    ),
+                    physics: const BouncingScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 50,
+                      // childAspectRatio: 10 / 5 ,
+                    ),
+                    children:[
+                      ItemCard(
+                          showCurrency: true,
+                          priceText: "20.000",
+                          onTap: () {
+                            print("1");
+                          },
+                          child: Image.asset(
+                            'assets/ui/FreakyBugLogo.png',
+                            fit: BoxFit.contain,
                           )
                       ),
-                      Expanded(flex: 1,
-                          child: SizedBox.shrink()
+                      ItemCard(
+                        showCurrency: true,
+                        priceText: "20.000",
+                        onTap: () {
+                          print("1");
+                        },
+                        child: Image.asset(
+                          'assets/ui/Home1.png',
+                          fit: BoxFit.contain,
+                        ),
                       ),
+                      ItemCard(
+                        showCurrency: true,
+                        priceText: "20.000",
+                        onTap: () {
+                          print("1");
+                        },
+                        child: Image.asset(
+                          'assets/ui/Home1.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      ItemCard(
+                        showCurrency: true,
+                        priceText: "20.000",
+                        onTap: () {
+                          print("1");
+                        },
+                        child: Image.asset(
+                          'assets/ui/Home1.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+
+
                     ],
                   )
+                ),
               ),
             ),
-            Expanded(flex: 2,
-              child: SizedBox.shrink(),
-            ),
+            const Spacer(flex: 2),
           ],
         ),
       ),

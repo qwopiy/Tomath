@@ -39,7 +39,7 @@ class BottomInfoPanel extends StatelessWidget {
             const SizedBox(height: 12),
 
             WoodButton(
-              text: "Back",
+              text: "Kembali",
               onTap: () {
                 context.pop();
               },
