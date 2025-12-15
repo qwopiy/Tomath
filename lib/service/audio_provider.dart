@@ -3,8 +3,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppMusic {
-  static const String homeTheme = 'audio/bgm/my_istri_song_1.mp3';
-  static const String gameTheme = 'audio/bgm/my_istri_song_2.mp3';
+  static const String homeTheme = 'audio/bgm/Home.mp3';
+  static const String gameTheme = 'audio/bgm/Game.mp3';
 }
 
 class AudioProvider extends ChangeNotifier with WidgetsBindingObserver {

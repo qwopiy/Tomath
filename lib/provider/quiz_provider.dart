@@ -35,6 +35,8 @@ class QuizProvider extends ChangeNotifier {
   int _questionRemaining = 10;
   int _health = 3;
 
+  int get currentQuestionIndex => _currentQuestionIndex;
+
   int get questionRemaining => _questionRemaining;
   int get health => _health;
 
@@ -52,7 +54,7 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void nextQuestion(BuildContext context, [bool? isTraining, bool? isEvent]) {
+  void nextQuestion(BuildContext context, int level, [bool? isTraining, bool? isEvent]) {
     if (isTraining != null && isTraining) return;
     int rewards;
     if (isEvent != null && isEvent) {
@@ -85,6 +87,7 @@ class QuizProvider extends ChangeNotifier {
           'GAME OVER',
           'You have run out of health.',
           0,
+          level
         );
         print("No health remaining. Game over.");
       } else {
@@ -94,6 +97,7 @@ class QuizProvider extends ChangeNotifier {
           'SUCCESS!',
           'You answered correctly.',
           rewards,
+          level
         );
         print("No questions remaining.");
       }
@@ -114,7 +118,7 @@ class QuizProvider extends ChangeNotifier {
         (correctAnswerLower.contains(inputNum));
   }
 
-  void optionSelected(int index, [bool? isTraining, BuildContext? context]) {
+  void optionSelected(int index, int level, [bool? isTraining, BuildContext? context]) {
     if (_health <= 0 || _questionRemaining <= 0) return;
     if (!isCorrectAnswer(index)) {
       if (isTraining == null || !isTraining) {
@@ -123,18 +127,18 @@ class QuizProvider extends ChangeNotifier {
       // print("correctAnswer: $correctAnswer");
       // print("Incorrect answer selected. Health decreased to $_health");
       if (isTraining != null && context != null && isTraining) {
-        showAnswer(context, false);
+        showAnswer(context, false, level);
       }
     } else {
       // print("Correct answer selected.");
       if (isTraining != null && context != null && isTraining) {
-        showAnswer(context, true);
+        showAnswer(context, true, level);
       }
     }
     notifyListeners();
   }
 
-  void answerGiven(String input ,[bool? isTraining, BuildContext? context]) {
+  void answerGiven(String input, int level, [bool? isTraining, BuildContext? context]) {
     if (_health <= 0 || _questionRemaining <= 0) return;
     if (!validateAnswer(input)) {
       if (isTraining == null || !isTraining) {
@@ -143,12 +147,12 @@ class QuizProvider extends ChangeNotifier {
       // print("correctAnswer: $correctAnswer");
       // print("Incorrect answer selected. Health decreased to $_health");
       if (isTraining != null && context != null && isTraining) {
-        showAnswer(context, false);
+        showAnswer(context, false, level);
       }
     } else {
       // print("Correct answer selected.");
       if (isTraining != null && context != null && isTraining) {
-        showAnswer(context, true);
+        showAnswer(context, true, level);
       }
     }
     notifyListeners();
@@ -158,11 +162,12 @@ class QuizProvider extends ChangeNotifier {
     return options[index] == correctAnswer;
   }
 
-  void showResult(BuildContext context, String resultText, String descriptionText, int reward) {
+  void showResult(BuildContext context, String resultText, String descriptionText, int reward, int level) {
     showDialog(
       context: context,
       barrierDismissible: true,
       builder: (context) => ResultPopup(
+        level: level,
         resultText: resultText,
         descriptionText: descriptionText,
         reward: reward,
@@ -170,7 +175,7 @@ class QuizProvider extends ChangeNotifier {
     );
   }
 
-  void showAnswer(BuildContext context, bool answeredRight) async {
+  void showAnswer(BuildContext context, bool answeredRight, int level) async {
     await Future.delayed(Duration(seconds: 1));
     if (!context.mounted) return;
     showDialog(
@@ -180,6 +185,7 @@ class QuizProvider extends ChangeNotifier {
         resultText: answeredRight ? 'Benar!' : 'Salah!',
         descriptionText: 'Jawaban yang benar adalah: $correctAnswer',
         solutionText: solutionText,
+        subBab: level
       ),
     );
   }

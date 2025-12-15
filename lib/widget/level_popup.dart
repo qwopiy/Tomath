@@ -15,6 +15,8 @@ class LevelPopup extends StatelessWidget {
 
     final String enemy = subBab.enemy;
 
+    final int bab = subBab.bab_id;
+
     return Align(
       alignment: const Alignment(0, 0),
       child: FractionallySizedBox(
@@ -163,7 +165,7 @@ class LevelPopup extends StatelessWidget {
                         children: [
                           _button("Back", () => Navigator.pop(context), textSize),
                           const SizedBox(width: 12),
-                          _button("Accept", () => GoRouter.of(context).go('/campaigngame1$level'), textSize),
+                          _button("Accept", () => GoRouter.of(context).push('/campaigngame$bab$level'), textSize),
                         ],
                       ),
                     ],

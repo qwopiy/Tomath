@@ -370,6 +370,17 @@ class DatabaseService{
     );
   }
 
-
+  Future<void> updatePlayableSubBab(int _is_playable, int _is_finished, int id) async{
+    final db = await database;
+    await db.update(
+      'sub_bab',
+      {
+        'is_playable': _is_playable,
+        'is_finished': _is_finished,
+      },
+      where: 'sub_bab_id = ?',
+      whereArgs: [id],
+    );
+  }
 
 }
