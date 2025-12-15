@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 150,
                           fit: BoxFit.contain,
                         ),
-                        Text('Play', style: TextStyle(
+                        Text('Mulai', style: TextStyle(
                           fontFamily: 'LuckiestGuy',
                           fontSize: 30,
                           color: Color(0xFFF7EFD3),
