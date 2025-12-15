@@ -74,7 +74,9 @@ class TrainingPopup extends StatelessWidget {
                     final quiz = Provider.of<QuizProvider>(context, listen: false);
                     GoRouter.of(context).pop();
                     await Future.delayed(const Duration(milliseconds: 300));
-                    quiz.nextQuestion(context);
+                    if (context.mounted) {
+                      quiz.nextQuestion(context);
+                    }
                   },
                   child: Container(
                       width: 100,

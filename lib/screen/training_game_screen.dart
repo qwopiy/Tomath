@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tomath/widget/game_widget.dart';
+
+import '../widget/game_widget.dart';
 
 class TrainingGameScreen extends StatelessWidget{
   final int bab;
@@ -16,7 +17,7 @@ class TrainingGameScreen extends StatelessWidget{
       bab: bab,
       subBab: subBab,
       isTraining: true,
-      // TODO: enemy type: "Pisang" pas ada
+      enemyType: "Banana"
     );
   }
 }
