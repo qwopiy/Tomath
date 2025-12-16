@@ -74,12 +74,21 @@ class AppDatabase {
     return await getQuestionsById(minId, maxId);
   }
 
-  Future<Map> getRandomQuestion() async {
+  Future<List<Map>> getUTSQuestion() async {
     final db = await instance.database;
-    final result = await db.rawQuery('SELECT * FROM Question ORDER BY RANDOM() LIMIT 1');
+    final result = await db.rawQuery('SELECT * FROM Question WHERE id BETWEEN 11001 AND 33050 ORDER BY RANDOM() LIMIT 50');
     if (result.isNotEmpty) {
-      print('Random question fetched: ${result.first}');
-      return result.first;
+      return result;
+    } else {
+      throw Exception('No questions found in the database.');
+    }
+  }
+
+  Future<List<Map>> getUASQuestion() async {
+    final db = await instance.database;
+    final result = await db.rawQuery('SELECT * FROM Question WHERE id BETWEEN 11001 AND 63050 ORDER BY RANDOM() LIMIT 50');
+    if (result.isNotEmpty) {
+      return result;
     } else {
       throw Exception('No questions found in the database.');
     }

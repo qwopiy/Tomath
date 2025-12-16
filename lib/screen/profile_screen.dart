@@ -36,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
                     child: PlankInfo(
                       showLeftButton: false,
                       showRightButton: false,
-                      backgroundImage: 'assets/ui/KertasGede.png',
+                      backgroundImage: 'assets/ui/kertas_small.png',
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -70,8 +70,11 @@ class ProfileScreen extends StatelessWidget {
                                     playerProfile.username, //username
                                     style: const TextStyle(
                                         fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black),
+                                        // fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontFamily: 'LuckiestGuy',
+
+                                    ),
                                   ),
                                   const SizedBox(height: 10),
                                   Container(
@@ -106,8 +109,9 @@ class ProfileScreen extends StatelessWidget {
                                   playerProfile.title_name, //title,
                                   style: const TextStyle(
                                     fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                    // fontWeight: FontWeight.bold,
                                     color: Colors.black,
+                                    fontFamily: 'LuckiestGuy',
                                   ),
                                 ),
 

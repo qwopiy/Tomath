@@ -29,14 +29,14 @@ class EventScreen extends StatelessWidget {
             Expanded(
               flex: 8,
               child: PlankInfo(
-                backgroundImage: 'assets/ui/PapanMadingNew.png',
+                backgroundImage: 'assets/ui/Mading_small.png',
 
                 buttonWidth: 150 * w,
                 buttonHeight: 50 * h,
 
                 showLeftButton: false,
                 showRightButton: true,
-                rightButtonText: "Enter",
+                rightButtonText: "Konfirmasi",
                 rightButtonOnTap: () {},
                 rightButtonAlignment: Alignment.bottomRight,
                 rightButtonPadding: EdgeInsets.only(
@@ -65,7 +65,7 @@ class EventScreen extends StatelessWidget {
                                   height: cw * 0.7,
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
-                                      image: AssetImage('assets/ui/KertasGede.png'),
+                                      image: AssetImage('assets/ui/kertas_small.png'),
                                       fit: BoxFit.fill,
                                     ),
                                     borderRadius: BorderRadius.all(
