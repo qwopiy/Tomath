@@ -39,33 +39,53 @@ class _DialogueState extends State<Dialogue> {
 
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/ui/KertasGede.png'),
+                image: AssetImage('assets/ui/Kertas_big.png'),
                 fit: BoxFit.fill,
               ),
             ),
-
-            child: Stack(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: Text(
-                    widget.textContent,
-                    style: TextStyle(
-                      fontSize: size.width * 0.05,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontFamily: 'BaskervvilleSC',
+                Expanded(flex: 1,
+                    child: Padding(padding: EdgeInsets.only(left:size.width * 0.05),
+                      child:
+                        Text(
+                          "Mbak stroberi",
+                          style: TextStyle(
+                            fontSize: size.width * 0.05,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontFamily: 'BaskervvilleSC',
+                          ),
+                        ),
                     ),
-                    textAlign: TextAlign.start,
-                  ),
                 ),
+                Expanded(flex: 3,
+                    child: SingleChildScrollView(
+                      child: Padding(padding: EdgeInsets.only(left:size.width * 0.05),
+                        child:
+                        Text(
+                          "apakah kamu melihat buah",
+                          style: TextStyle(
+                            fontSize: size.width * 0.05,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontFamily: 'BaskervvilleSC',
+                          ),
+                        ),
+                      ),
 
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: WoodButton(
-                    text: widget.buttonText,
-                    onTap: widget.onTap,
-                  ),
+                    )
                 ),
+                Expanded(flex: 1,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                            child: WoodButton(
+                              text: widget.buttonText,
+                              onTap: widget.onTap,
+                        )
+                    )
+                )
               ],
             ),
           );
