@@ -24,12 +24,14 @@ class AppStateProvider extends ChangeNotifier {
   List<({double top, double right})> get currentButtonCampaignPos => _currentButtonCampaignPos;
 
   Player? _player;
+  String _bab = '';
   List<SubBabModel>? _subBabList = [];
   List<Title>? _titles = [];
   List<Skin>? _skins = [];
   List<ShopItem>? _shopItems = [];
 
   Player get player => _player!;
+  String get bab => _bab;
   List<SubBabModel> get subBabList => _subBabList!;
   List<Title>? get titles => _titles;
   List<Skin>? get skins => _skins;
@@ -54,6 +56,7 @@ class AppStateProvider extends ChangeNotifier {
       print("Warning: Player profile not found. Check DB initialization.");
     }
 
+
     await getSubBab(dbs);
 
     await getTitles(dbs);
@@ -64,7 +67,15 @@ class AppStateProvider extends ChangeNotifier {
 
     await initializePositions(_subBabList!.length);
 
+    await getBab(dbs);
+
     notifyListeners();
+  }
+
+  Future<void> getBab(DatabaseService dbs) async{
+    String? bab = await dbs.getBab();
+    _bab = bab!;
+    print(_bab);
   }
 
   Future<void> getSubBab(DatabaseService dbs) async{
@@ -230,6 +241,7 @@ class AppStateProvider extends ChangeNotifier {
     final dbs = DatabaseService.instance;
     await dbs.updatePlayerProgress(progress);
     getSubBab(dbs);
+    getBab(dbs);
 
     notifyListeners();
   }
@@ -362,7 +374,7 @@ class AppStateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setProgress() async {
+  void setDialogue() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_dialogProgressKey, _currentDialogIndex);
     print(_currentDialogIndex);
@@ -371,7 +383,7 @@ class AppStateProvider extends ChangeNotifier {
   void nextDialog() {
     if (_currentDialogIndex < _script.length - 1) {
       _currentDialogIndex++;
-      setProgress();
+      setDialogue();
       notifyListeners();
     } else {
       print("Dialog Selesai!");
