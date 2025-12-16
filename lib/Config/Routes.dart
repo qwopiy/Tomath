@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../screen/campaign_game_screen.dart';
+import '../screen/dialogue_screen.dart';
 import '../models/materi.dart';
 import '../screen/game_screen.dart';
 import '../screen/event_screen.dart';
@@ -18,6 +20,7 @@ class AppRoutes {
   static const String training = '/training';
   static const String profile = '/profile';
   static const String campaign = '/campaign';
+  static const String dialogue = '/dialogue';
   static const List<List<String>> campaignGame = [
     ['/campaigngame11', '/campaigngame12', '/campaigngame13'],
     ['/campaigngame21', '/campaigngame22', '/campaigngame23'],
@@ -49,10 +52,16 @@ class AppRoutes {
 GoRouter createRouter() {
   final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
+
   return GoRouter(
     navigatorKey: rootNavigatorKey,
-    initialLocation: AppRoutes.home,
+    initialLocation: AppRoutes.dialogue,
     routes: [
+      GoRoute(
+        path: AppRoutes.dialogue,
+        name: 'dialogue',
+        builder: (context, state) => const DialogueScreen(),
+      ),
       GoRoute(
         path: AppRoutes.campaign,
         name: 'campaign',

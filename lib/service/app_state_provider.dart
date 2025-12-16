@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart' hide Title;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/costumable_model.dart';
+import '../models/dialogue_model.dart';
 import '../models/shop_item_model.dart';
 import '../models/sub_bab_model.dart';
 import '../service/database_service.dart';
@@ -11,6 +12,13 @@ import '../models/player_model.dart';
 
 class AppStateProvider extends ChangeNotifier {
   static const String _buttonCampaignPosKey = 'button_campaign_pos';
+  static const String _dialogProgressKey = 'dialog_progress';
+
+  int _currentDialogIndex = 0;
+  int get currentDialogIndex => _currentDialogIndex;
+
+  List<Dialogue> _script = initialDialogues;
+  Dialogue? get currentDialog => _script[_currentDialogIndex];
 
   List<({double top, double right})> _currentButtonCampaignPos = [];
   List<({double top, double right})> get currentButtonCampaignPos => _currentButtonCampaignPos;
@@ -36,6 +44,7 @@ class AppStateProvider extends ChangeNotifier {
     await dbs.database;
 
     final prefs = await SharedPreferences.getInstance();
+    _currentDialogIndex = 0;
 
     final Map<String, dynamic>? profileMap = await dbs.getPlayerProfile();
     if (profileMap != null) {
@@ -269,6 +278,39 @@ class AppStateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> updatePlayableLevel(int level) async{
+    final dbs = DatabaseService.instance;
+    for(int i = level; i <= level + 1; i++){
+      if(i > 3) return;
+
+      int _is_playable = 0;
+      int _is_finished = 0;
+      if(i == level){
+        _is_playable = 1;
+        _is_finished = 1;
+      }else{
+        _is_playable = 1;
+        _is_finished = 0;
+      }
+
+      _subBabList![i] = SubBabModel(
+          sub_bab_id: _subBabList![i].sub_bab_id,
+          bab_id: _subBabList![i].bab_id,
+          before_winning_info: _subBabList![i].before_winning_info,
+          after_winning_info: _subBabList![i].after_winning_info,
+          enemy: _subBabList![i].enemy,
+          mission: _subBabList![i].mission,
+          material: _subBabList![i].material,
+          reward: _subBabList![i].reward,
+          is_playable: _is_playable,
+          is_finished: _is_finished,
+      );
+
+      dbs.updatePlayableSubBab(_is_playable, _is_finished, _subBabList![i].sub_bab_id);
+    }
+    notifyListeners();
+  }
+
   Future<void> initializePositions(int itemCount) async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -344,4 +386,32 @@ class AppStateProvider extends ChangeNotifier {
     _savePositionsToPrefs();
     notifyListeners();
   }
+
+  void setProgress() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_dialogProgressKey, _currentDialogIndex);
+    print(_currentDialogIndex);
+  }
+
+  void nextDialog() {
+    if (_currentDialogIndex < _script.length - 1) {
+      _currentDialogIndex++;
+      setProgress();
+      notifyListeners();
+    } else {
+      print("Dialog Selesai!");
+    }
+  }
+
+  String getProcessedText() {
+    if (_currentDialogIndex >= _script.length) return "";
+
+    String rawText = currentDialog?.text as String;
+
+    if (rawText.contains('[PLAYER_NAME]')) {
+      return rawText.replaceAll('[PLAYER_NAME]', player.username);
+    }
+    return rawText;
+  }
+
 }
