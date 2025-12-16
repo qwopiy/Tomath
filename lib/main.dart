@@ -12,7 +12,7 @@ import 'service/audio_provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  //Kunci orientasi layar
+  ///Kunci orientasi layar
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
