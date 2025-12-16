@@ -6,7 +6,12 @@ import '../widget/plank_info.dart';
 class TrainingScreen extends StatelessWidget {
   const TrainingScreen({super.key});
 
-  Widget _TrainingSubBab(BuildContext context, int bab, int subBab) {
+  /// SUB BAB ITEM
+  Widget _trainingSubBab(BuildContext context, int bab, int subBab) {
+    final size = MediaQuery.of(context).size;
+    final bool isTablet = size.width >= 900;
+
+
     return InkWell(
       onTap: () {
         print("Bab $bab diklik");
@@ -18,19 +23,20 @@ class TrainingScreen extends StatelessWidget {
           Image.asset(
             'assets/ui/kertasPipih.png',
             width: double.infinity,
-            height: 50,
-            fit: BoxFit.cover,
+            height: isTablet
+                ? size.height * 0.22   // Tablet
+                : size.height * 0.10,  // Handphone,
+            fit: BoxFit.fill,
           ),
-
           Padding(
-            padding: const EdgeInsets.only(
-                left: 25), // jarak dari kiri
+            padding: EdgeInsets.only(left: size.width * 0.06),
             child: Text(
               Materi.subBab[bab][subBab],
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.black,
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
+                fontSize: size.width * 0.040,
+                fontFamily: 'Baskerville',
+                // fontWeight: FontWeight.bold,
               ),
             ),
           )
@@ -39,26 +45,33 @@ class TrainingScreen extends StatelessWidget {
     );
   }
 
-  Widget _TrainingBab(BuildContext context, int bab) {
+  /// BAB
+  Widget _trainingBab(BuildContext context, int bab) {
+    final size = MediaQuery.of(context).size;
+
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           Materi.bab[bab],
-          textAlign: TextAlign.left,
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+            fontSize: size.width * 0.06,
+            fontFamily: 'LuckiestGuy',
+            // fontWeight: FontWeight.bold,
           ),
         ),
-        _TrainingSubBab(context, bab, 0),
-        _TrainingSubBab(context, bab, 1),
-        _TrainingSubBab(context, bab, 2),
+        SizedBox(height: size.height * 0.01),
+        _trainingSubBab(context, bab, 0),
+        _trainingSubBab(context, bab, 1),
+        _trainingSubBab(context, bab, 2),
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -69,72 +82,53 @@ class TrainingScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Expanded(flex: 2,
-              child: SizedBox.shrink(),
-            ),
-            Expanded(flex: 4,
-              child: SizedBox.shrink(),
-            ),
-            Flexible(flex: 4,
+            const Spacer(flex: 2),
+            const Spacer(flex: 4),
+
+            Flexible(
+              flex: 4,
               child: PlankInfo(
-                  backgroundImage: 'assets/ui/Mading_medium.png',
+              backgroundImage: 'assets/ui/Mading_medium.png',
+                showLeftButton: false,
+                showRightButton: false,
+                child: Row(
+                  children: [
+                    const Spacer(flex: 1),
 
-                  showLeftButton: false,
-                  showRightButton: false,
+                    Expanded(
+                      flex: 4,
+                      child: Column(
+                        children: [
+                          const Spacer(flex: 1),
+                          Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: EdgeInsets.all(size.width * 0.02),
+                              child: ListView.separated(
+                                itemCount: Materi.bab.length,
+                                separatorBuilder: (context, index) =>
+                                    SizedBox(height: size.height * 0.02),
+                                itemBuilder: (context, index) {
+                                  return _trainingBab(context, index);
+                                },
+                              ),
+                            ),
+                          ),
+                          const Spacer(flex: 1),
+                        ],
+                      ),
+                    ),
 
-                  child: Row(
-                      children: [
-                        Expanded(flex:1,
-                          child: Container(
-                            // color: Colors.red,
-                          ),
-                        ),
-                        Expanded(flex:3,
-                            child: Column(
-                                children: [
-                                  Expanded(flex: 1,
-                                    child: Container(
-                                      // color: Colors.white,
-                                    )
-                                  ),
-                                  Expanded(flex: 5,
-                                    child: Container(
-                                      padding: const EdgeInsets.all(5),
-                                      child: ListView.separated(
-                                        itemCount: 6,
-                                        separatorBuilder: (context, index) => const SizedBox(height: 12),
-                                        itemBuilder: (context, index) {
-                                          return _TrainingBab(context, index);
-                                        }
-                                      )
-                                      // color: Colors.red,
-                                    )
-                                  ),
-                                  Expanded(flex: 1,
-                                    child: Container(
-                                        // color: Colors.green,
-                                    )
-                                  ),
-                                ]
-                            )
-                        ),
-                        Expanded(flex:2,
-                          child: Container(
-                            // color: Colors.blue,
-                          ),
-                        ),
-                      ]
-                  )
+                    const Spacer(flex: 1),
+                  ],
+                ),
               ),
             ),
-            Flexible(flex: 2,
-              child: Container(
-                // color: Colors.red,
-              ),
-            ),
+
+            const Spacer(flex: 2),
           ],
         ),
-      )
+      ),
     );
   }
 }

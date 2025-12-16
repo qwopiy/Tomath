@@ -1,7 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.freakybug.tomath">
     <application
-        android:label="tomath"
-        android:name="${applicationName}"
+        android:label="Tomath"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
