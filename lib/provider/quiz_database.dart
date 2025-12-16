@@ -2,10 +2,10 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class AppDatabase {
-  AppDatabase._init();
+class QuizDatabase {
+  QuizDatabase._init();
 
-  static final AppDatabase instance = AppDatabase._init();
+  static final QuizDatabase instance = QuizDatabase._init();
   static Database? _database;
 
   Future<Database> get database async {

@@ -216,28 +216,28 @@ class QuizProvider extends ChangeNotifier {
   }
 
   Future<void> getQuestionDatabase() async {
-    final questionMaps = await AppDatabase.instance.getQuestions();
+    final questionMaps = await QuizDatabase.instance.getQuestions();
     _questions = questionMaps
       .map((m) => Question.fromJSON(m as Map<String, dynamic>))
       .toList();
   }
 
   Future<void> getQuestionsByBabSubBab(int bab, int subBab) async {
-    final questionMaps = await AppDatabase.instance.getQuestionsByBabSubBab(bab, subBab);
+    final questionMaps = await QuizDatabase.instance.getQuestionsByBabSubBab(bab, subBab);
     _questions = questionMaps
       .map((m) => Question.fromJSON(m as Map<String, dynamic>))
       .toList();
   }
 
   Future<void> getUTSQuestion() async {
-    final questionMaps = await AppDatabase.instance.getUTSQuestion();
+    final questionMaps = await QuizDatabase.instance.getUTSQuestion();
     _questions = questionMaps
       .map((m) => Question.fromJSON(m as Map<String, dynamic>))
       .toList();
   }
 
   Future<void> getUASQuestion() async {
-    final questionMaps = await AppDatabase.instance.getUASQuestion();
+    final questionMaps = await QuizDatabase.instance.getUASQuestion();
     _questions = questionMaps
       .map((m) => Question.fromJSON(m as Map<String, dynamic>))
       .toList();
