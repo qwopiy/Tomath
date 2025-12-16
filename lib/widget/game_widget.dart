@@ -203,9 +203,14 @@ class _GameWidgetState extends State<GameWidget> {
           text,
           style: const TextStyle(
             fontSize: 18,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+            color: Color(0xFFF7EFD3),
             fontFamily: 'LuckiestGuy',
+            shadows: [
+              Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+              Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+              Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+              Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+            ],
           ),
         ),
       ),
@@ -239,9 +244,15 @@ class _GameWidgetState extends State<GameWidget> {
                   decoration: InputDecoration(
                     hintText: 'Ketik Jawaban',
                     hintStyle: const TextStyle(
-                      color: Colors.black,
                       fontSize: 18,
+                      color: Color(0xFFF7EFD3),
                       fontFamily: 'LuckiestGuy',
+                      shadows: [
+                        Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+                        Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+                        Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+                        Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+                      ],
                     ),
                     // border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
@@ -250,9 +261,15 @@ class _GameWidgetState extends State<GameWidget> {
                     fillColor: Colors.transparent,
                   ),
                   style: const TextStyle(
-                    color: Colors.black,
                     fontSize: 18,
+                    color: Color(0xFFF7EFD3),
                     fontFamily: 'LuckiestGuy',
+                    shadows: [
+                      Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+                      Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+                      Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+                      Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+                    ],
                   ),
                 ),
               ),
@@ -341,7 +358,14 @@ class _GameWidgetState extends State<GameWidget> {
                                 questionText,
                                 style: TextStyle(
                                   fontSize: 20,
+                                  color: Color(0xFFF7EFD3),
                                   fontFamily: 'LuckiestGuy',
+                                  shadows: [
+                                    Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+                                    Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+                                    Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+                                    Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+                                  ],
                                 ),
                                 textAlign: TextAlign.center,
                                 maxLines: 4,
