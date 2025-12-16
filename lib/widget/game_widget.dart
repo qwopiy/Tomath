@@ -16,12 +16,14 @@ class GameWidget extends StatefulWidget {
   final int bab;
   final int subBab;
   final GameType gameType;
+  final int rewards;
   final String? enemyType;
   const GameWidget({
     super.key,
     required this.bab,
     required this.subBab,
     required this.gameType,
+    required this.rewards,
     this.enemyType,
   });
 
@@ -121,7 +123,7 @@ class _GameWidgetState extends State<GameWidget> {
           _essayQuestion = Random().nextBool();
         });
       }
-      quizProvider.nextQuestion(context, widget.subBab, widget.gameType);
+      quizProvider.nextQuestion(context, widget.subBab, widget.rewards, widget.gameType);
     }
 
   }
@@ -136,7 +138,7 @@ class _GameWidgetState extends State<GameWidget> {
           _essayQuestion = Random().nextBool();
         });
       }
-      quizProvider.nextQuestion(context, widget.subBab, widget.gameType);
+      quizProvider.nextQuestion(context, widget.subBab, widget.rewards, widget.gameType);
     }
 
   }
@@ -201,9 +203,14 @@ class _GameWidgetState extends State<GameWidget> {
           text,
           style: const TextStyle(
             fontSize: 18,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+            color: Color(0xFFF7EFD3),
             fontFamily: 'LuckiestGuy',
+            shadows: [
+              Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+              Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+              Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+              Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+            ],
           ),
         ),
       ),
@@ -237,9 +244,15 @@ class _GameWidgetState extends State<GameWidget> {
                   decoration: InputDecoration(
                     hintText: 'Ketik Jawaban',
                     hintStyle: const TextStyle(
-                      color: Colors.black,
                       fontSize: 18,
+                      color: Color(0xFFF7EFD3),
                       fontFamily: 'LuckiestGuy',
+                      shadows: [
+                        Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+                        Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+                        Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+                        Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+                      ],
                     ),
                     // border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
@@ -248,9 +261,15 @@ class _GameWidgetState extends State<GameWidget> {
                     fillColor: Colors.transparent,
                   ),
                   style: const TextStyle(
-                    color: Colors.black,
                     fontSize: 18,
+                    color: Color(0xFFF7EFD3),
                     fontFamily: 'LuckiestGuy',
+                    shadows: [
+                      Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+                      Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+                      Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+                      Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+                    ],
                   ),
                 ),
               ),
@@ -339,7 +358,14 @@ class _GameWidgetState extends State<GameWidget> {
                                 questionText,
                                 style: TextStyle(
                                   fontSize: 20,
+                                  color: Color(0xFFF7EFD3),
                                   fontFamily: 'LuckiestGuy',
+                                  shadows: [
+                                    Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+                                    Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+                                    Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+                                    Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+                                  ],
                                 ),
                                 textAlign: TextAlign.center,
                                 maxLines: 4,
