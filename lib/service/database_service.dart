@@ -337,7 +337,7 @@ class DatabaseService{
     final db = await database;
     await db.update(
         'player',
-        {'prograss': _progress},
+        {'progress': _progress},
         where: 'player_id = ?',
         whereArgs: [1]
     );

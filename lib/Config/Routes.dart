@@ -24,9 +24,11 @@ class AppRoutes {
     ['/campaigngame11', '/campaigngame12', '/campaigngame13'],
     ['/campaigngame21', '/campaigngame22', '/campaigngame23'],
     ['/campaigngame31', '/campaigngame32', '/campaigngame33'],
-    ['/campaigngame41', '/campaigngame42', '/campaigngame43'],
+    ['/campaigngame41'],
     ['/campaigngame51', '/campaigngame52', '/campaigngame53'],
     ['/campaigngame61', '/campaigngame62', '/campaigngame63'],
+    ['/campaigngame71', '/campaigngame72', '/campaigngame73'],
+    ['/campaigngame81']
   ];
   static const List<List<String>> trainingGame = [
     ['/traininggame11', '/traininggame12', '/traininggame13'],
@@ -44,8 +46,6 @@ class AppRoutes {
     ['/eventgame51', '/eventgame52', '/eventgame53'],
     ['/eventgame61', '/eventgame62', '/eventgame63'],
   ];
-  static const String utsGame = 'uts';
-  static const String uasGame = 'uas';
 }
 
 GoRouter createRouter() {
@@ -66,7 +66,7 @@ GoRouter createRouter() {
         name: 'campaign',
         builder: (context, state) => const CampaignScreen(),
       ),
-      for (int i = 0; i <= 5; i++)
+      for (int i = 0; i <= 2; i++)
         for (int j = 0; j <= 2; j++)
           GoRoute(
             path: AppRoutes.campaignGame[i][j],
@@ -75,6 +75,17 @@ GoRouter createRouter() {
               gameType: GameType.campaign,
               bab: i + 1,
               subBab: j + 1
+            ),
+          ),
+      for (int i = 4; i <= 6; i++)
+        for (int j = 0; j <= 2; j++)
+          GoRoute(
+            path: AppRoutes.campaignGame[i][j],
+            name: 'campaigngame${i + 1}${j + 1}',
+            builder: (context, state) => GameScreen(
+                gameType: GameType.campaign,
+                bab: i + 1,
+                subBab: j + 1
             ),
           ),
       for (int i = 0; i <= 5; i++)
@@ -101,8 +112,8 @@ GoRouter createRouter() {
             ),
           ),
       GoRoute(
-        path: AppRoutes.utsGame,
-        name: 'utsgame',
+        path: AppRoutes.campaignGame[3][0],
+        name: 'campaigngame41',
         builder: (context, state) => GameScreen(
           gameType: GameType.UTS,
           bab: 0,
@@ -110,8 +121,8 @@ GoRouter createRouter() {
         ),
       ),
       GoRoute(
-        path: AppRoutes.uasGame,
-        name: 'uasgame',
+        path: AppRoutes.campaignGame[7][0],
+        name: 'campaigngame81',
         builder: (context, state) => GameScreen(
           gameType: GameType.UAS,
           bab: 0,
