@@ -195,7 +195,7 @@ class QuizProvider extends ChangeNotifier {
   }
 
   void resetStats() {
-    _questionRemaining = 10; // batas 10 pertanyaan
+    _questionRemaining = 1; // batas 10 pertanyaan
     _health = 3;
     _currentQuestionIndex = Random().nextInt(_questions.length);
     notifyListeners();

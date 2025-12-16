@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../screen/campaign_game_screen.dart';
 import '../screen/dialogue_screen.dart';
 import '../models/materi.dart';
 import '../screen/game_screen.dart';
@@ -55,7 +54,7 @@ GoRouter createRouter() {
 
   return GoRouter(
     navigatorKey: rootNavigatorKey,
-    initialLocation: AppRoutes.dialogue,
+    initialLocation: AppRoutes.home,
     routes: [
       GoRoute(
         path: AppRoutes.dialogue,

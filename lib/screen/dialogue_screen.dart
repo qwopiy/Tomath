@@ -37,7 +37,7 @@ class _DialogueScreenState extends State<DialogueScreen> {
           } else {
             content = Dialogue(
                 buttonText: 'next',
-                textContent: appState.getProcessedText(),
+                textContent: appState.getProcessedDialogue(),
                 onTap: (){
                   if (action == 'navigate_toCampaign') {
                     context.go("/campaign");
