@@ -20,12 +20,12 @@ class LevelMapArea extends StatefulWidget {
 
 class _LevelMapAreaState extends State<LevelMapArea> {
 
-  void _openPopup(int _level, SubBabModel _subBab) {
+  void _openPopup(int _level, SubBabModel _subBab, String title) {
     showDialog(
       context: context,
       barrierDismissible: false,
       barrierColor: Colors.transparent,
-      builder: (_) => LevelPopup(level: _level, subBab: _subBab),
+      builder: (_) => LevelPopup(level: _level, subBab: _subBab, title: title,),
     );
   }
 
@@ -42,6 +42,7 @@ class _LevelMapAreaState extends State<LevelMapArea> {
     final appState = Provider.of<AppStateProvider>(context, listen: true);
     final positions = appState.currentButtonCampaignPos;
     List<SubBabModel> subBabList = appState.subBabList;
+    String title = appState.player.title_name;
 
     if (positions.isEmpty || positions.length != subBabList.length) {
       return [];
@@ -64,7 +65,7 @@ class _LevelMapAreaState extends State<LevelMapArea> {
             enabled: enabled,
             onTap: (){
               print('SubBab Index: $i,  ditekan');
-              _openPopup((i + 1), subBab);
+              _openPopup((i + 1), subBab, title);
             },
           ),
         ),

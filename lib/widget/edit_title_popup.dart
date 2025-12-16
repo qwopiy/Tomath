@@ -65,10 +65,10 @@ class _TitlePopupState extends State<TitlePopup> {
               title.name,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
-                fontFamily: "Baskerville",
+                fontFamily: "LuckiestGuy",
               )
             ),
           ),

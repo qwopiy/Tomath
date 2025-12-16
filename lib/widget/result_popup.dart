@@ -97,6 +97,9 @@ class ResultPopup extends StatelessWidget {
               right: 10,
               child: GestureDetector(
                 onTap: () {
+                  if (level == appStateProvider.subBabList.length) {
+                    appStateProvider.updatePlayerProgress();
+                  }
                   appStateProvider.updatePlayableLevel(level);
                   appStateProvider.updatePlayerCurrency(reward);
                   GoRouter.of(context).go('/home');

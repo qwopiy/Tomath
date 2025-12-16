@@ -1,6 +1,8 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
+import '../data/insert_to_database.dart';
+
 class DatabaseService{
   static Database? _db;
   static final DatabaseService instance = DatabaseService._constructor();
@@ -102,11 +104,11 @@ class DatabaseService{
 
           await db.insert('skin', {'path': 'Tomath', 'is_unlocked': 1});
           await db.insert('skin', {'path': 'TomathUndead', 'is_unlocked': 1});
-          await db.insert('skin', {'path': 'TomathPairPlay', 'is_unlocked': 0});
+          await db.insert('skin', {'path': 'TomathPairPlay', 'is_unlocked': 1});
 
           await db.insert('title', {'name': 'Traveler', 'is_unlocked': 1});
           await db.insert('title', {'name': 'Ghost Buster', 'is_unlocked': 1});
-          await db.insert('title', {'name': 'Borjuis', 'is_unlocked': 0});
+          await db.insert('title', {'name': 'Borjuis', 'is_unlocked': 1});
 
           await db.insert('item_skin', {'skin_id': 3, 'cost' : 10000, 'is_purchased': 0});
           await db.insert('item_title', {'title_id': 3, 'cost' : 7000, 'is_purchased': 0});
@@ -122,39 +124,10 @@ class DatabaseService{
 
           await db.insert('player', {'username': 'FreakyBug', 'currency' : 9999999});
 
-          await db.insert('sub_bab',{
-            'bab_id' : 1,
-            'before_winning_info' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus arcu tortor, nec efficitur ante tincidunt at. ',
-            'after_winning_info' : 'Integer et metus eu felis maximus convallis. Morbi suscipit interdum ipsum. In eget placerat nibh',
-            'enemy ' : 'Durian',
-            'mission' : 'defeat all the bandits',
-            'material' : 'garis bilangan (penjumlahan, pengurangan)',
-            'reward' : 200,
-            'is_playable' : 1,
-            'is_finished' : 0
-          });
-          await db.insert('sub_bab',{
-            'bab_id' : 1,
-            'before_winning_info' : 'Sed ultricies lorem nisl, sodales rhoncus arcu consectetur quis. Vestibulum eget ipsum in diam vulputate maximus',
-            'after_winning_info' : 'Aliquam faucibus facilisis blandit. Proin sagittis faucibus gravida. In ut eleifend eros. Proin suscipit ex sed lorem volutpat, ac imperdiet justo euismod',
-            'enemy ' : 'Rambutan',
-            'mission' : 'defeat all the bandits',
-            'material' : 'perkalian, pembagian',
-            'reward' : 250,
-            'is_playable' : 0,
-            'is_finished' : 0
-          });
-          await db.insert('sub_bab',{
-            'bab_id' : 1,
-            'before_winning_info' : ' Nullam tempus eget sapien in accumsan. Vivamus commodo nisi ut neque auctor vulputate. Vestibulum pulvinar purus a placerat condimentum.',
-            'after_winning_info' : 'In commodo mauris dolor, eu imperdiet ipsum eleifend vitae. Aenean sed malesuada nulla, non euismod libero. Duis ac orci ornare, placerat erat at, fringilla orci',
-            'enemy ' : 'Cactus',
-            'mission' : 'defeat all the bandits',
-            'material' : 'fpb, kpk',
-            'reward' : 300,
-            'is_playable' : 0,
-            'is_finished' : 0
-          });
+
+          for(final data in subBabInitialData){
+            await db.insert('sub_bab', data);
+          }
       },
       onConfigure: (db) async {
         await db.execute("PRAGMA foreign_keys = ON");
@@ -193,13 +166,27 @@ class DatabaseService{
     return null;
   }
 
-  Future<List<Map<String, dynamic>>?> getBab() async{
+  Future<String?> getBab() async {
     final db = await database;
-    final List<Map<String, dynamic>> list = await db.rawQuery('SELECT * FROM bab');
-    if (list.isNotEmpty) {
-      return list;
+
+    List<Map<String, dynamic>> results = await db.rawQuery('''
+      SELECT 
+        bab.chapter 
+      FROM 
+        player
+      INNER JOIN 
+        bab ON player.progress = bab.bab_id
+      WHERE 
+        player.player_id = ?
+      ''', [1]
+    );
+
+    if (results.isNotEmpty) {
+      String chapterName = results.first['chapter'].toString();
+      return chapterName;
+    } else {
+      return null;
     }
-    return null;
   }
 
   Future<List<Map<String, dynamic>>?> getSubBab() async{
@@ -364,7 +351,7 @@ class DatabaseService{
     final db = await database;
     await db.update(
         'player',
-        {'prograss': _progress},
+        {'progress': _progress},
         where: 'player_id = ?',
         whereArgs: [1]
     );
@@ -376,11 +363,19 @@ class DatabaseService{
       'sub_bab',
       {
         'is_playable': _is_playable,
+      },
+      where: 'sub_bab_id = ?',
+      whereArgs: [id],
+    );
+    await db.update(
+      'sub_bab',
+      {
         'is_finished': _is_finished,
       },
       where: 'sub_bab_id = ?',
       whereArgs: [id],
     );
+
   }
 
 }

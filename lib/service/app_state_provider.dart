@@ -24,12 +24,14 @@ class AppStateProvider extends ChangeNotifier {
   List<({double top, double right})> get currentButtonCampaignPos => _currentButtonCampaignPos;
 
   Player? _player;
+  String _bab = '';
   List<SubBabModel>? _subBabList = [];
   List<Title>? _titles = [];
   List<Skin>? _skins = [];
   List<ShopItem>? _shopItems = [];
 
   Player get player => _player!;
+  String get bab => _bab;
   List<SubBabModel> get subBabList => _subBabList!;
   List<Title>? get titles => _titles;
   List<Skin>? get skins => _skins;
@@ -54,6 +56,30 @@ class AppStateProvider extends ChangeNotifier {
       print("Warning: Player profile not found. Check DB initialization.");
     }
 
+
+    await getSubBab(dbs);
+
+    await getTitles(dbs);
+
+    await getSkins(dbs);
+
+    await getShopItem(dbs);
+
+    await initializePositions(_subBabList!.length);
+
+    await getBab(dbs);
+
+    notifyListeners();
+  }
+
+  Future<void> getBab(DatabaseService dbs) async{
+    String? bab = await dbs.getBab();
+    _bab = bab!;
+    print(_bab);
+  }
+
+  Future<void> getSubBab(DatabaseService dbs) async{
+    _subBabList = [];
     final List<Map<String, dynamic>>? subBabListMap = await dbs.getSubBab();
     if (subBabListMap != null) {
       for(final e in subBabListMap){
@@ -65,16 +91,6 @@ class AppStateProvider extends ChangeNotifier {
     } else {
       print("Warning: sub Bab not found. Check DB initialization.");
     }
-
-    getTitles(dbs);
-
-    getSkins(dbs);
-
-    getShopItem(dbs);
-
-    initializePositions( _subBabList!.length);
-
-    notifyListeners();
   }
 
   Future<void> getShopItem(DatabaseService dbs) async{
@@ -212,28 +228,32 @@ class AppStateProvider extends ChangeNotifier {
   Future<void> updatePlayerProgress() async{
     if (_player == null) return;
 
+    int progress = _player!.progress + 1;
+
     _player = Player(
       username: _player!.username,
       skin_path: _player!.skin_path,
       title_name: _player!.title_name,
       currency: _player!.currency,
-      progress:  _player!.progress + 1,
+      progress:  progress,
     );
 
     final dbs = DatabaseService.instance;
-    await dbs.updatePlayerProgress(_player!.progress + 1);
+    await dbs.updatePlayerProgress(progress);
+    getSubBab(dbs);
+    getBab(dbs);
 
     notifyListeners();
   }
 
   Future<void> updatePlayableLevel(int level) async{
     final dbs = DatabaseService.instance;
-    for(int i = level; i <= level + 1; i++){
+    for(int i = level - 1; i <= level; i++){
       if(i > 3) return;
 
       int _is_playable = 0;
       int _is_finished = 0;
-      if(i == level){
+      if(i == level - 1){
         _is_playable = 1;
         _is_finished = 1;
       }else{
@@ -275,39 +295,6 @@ class AppStateProvider extends ChangeNotifier {
     final dbs = DatabaseService.instance;
     await dbs.updatePlayerCurrency(newCurrency);
 
-    notifyListeners();
-  }
-
-  Future<void> updatePlayableLevel(int level) async{
-    final dbs = DatabaseService.instance;
-    for(int i = level; i <= level + 1; i++){
-      if(i > 3) return;
-
-      int _is_playable = 0;
-      int _is_finished = 0;
-      if(i == level){
-        _is_playable = 1;
-        _is_finished = 1;
-      }else{
-        _is_playable = 1;
-        _is_finished = 0;
-      }
-
-      _subBabList![i] = SubBabModel(
-          sub_bab_id: _subBabList![i].sub_bab_id,
-          bab_id: _subBabList![i].bab_id,
-          before_winning_info: _subBabList![i].before_winning_info,
-          after_winning_info: _subBabList![i].after_winning_info,
-          enemy: _subBabList![i].enemy,
-          mission: _subBabList![i].mission,
-          material: _subBabList![i].material,
-          reward: _subBabList![i].reward,
-          is_playable: _is_playable,
-          is_finished: _is_finished,
-      );
-
-      dbs.updatePlayableSubBab(_is_playable, _is_finished, _subBabList![i].sub_bab_id);
-    }
     notifyListeners();
   }
 
@@ -387,7 +374,7 @@ class AppStateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setProgress() async {
+  void setDialogue() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_dialogProgressKey, _currentDialogIndex);
     print(_currentDialogIndex);
@@ -396,14 +383,14 @@ class AppStateProvider extends ChangeNotifier {
   void nextDialog() {
     if (_currentDialogIndex < _script.length - 1) {
       _currentDialogIndex++;
-      setProgress();
+      setDialogue();
       notifyListeners();
     } else {
       print("Dialog Selesai!");
     }
   }
 
-  String getProcessedText() {
+  String getProcessedDialogue() {
     if (_currentDialogIndex >= _script.length) return "";
 
     String rawText = currentDialog?.text as String;

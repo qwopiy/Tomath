@@ -6,7 +6,8 @@ import '../models/sub_bab_model.dart';
 class LevelPopup extends StatelessWidget {
   final SubBabModel subBab;
   final int level;
-  const LevelPopup({super.key, required this.level, required this.subBab});
+  final String title;
+  const LevelPopup({super.key, required this.level, required this.subBab, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,6 @@ class LevelPopup extends StatelessWidget {
     final isLandscape = size.width > size.height;
 
     final String enemy = subBab.enemy;
-
     final int bab = subBab.bab_id;
 
     return Align(
@@ -39,35 +39,38 @@ class LevelPopup extends StatelessWidget {
                 double textSize = isLandscape ? 16 : 20;
                 double gap = isLandscape ? 10 : 18;
 
+                String subBabInfo = subBab.is_finished == 0 ? subBab.before_winning_info : subBab.after_winning_info;
+                if (subBabInfo.contains('[PLAYER_TITLE]')){
+                  subBabInfo = subBabInfo.replaceAll('[PLAYER_TITLE]', title);
+                }
+
                 return SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // TOP ROW
-                      Row(
-                        children: [
-                          Container(
-                            width: isLandscape ? 45 : 100,
-                            height: isLandscape ? 45 : 100,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('assets/images/character/$enemy.png'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
-                              subBab.is_finished == 1 ? subBab.before_winning_info : subBab.before_winning_info,
+                      Column(
+                          children:[
+                            Text(
+                              subBabInfo,
                               style: TextStyle(
                                 fontSize: textSize,
                                 color: Colors.black,
                                 fontFamily: "Baskerville",
                               ),
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 10),
+                            Container(
+                              width: isLandscape ? 45 : 100,
+                              height: isLandscape ? 45 : 100,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/images/character/$enemy.png'),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                          ]
                       ),
                       SizedBox(height: gap),
                       Align(
@@ -89,7 +92,7 @@ class LevelPopup extends StatelessWidget {
                       SizedBox(height: gap),
                       // MISSION
                       Text(
-                        "MISSION: ",
+                        "MISI: ",
                         style: TextStyle(
                           fontSize: textSize,
                           color: Colors.black,
@@ -107,7 +110,7 @@ class LevelPopup extends StatelessWidget {
                       SizedBox(height: gap),
                       // MATERIAL
                       Text(
-                        "MATERIAL:",
+                        "SUB BAB:",
                         style: TextStyle(
                           fontSize: textSize,
                           color: Colors.black,
@@ -125,7 +128,7 @@ class LevelPopup extends StatelessWidget {
                       SizedBox(height: gap),
                       // REWARD
                       Text(
-                        "REWARD:",
+                        "UPAH:",
                         style: TextStyle(
                           fontSize: textSize,
                           color: Colors.black,
