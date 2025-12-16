@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../models/sub_bab_model.dart';
 
@@ -13,6 +14,8 @@ class LevelPopup extends StatelessWidget {
     final isLandscape = size.width > size.height;
 
     final String enemy = subBab.enemy;
+
+    final int bab = subBab.bab_id;
 
     return Align(
       alignment: const Alignment(0, 0),
@@ -162,7 +165,7 @@ class LevelPopup extends StatelessWidget {
                         children: [
                           _button("Back", () => Navigator.pop(context), textSize),
                           const SizedBox(width: 12),
-                          _button("Accept", () => Navigator.pop(context), textSize),
+                          _button("Accept", () => GoRouter.of(context).push('/campaigngame$bab$level'), textSize),
                         ],
                       ),
                     ],

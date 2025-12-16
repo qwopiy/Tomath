@@ -1,9 +1,9 @@
 class Question {
-  final int id;
-  final String text;
-  final List<String> options;
-  final String correctAnswer;
-  final String solutionText;
+  int id;
+  String text;
+  List<String> options;
+  String correctAnswer;
+  String solutionText;
 
   Question({
     required this.id,
@@ -12,6 +12,18 @@ class Question {
     required this.correctAnswer,
     required this.solutionText,
   });
+
+  Question.blank() :
+    id = 0,
+    text = '',
+    options = [
+      '',
+      '',
+      '',
+      ''
+    ],
+    correctAnswer = '',
+    solutionText = '';
 
   String getQuestionText() {
     return text;

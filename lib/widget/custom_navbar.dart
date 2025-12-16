@@ -8,11 +8,13 @@ class CustomNavbar extends StatelessWidget {
 
   bool _isTabActive(int index) => index == currentIndex;
 
-  double _getButtonWidth(int index) => _isTabActive(index) ? 80 : 70;
+  double _getButtonWidth(int index) => _isTabActive(index) ? 70 : 65;
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
 
     return SafeArea(
       top: false,
@@ -21,10 +23,10 @@ class CustomNavbar extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           Image.asset(
-            'assets/ui/NavbarKayu.png',
+            'assets/ui/Navbar_small.png',
             width: screenWidth,
-            height: 110,
-            fit: BoxFit.cover,
+            height: screenHeight * 0.11,
+            fit: BoxFit.fill,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -34,35 +36,35 @@ class CustomNavbar extends StatelessWidget {
                 index: 0,
                 path: '/shop',
                 iconPath: 'assets/ui/shop.png',
-                buttonText: 'Shop',
+                buttonText: 'Toko',
               ),
               _buildNavItem(
                 context,
                 index: 1,
                 path: '/event',
                 iconPath: 'assets/ui/event.png',
-                buttonText: 'Event',
+                buttonText: 'Acara',
               ),
               _buildNavItem(
                 context,
                 index: 2,
                 path: '/home',
                 iconPath: 'assets/ui/Home1.png',
-                buttonText: 'Home',
+                buttonText: 'Beranda',
               ),
               _buildNavItem(
                 context,
                 index: 3,
                 path: '/training',
                 iconPath: 'assets/ui/training.png',
-                buttonText: 'Training',
+                buttonText: 'Latihan',
               ),
               _buildNavItem(
                 context,
                 index: 4,
                 path: '/profile',
                 iconPath: 'assets/ui/Home.png',
-                buttonText: 'Profile',
+                buttonText: 'Profil',
               ),
             ],
           ),
@@ -113,7 +115,6 @@ class CustomNavbar extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 15,
                   color: Color(0xFFF7EFD3),
-                  fontWeight: FontWeight.bold,
                   fontFamily: 'LuckiestGuy',
                   shadows: [
                     Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
