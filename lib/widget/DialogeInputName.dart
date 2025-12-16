@@ -1,81 +1,88 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tomath/widget/woodbutton.dart';
-
 import '../service/app_state_provider.dart';
 
 class DialogueInputName extends StatelessWidget {
   final String buttonText;
 
-  const DialogueInputName({
-    super.key,
-    required this.buttonText,
-  });
+  const DialogueInputName({super.key, required this.buttonText});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
-    late final appState = Provider.of<AppStateProvider>(context, listen: false);
+    final controller = TextEditingController();
+    final appState = Provider.of<AppStateProvider>(context, listen: false);
 
     final size = MediaQuery.of(context).size;
-    final panelHeight = size.height * 0.20;
-    final topMargin = size.height * 0.55;
-    final textFieldHeight = size.height * 0.07;
+    final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
 
-    return Container(
-      height: panelHeight,
-      margin: EdgeInsets.only(top: topMargin),
-      padding: EdgeInsets.all(size.width * 0.05),
-
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-
-          SizedBox(height: size.height * 0.02),
-
-          Container(
-            height: textFieldHeight,
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage('assets/ui/kertasPipih.png'),
-                fit: BoxFit.fill,
-              ),
-              borderRadius: BorderRadius.circular(12),
-            ),
-
-            child: TextField(
-              controller: controller,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-                fontFamily: 'BaskervvilleSC',
-                fontWeight: FontWeight.bold,
-              ),
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                hintText: "INPUT USERNAME",
-                hintStyle: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontFamily: 'BaskervvilleSC',
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: EdgeInsets.only(
+          bottom: keyboardHeight > 0
+              ? keyboardHeight + 16
+              : 32,
+          left: 16,
+          right: 16,
+        ),
+        child: Container(
+          constraints: const BoxConstraints(
+            maxWidth: 600, // 🔥 kunci tablet
+          ),
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // 🔥 kunci overflow
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                height: 52,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  image: const DecorationImage(
+                    image: AssetImage('assets/ui/kertasPipih.png'),
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TextField(
+                  controller: controller,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'BaskervvilleSC',
+                    fontWeight: FontWeight.bold,
+                  ),
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "INPUT USERNAME",
+                    hintStyle: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'BaskervvilleSC',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    )
+                  ),
                 ),
               ),
-            ),
+              const SizedBox(height: 16),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: WoodButton(
+                  text: buttonText,
+                  onTap: () {
+                    appState.setUsername(controller.text);
+                    appState.nextDialog();
+                    FocusScope.of(context).unfocus();
+                  },
+                ),
+              ),
+            ],
           ),
-
-          Align(
-            alignment: Alignment.bottomRight,
-            child: WoodButton(
-              text: buttonText,
-              onTap: (){
-                appState.setUsername(controller.text);
-                appState.nextDialog();
-              }
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
