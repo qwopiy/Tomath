@@ -73,7 +73,7 @@ class QuizProvider extends ChangeNotifier {
     } else {
       // out of questions or health
       if (_health <= 0) {
-        // Lose
+        /// Lose
         showResult(
           context,
           'GAME OVER',
@@ -83,7 +83,7 @@ class QuizProvider extends ChangeNotifier {
         );
         print("No health remaining. Game over.");
       } else {
-        // Win
+        /// Win
         showResult(
           context,
           'SUCCESS!',

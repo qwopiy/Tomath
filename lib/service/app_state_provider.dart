@@ -226,39 +226,6 @@ class AppStateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updatePlayableLevel(int level) async{
-    final dbs = DatabaseService.instance;
-    for(int i = level; i <= level + 1; i++){
-      if(i > 3) return;
-
-      int _is_playable = 0;
-      int _is_finished = 0;
-      if(i == level){
-        _is_playable = 1;
-        _is_finished = 1;
-      }else{
-        _is_playable = 1;
-        _is_finished = 0;
-      }
-
-      _subBabList![i] = SubBabModel(
-        sub_bab_id: _subBabList![i].sub_bab_id,
-        bab_id: _subBabList![i].bab_id,
-        before_winning_info: _subBabList![i].before_winning_info,
-        after_winning_info: _subBabList![i].after_winning_info,
-        enemy: _subBabList![i].enemy,
-        mission: _subBabList![i].mission,
-        material: _subBabList![i].material,
-        reward: _subBabList![i].reward,
-        is_playable: _is_playable,
-        is_finished: _is_finished,
-      );
-
-      dbs.updatePlayableSubBab(_is_playable, _is_finished, _subBabList![i].sub_bab_id);
-    }
-    notifyListeners();
-  }
-
   Future<void> updatePlayerCurrency(int amount) async{
     if (_player == null) return;
 
