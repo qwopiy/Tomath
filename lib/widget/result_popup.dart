@@ -97,23 +97,25 @@ class ResultPopup extends StatelessWidget {
               right: 10,
               child: GestureDetector(
                 onTap: () {
-                  /// logic if win
-                  appStateProvider.updatePlayableLevel(level);
+                  if (reward > 0){
+                    /// logic if win
+                    appStateProvider.updatePlayableLevel(level);
 
-                  // bab 2 reward (title)
-                  if (appStateProvider.subBabList[0].bab_id == 2 &&
-                      appStateProvider.subBabList[2].is_finished == 1) {
-                    appStateProvider.updateTitle(2);
-                  }
+                    // bab 2 reward (title)
+                    if (appStateProvider.subBabList[0].bab_id == 2 &&
+                        appStateProvider.subBabList[2].is_finished == 1) {
+                      appStateProvider.updateTitle(2);
+                    }
 
-                  // uts reward (skin)
-                  if (appStateProvider.subBabList[0].bab_id == 4) {
-                    appStateProvider.updateSkin(2);
-                  }
+                    // uts reward (skin)
+                    if (appStateProvider.subBabList[0].bab_id == 4) {
+                      appStateProvider.updateSkin(2);
+                    }
 
-                  appStateProvider.updatePlayerCurrency(reward);
-                  if (level == appStateProvider.subBabList.length) {
-                    appStateProvider.updatePlayerProgress();
+                    appStateProvider.updatePlayerCurrency(reward);
+                    if (level == appStateProvider.subBabList.length) {
+                      appStateProvider.updatePlayerProgress();
+                    }
                   }
                   GoRouter.of(context).go('/home');
                 },
