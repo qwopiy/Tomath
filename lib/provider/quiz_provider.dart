@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import '../models/materi.dart';
 import '../widget/result_popup.dart';
 import '../widget/training_popup.dart';
 
 import '../models/question.dart';
-import 'app_database.dart';
+import 'quiz_database.dart';
 
 class QuizProvider extends ChangeNotifier {
   List<Question> _questions = List.filled(
@@ -22,15 +23,7 @@ class QuizProvider extends ChangeNotifier {
 
   int _currentQuestionIndex = 0;
 
-  String question = '';
-  List<String> options = [
-    '',
-    '',
-    '',
-    ''
-  ];
-  String correctAnswer = '';
-  String solutionText = '';
+  Question currentQuestion = Question.blank();
 
   int _questionRemaining = 10;
   int _health = 3;
@@ -42,30 +35,22 @@ class QuizProvider extends ChangeNotifier {
 
   void setQuestion(String question, List<String> options, String correctAnswer, String solutionText) {
     if (_health <= 0 || _questionRemaining <= 0) return;
-    this.question = question;
-    this.options = options;
-    this.options.shuffle();
+    currentQuestion.text = question;
+    currentQuestion.options = options;
+    currentQuestion.options.shuffle();
 
-    this.correctAnswer = correctAnswer;
-    this.solutionText = solutionText;
-    // print("Setting question to index $_currentQuestionIndex");
-    // print("Question: $question");
-    // print("Options: $options");
+    currentQuestion.correctAnswer = correctAnswer;
+    currentQuestion.solutionText = solutionText;
     notifyListeners();
   }
 
-  void nextQuestion(BuildContext context, int level, [bool? isTraining, bool? isEvent]) {
-    if (isTraining != null && isTraining) return;
-    int rewards;
-    if (isEvent != null && isEvent) {
-      rewards = 1000;
-    } else {
-      rewards = 200;
-    }
+  void nextQuestion(BuildContext context, int level, int rewards, [GameType? gameType]) {
+    if (gameType == GameType.training) return;
+
     if (_currentQuestionIndex < _questions.length - 1 && (_health > 0 && _questionRemaining > 1)) {
       // print("Next question called");
       _currentQuestionIndex++;
-      if (isTraining != null && !isTraining) _questionRemaining--;
+      _questionRemaining--;
 
       _currentQuestionIndex = Random().nextInt(_questions.length);
 
@@ -81,7 +66,7 @@ class QuizProvider extends ChangeNotifier {
     } else {
       // out of questions or health
       if (_health <= 0) {
-        // Lose
+        /// Lose
         showResult(
           context,
           'GAME OVER',
@@ -91,7 +76,7 @@ class QuizProvider extends ChangeNotifier {
         );
         print("No health remaining. Game over.");
       } else {
-        // Win
+        /// Win
         showResult(
           context,
           'SUCCESS!',
@@ -111,55 +96,55 @@ class QuizProvider extends ChangeNotifier {
     String inputNum = inputLower.replaceAll(RegExp(r'[^0-9]'), '');
     if (input == '' || inputNum == '') return false;
 
-    String correctAnswerLower = correctAnswer.toLowerCase();
+    String correctAnswerLower = currentQuestion.correctAnswer.toLowerCase();
 
     return (inputLower == correctAnswerLower) ||
         (correctAnswerLower.contains(inputLower)) ||
         (correctAnswerLower.contains(inputNum));
   }
 
-  void optionSelected(int index, int level, [bool? isTraining, BuildContext? context]) {
+  void optionSelected(int index, int level, [GameType? gameType, BuildContext? context]) {
     if (_health <= 0 || _questionRemaining <= 0) return;
-    if (!isCorrectAnswer(index)) {
-      if (isTraining == null || !isTraining) {
-        _health--;
-      }
-      // print("correctAnswer: $correctAnswer");
-      // print("Incorrect answer selected. Health decreased to $_health");
-      if (isTraining != null && context != null && isTraining) {
-        showAnswer(context, false, level);
+    if (isCorrectAnswer(index)) {
+      /// Correct Answer
+      if (gameType == GameType.training && context != null) {
+        showAnswer(context, true, level);
       }
     } else {
-      // print("Correct answer selected.");
-      if (isTraining != null && context != null && isTraining) {
-        showAnswer(context, true, level);
+      /// Wrong Answer
+      if (gameType != GameType.training) {
+        _health--;
+      }
+
+      if (gameType == GameType.training && context != null) {
+        showAnswer(context, false, level);
       }
     }
     notifyListeners();
   }
 
-  void answerGiven(String input, int level, [bool? isTraining, BuildContext? context]) {
+  void answerGiven(String input, int level, [GameType? gameType, BuildContext? context]) {
     if (_health <= 0 || _questionRemaining <= 0) return;
-    if (!validateAnswer(input)) {
-      if (isTraining == null || !isTraining) {
-        _health--;
-      }
-      // print("correctAnswer: $correctAnswer");
-      // print("Incorrect answer selected. Health decreased to $_health");
-      if (isTraining != null && context != null && isTraining) {
-        showAnswer(context, false, level);
+    if (validateAnswer(input)) {
+        /// Correct Answer
+      if (gameType == GameType.training && context != null) {
+        showAnswer(context, true, level);
       }
     } else {
-      // print("Correct answer selected.");
-      if (isTraining != null && context != null && isTraining) {
-        showAnswer(context, true, level);
+      /// Wrong Answer
+      if (gameType != GameType.training) {
+        _health--;
+      }
+
+      if (gameType == GameType.training && context != null) {
+        showAnswer(context, false, level);
       }
     }
     notifyListeners();
   }
 
   bool isCorrectAnswer(int index) {
-    return options[index] == correctAnswer;
+    return currentQuestion.options[index] == currentQuestion.correctAnswer;
   }
 
   void showResult(BuildContext context, String resultText, String descriptionText, int reward, int level) {
@@ -183,19 +168,15 @@ class QuizProvider extends ChangeNotifier {
       barrierDismissible: true,
       builder: (context) => TrainingPopup(
         resultText: answeredRight ? 'Benar!' : 'Salah!',
-        descriptionText: 'Jawaban yang benar adalah: $correctAnswer',
-        solutionText: solutionText,
+        descriptionText: 'Jawaban yang benar adalah: ${currentQuestion.correctAnswer}',
+        solutionText: currentQuestion.solutionText,
         subBab: level
       ),
     );
   }
 
-  Future<void> resetQuestion(int bab, int subBab) async {
-    await getQuestionsByBabSubBab(bab, subBab);
-    // await getQuestionDatabase();
+  void resetQuestion() {
     resetStats();
-    // print("currentQuestionIndex set to $_currentQuestionIndex");
-    // print("Total questions loaded: ${_questions.length}");
 
     setQuestion(
       _questions[_currentQuestionIndex].text,
@@ -203,19 +184,35 @@ class QuizProvider extends ChangeNotifier {
       _questions[_currentQuestionIndex].correctAnswer,
       _questions[_currentQuestionIndex].solutionText,
     );
-    // print("Quiz provider reset complete");
     notifyListeners();
   }
 
-  Future<void> resetStats() async {
-    _questionRemaining = 10; // batas 10 pertanyaan
+  void resetStats() {
+    _questionRemaining = 1; // batas 10 pertanyaan
     _health = 3;
     _currentQuestionIndex = Random().nextInt(_questions.length);
     notifyListeners();
   }
 
-  void setBab(int bab ,int subBab) {
-    resetQuestion(bab, subBab);
+  void setBankSoal(GameType gameType, [int? bab, int? subBab]) async {
+    switch (gameType) {
+      case GameType.campaign:
+        await getQuestionsByBabSubBab(bab!, subBab!);
+        break;
+      case GameType.training:
+        await getQuestionsByBabSubBab(bab!, subBab!);
+        break;
+      case GameType.event:
+        await getQuestionsByBabSubBab(bab!, subBab!);
+        break;
+      case GameType.UTS:
+        await getUTSQuestion();
+        break;
+      case GameType.UAS:
+        await getUASQuestion();
+        break;
+    }
+    resetQuestion();
   }
 
   Future<void> getQuestionDatabase() async {
@@ -227,6 +224,20 @@ class QuizProvider extends ChangeNotifier {
 
   Future<void> getQuestionsByBabSubBab(int bab, int subBab) async {
     final questionMaps = await AppDatabase.instance.getQuestionsByBabSubBab(bab, subBab);
+    _questions = questionMaps
+      .map((m) => Question.fromJSON(m as Map<String, dynamic>))
+      .toList();
+  }
+
+  Future<void> getUTSQuestion() async {
+    final questionMaps = await AppDatabase.instance.getUTSQuestion();
+    _questions = questionMaps
+      .map((m) => Question.fromJSON(m as Map<String, dynamic>))
+      .toList();
+  }
+
+  Future<void> getUASQuestion() async {
+    final questionMaps = await AppDatabase.instance.getUASQuestion();
     _questions = questionMaps
       .map((m) => Question.fromJSON(m as Map<String, dynamic>))
       .toList();

@@ -27,4 +27,13 @@ class Materi {
     [false, false, false],
     [true, false, true],
   ];
+
+}
+
+enum GameType {
+  campaign,
+  training,
+  event,
+  UTS,
+  UAS
 }

@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tomath/widget/woodbutton.dart';
 
-class IntroInputName extends StatelessWidget {
-  final TextEditingController controller;
-  final VoidCallback onNext;
+import '../service/app_state_provider.dart';
+
+class DialogueInputName extends StatelessWidget {
   final String buttonText;
 
-  const IntroInputName({
+  const DialogueInputName({
     super.key,
-    required this.controller,
-    required this.onNext,
     required this.buttonText,
   });
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
+    late final appState = Provider.of<AppStateProvider>(context, listen: false);
+
     final size = MediaQuery.of(context).size;
-
     final panelHeight = size.height * 0.20;
-
     final topMargin = size.height * 0.55;
-
     final textFieldHeight = size.height * 0.07;
 
     return Container(
@@ -70,7 +69,10 @@ class IntroInputName extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: WoodButton(
               text: buttonText,
-              onTap: onNext,
+              onTap: (){
+                appState.setUsername(controller.text);
+                appState.nextDialog();
+              }
             ),
           ),
         ],

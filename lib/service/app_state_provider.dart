@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart' hide Title;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/costumable_model.dart';
+import '../models/dialogue_model.dart';
 import '../models/shop_item_model.dart';
 import '../models/sub_bab_model.dart';
 import '../service/database_service.dart';
@@ -11,6 +12,13 @@ import '../models/player_model.dart';
 
 class AppStateProvider extends ChangeNotifier {
   static const String _buttonCampaignPosKey = 'button_campaign_pos';
+  static const String _dialogProgressKey = 'dialog_progress';
+
+  int _currentDialogIndex = 0;
+  int get currentDialogIndex => _currentDialogIndex;
+
+  List<Dialogue> _script = initialDialogues;
+  Dialogue? get currentDialog => _script[_currentDialogIndex];
 
   List<({double top, double right})> _currentButtonCampaignPos = [];
   List<({double top, double right})> get currentButtonCampaignPos => _currentButtonCampaignPos;
@@ -36,6 +44,7 @@ class AppStateProvider extends ChangeNotifier {
     await dbs.database;
 
     final prefs = await SharedPreferences.getInstance();
+    _currentDialogIndex = 0;
 
     final Map<String, dynamic>? profileMap = await dbs.getPlayerProfile();
     if (profileMap != null) {
@@ -45,6 +54,21 @@ class AppStateProvider extends ChangeNotifier {
       print("Warning: Player profile not found. Check DB initialization.");
     }
 
+    await getSubBab(dbs);
+
+    await getTitles(dbs);
+
+    await getSkins(dbs);
+
+    await getShopItem(dbs);
+
+    await initializePositions(_subBabList!.length);
+
+    notifyListeners();
+  }
+
+  Future<void> getSubBab(DatabaseService dbs) async{
+    _subBabList = [];
     final List<Map<String, dynamic>>? subBabListMap = await dbs.getSubBab();
     if (subBabListMap != null) {
       for(final e in subBabListMap){
@@ -56,16 +80,6 @@ class AppStateProvider extends ChangeNotifier {
     } else {
       print("Warning: sub Bab not found. Check DB initialization.");
     }
-
-    getTitles(dbs);
-
-    getSkins(dbs);
-
-    getShopItem(dbs);
-
-    initializePositions( _subBabList!.length);
-
-    notifyListeners();
   }
 
   Future<void> getShopItem(DatabaseService dbs) async{
@@ -203,28 +217,31 @@ class AppStateProvider extends ChangeNotifier {
   Future<void> updatePlayerProgress() async{
     if (_player == null) return;
 
+    int progress = _player!.progress + 1;
+
     _player = Player(
       username: _player!.username,
       skin_path: _player!.skin_path,
       title_name: _player!.title_name,
       currency: _player!.currency,
-      progress:  _player!.progress + 1,
+      progress:  progress,
     );
 
     final dbs = DatabaseService.instance;
-    await dbs.updatePlayerProgress(_player!.progress + 1);
+    await dbs.updatePlayerProgress(progress);
+    getSubBab(dbs);
 
     notifyListeners();
   }
 
   Future<void> updatePlayableLevel(int level) async{
     final dbs = DatabaseService.instance;
-    for(int i = level; i <= level + 1; i++){
+    for(int i = level - 1; i <= level; i++){
       if(i > 3) return;
 
       int _is_playable = 0;
       int _is_finished = 0;
-      if(i == level){
+      if(i == level - 1){
         _is_playable = 1;
         _is_finished = 1;
       }else{
@@ -344,4 +361,32 @@ class AppStateProvider extends ChangeNotifier {
     _savePositionsToPrefs();
     notifyListeners();
   }
+
+  void setProgress() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_dialogProgressKey, _currentDialogIndex);
+    print(_currentDialogIndex);
+  }
+
+  void nextDialog() {
+    if (_currentDialogIndex < _script.length - 1) {
+      _currentDialogIndex++;
+      setProgress();
+      notifyListeners();
+    } else {
+      print("Dialog Selesai!");
+    }
+  }
+
+  String getProcessedDialogue() {
+    if (_currentDialogIndex >= _script.length) return "";
+
+    String rawText = currentDialog?.text as String;
+
+    if (rawText.contains('[PLAYER_NAME]')) {
+      return rawText.replaceAll('[PLAYER_NAME]', player.username);
+    }
+    return rawText;
+  }
+
 }

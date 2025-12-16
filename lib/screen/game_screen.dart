@@ -2,22 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tomath/widget/game_widget.dart';
 
+import '../models/materi.dart';
+import '../service/app_state_provider.dart';
 import '../service/audio_provider.dart';
 
-class CampaignGameScreen extends StatefulWidget{
+class GameScreen extends StatefulWidget{
+  final GameType gameType;
   final int bab;
   final int subBab;
-  const CampaignGameScreen({
+  final String? enemyType;
+  const GameScreen({
     super.key,
+    required this.gameType,
     required this.bab,
     required this.subBab,
+    this.enemyType,
   });
 
   @override
-  State<CampaignGameScreen> createState() => _CampaignGameScreenState();
+  State<GameScreen> createState() => _CampaignGameScreenState();
 }
 
-class _CampaignGameScreenState extends State<CampaignGameScreen> {
+class _CampaignGameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
@@ -28,11 +34,13 @@ class _CampaignGameScreenState extends State<CampaignGameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appStateProvider = Provider.of<AppStateProvider>(context, listen: false);
     return GameWidget(
       bab: widget.bab,
       subBab: widget.subBab,
-      // isEvent: false,
-      // isTraining: false,
+      gameType: widget.gameType,
+      enemyType: widget.enemyType,
+      rewards: appStateProvider.subBabList[widget.subBab - 1].reward
     );
   }
 }
