@@ -41,7 +41,7 @@ class LevelPopup extends StatelessWidget {
 
                 String subBabInfo = subBab.is_finished == 0 ? subBab.before_winning_info : subBab.after_winning_info;
                 if (subBabInfo.contains('[PLAYER_TITLE]')){
-                  subBabInfo.replaceAll('[PLAYER_TITLE]', title);
+                  subBabInfo = subBabInfo.replaceAll('[PLAYER_TITLE]', title);
                 }
 
                 return SingleChildScrollView(
@@ -49,21 +49,9 @@ class LevelPopup extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // TOP ROW
-                      Row(
-                        children: [
-                          Container(
-                            width: isLandscape ? 45 : 100,
-                            height: isLandscape ? 45 : 100,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('assets/images/character/$enemy.png'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
+                      Column(
+                          children:[
+                            Text(
                               subBabInfo,
                               style: TextStyle(
                                 fontSize: textSize,
@@ -71,8 +59,18 @@ class LevelPopup extends StatelessWidget {
                                 fontFamily: "Baskerville",
                               ),
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 10),
+                            Container(
+                              width: isLandscape ? 45 : 100,
+                              height: isLandscape ? 45 : 100,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/images/character/$enemy.png'),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                          ]
                       ),
                       SizedBox(height: gap),
                       Align(
@@ -94,7 +92,7 @@ class LevelPopup extends StatelessWidget {
                       SizedBox(height: gap),
                       // MISSION
                       Text(
-                        "MISSION: ",
+                        "MISI: ",
                         style: TextStyle(
                           fontSize: textSize,
                           color: Colors.black,
@@ -112,7 +110,7 @@ class LevelPopup extends StatelessWidget {
                       SizedBox(height: gap),
                       // MATERIAL
                       Text(
-                        "MATERIAL:",
+                        "SUB BAB:",
                         style: TextStyle(
                           fontSize: textSize,
                           color: Colors.black,
@@ -130,7 +128,7 @@ class LevelPopup extends StatelessWidget {
                       SizedBox(height: gap),
                       // REWARD
                       Text(
-                        "REWARD:",
+                        "UPAH:",
                         style: TextStyle(
                           fontSize: textSize,
                           color: Colors.black,

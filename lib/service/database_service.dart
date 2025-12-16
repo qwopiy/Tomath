@@ -166,13 +166,27 @@ class DatabaseService{
     return null;
   }
 
-  Future<List<Map<String, dynamic>>?> getBab() async{
+  Future<String?> getBab() async {
     final db = await database;
-    final List<Map<String, dynamic>> list = await db.rawQuery('SELECT * FROM bab');
-    if (list.isNotEmpty) {
-      return list;
+
+    List<Map<String, dynamic>> results = await db.rawQuery('''
+      SELECT 
+        bab.chapter 
+      FROM 
+        player
+      INNER JOIN 
+        bab ON player.progress = bab.bab_id
+      WHERE 
+        player.player_id = ?
+      ''', [1]
+    );
+
+    if (results.isNotEmpty) {
+      String chapterName = results.first['chapter'].toString();
+      return chapterName;
+    } else {
+      return null;
     }
-    return null;
   }
 
   Future<List<Map<String, dynamic>>?> getSubBab() async{
@@ -337,7 +351,7 @@ class DatabaseService{
     final db = await database;
     await db.update(
         'player',
-        {'prograss': _progress},
+        {'progress': _progress},
         where: 'player_id = ?',
         whereArgs: [1]
     );
