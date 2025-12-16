@@ -104,13 +104,21 @@ class TrainingScreen extends StatelessWidget {
                             flex: 5,
                             child: Padding(
                               padding: EdgeInsets.all(size.width * 0.02),
-                              child: ListView.separated(
-                                itemCount: Materi.bab.length,
-                                separatorBuilder: (context, index) =>
-                                    SizedBox(height: size.height * 0.02),
-                                itemBuilder: (context, index) {
-                                  return _trainingBab(context, index);
-                                },
+                              child: ListView(
+                                children: [
+                                  _trainingBab(context, 0),
+                                  SizedBox(height: size.height * 0.02),
+                                  _trainingBab(context, 1),
+                                  SizedBox(height: size.height * 0.02),
+                                  _trainingBab(context, 2),
+                                  SizedBox(height: size.height * 0.02),
+                                  _trainingBab(context, 4),
+                                  SizedBox(height: size.height * 0.02),
+                                  _trainingBab(context, 5),
+                                  SizedBox(height: size.height * 0.02),
+                                  _trainingBab(context, 6),
+                                  SizedBox(height: size.height * 0.02),
+                                ],
                               ),
                             ),
                           ),

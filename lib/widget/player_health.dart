@@ -20,7 +20,7 @@ class _PlayerHealthState extends State<PlayerHealth> {
     if (widget.gameType == GameType.training) {
       return SizedBox(
         height: 20,
-        width: MediaQuery.of(context).size.width / 3,
+        width: MediaQuery.of(context).size.width / 4,
       );
     }
     return Consumer<QuizProvider>(

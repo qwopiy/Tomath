@@ -4,9 +4,11 @@ class Materi {
     'Bilangan Bulat',
     'Bilangan Rasional',
     'Rasio',
+    'UTS',
     'Aljabar',
     'Kesebangunan',
-    'Data dan Diagram'
+    'Data dan Diagram',
+    'UAS'
   ];
   // yang dikomen gabisa jadi isian
   static const List<List<String>> subBab = [
