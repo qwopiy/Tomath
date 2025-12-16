@@ -16,12 +16,14 @@ class GameWidget extends StatefulWidget {
   final int bab;
   final int subBab;
   final GameType gameType;
+  final int rewards;
   final String? enemyType;
   const GameWidget({
     super.key,
     required this.bab,
     required this.subBab,
     required this.gameType,
+    required this.rewards,
     this.enemyType,
   });
 
@@ -121,7 +123,7 @@ class _GameWidgetState extends State<GameWidget> {
           _essayQuestion = Random().nextBool();
         });
       }
-      quizProvider.nextQuestion(context, widget.subBab, widget.gameType);
+      quizProvider.nextQuestion(context, widget.subBab, widget.rewards, widget.gameType);
     }
 
   }
@@ -136,7 +138,7 @@ class _GameWidgetState extends State<GameWidget> {
           _essayQuestion = Random().nextBool();
         });
       }
-      quizProvider.nextQuestion(context, widget.subBab, widget.gameType);
+      quizProvider.nextQuestion(context, widget.subBab, widget.rewards, widget.gameType);
     }
 
   }

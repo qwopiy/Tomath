@@ -44,15 +44,8 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void nextQuestion(BuildContext context, int level, [GameType? gameType]) {
-    print(gameType);
+  void nextQuestion(BuildContext context, int level, int rewards, [GameType? gameType]) {
     if (gameType == GameType.training) return;
-
-    int rewards = 0;
-    if (gameType == GameType.event) { rewards = 1000;}
-    if (gameType == GameType.campaign ||
-        gameType == GameType.UTS ||
-        gameType == GameType.UAS) { rewards = 200;}
 
     if (_currentQuestionIndex < _questions.length - 1 && (_health > 0 && _questionRemaining > 1)) {
       // print("Next question called");
@@ -195,7 +188,7 @@ class QuizProvider extends ChangeNotifier {
   }
 
   void resetStats() {
-    _questionRemaining = 10; // batas 10 pertanyaan
+    _questionRemaining = 3; // batas 10 pertanyaan
     _health = 3;
     _currentQuestionIndex = Random().nextInt(_questions.length);
     notifyListeners();

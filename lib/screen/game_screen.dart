@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tomath/widget/game_widget.dart';
 
 import '../models/materi.dart';
+import '../service/app_state_provider.dart';
 import '../service/audio_provider.dart';
 
 class GameScreen extends StatefulWidget{
@@ -33,11 +34,13 @@ class _CampaignGameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appStateProvider = Provider.of<AppStateProvider>(context, listen: false);
     return GameWidget(
       bab: widget.bab,
       subBab: widget.subBab,
       gameType: widget.gameType,
       enemyType: widget.enemyType,
+      rewards: appStateProvider.subBabList[widget.subBab - 1].reward
     );
   }
 }
