@@ -239,6 +239,10 @@ class _GameWidgetState extends State<GameWidget> {
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25) ,
                 child: TextField(
+                  onSubmitted: (value) {
+                    _answerGiven(context, quizProvider, value);
+                    controller.text = '';
+                  },
                   controller: controller,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
