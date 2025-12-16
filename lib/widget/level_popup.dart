@@ -6,7 +6,8 @@ import '../models/sub_bab_model.dart';
 class LevelPopup extends StatelessWidget {
   final SubBabModel subBab;
   final int level;
-  const LevelPopup({super.key, required this.level, required this.subBab});
+  final String title;
+  const LevelPopup({super.key, required this.level, required this.subBab, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,6 @@ class LevelPopup extends StatelessWidget {
     final isLandscape = size.width > size.height;
 
     final String enemy = subBab.enemy;
-
     final int bab = subBab.bab_id;
 
     return Align(
@@ -39,6 +39,11 @@ class LevelPopup extends StatelessWidget {
                 double textSize = isLandscape ? 16 : 20;
                 double gap = isLandscape ? 10 : 18;
 
+                String subBabInfo = subBab.is_finished == 0 ? subBab.before_winning_info : subBab.after_winning_info;
+                if (subBabInfo.contains('[PLAYER_TITLE]')){
+                  subBabInfo.replaceAll('[PLAYER_TITLE]', title);
+                }
+
                 return SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +64,7 @@ class LevelPopup extends StatelessWidget {
                           const SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              subBab.is_finished == 1 ? subBab.before_winning_info : subBab.before_winning_info,
+                              subBabInfo,
                               style: TextStyle(
                                 fontSize: textSize,
                                 color: Colors.black,

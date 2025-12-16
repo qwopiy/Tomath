@@ -54,7 +54,7 @@ GoRouter createRouter() {
 
   return GoRouter(
     navigatorKey: rootNavigatorKey,
-    initialLocation: AppRoutes.dialogue,
+    initialLocation: AppRoutes.home,
     routes: [
       GoRoute(
         path: AppRoutes.dialogue,
