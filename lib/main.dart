@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
-
 import 'Config/Routes.dart';
 import 'provider/quiz_database.dart';
 import 'provider/quiz_provider.dart';
@@ -12,7 +11,7 @@ import 'service/audio_provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  //Kunci orientasi layar
+  ///Kunci orientasi layar
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
