@@ -8,11 +8,13 @@ import '../screen/event_screen.dart';
 import '../screen/home_screen.dart';
 import '../screen/profile_screen.dart';
 import '../screen/shop_screen.dart';
+import '../screen/splash_screen.dart';
 import '../screen/training_screen.dart';
 import '../screen/campaign_screen.dart';
 import '../widget/home_app_scaffold.dart';
 
 class AppRoutes {
+  static const String splash = '/splash';
   static const String shop = '/shop';
   static const String event = '/event';
   static const String home = '/home';
@@ -54,8 +56,13 @@ GoRouter createRouter() {
 
   return GoRouter(
     navigatorKey: rootNavigatorKey,
-    initialLocation: AppRoutes.home,
+    initialLocation: AppRoutes.splash,
     routes: [
+      GoRoute(
+        path: AppRoutes.splash,
+        name: 'splash',
+        builder: (context, state) => const SplashScreen(),
+      ),
       GoRoute(
         path: AppRoutes.dialogue,
         name: 'dialogue',

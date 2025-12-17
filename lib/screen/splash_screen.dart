@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
+import '../service/app_state_provider.dart';
+import '../service/audio_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,9 +21,30 @@ class _SplashScreenState extends State<SplashScreen>
   bool showLogo = false;
   bool showLoadingScreen = false;
 
+  Future<void> _initializeApplication() async {
+    final appState = context.read<AppStateProvider>();
+    final audio = context.read<AudioProvider>();
+
+    await Future.wait([
+      appState.initializeFuture,
+      Future.delayed(Duration(seconds: 2)), // Minimum 2 detik
+    ]);
+
+    audio.playBgm(AppMusic.homeTheme);
+
+    if (mounted) {
+      if(appState.currentDialogIndex > 0){
+        context.go('/home');
+      }else{
+        context.go('/dialogue');
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    _initializeApplication();
 
     _logoController = AnimationController(
       vsync: this,
