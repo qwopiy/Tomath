@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late final appState = Provider.of<AppStateProvider>(context, listen: true);
+  late final appState = Provider.of<AppStateProvider>(context, listen: false);
   late int dialogIndex = appState.currentDialogIndex;
 
   @override
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: InkWell(
                     onTap: () async {
                       print('tombol Play ditekan');
-                      if(dialogIndex == 5 || dialogIndex == 9 || dialogIndex == 19 ){
+                      if(dialogIndex == 6 || dialogIndex == 10 || dialogIndex == 20 ){
                         await context.push('/dialogue');
                       }else{
                         await context.push('/campaign');

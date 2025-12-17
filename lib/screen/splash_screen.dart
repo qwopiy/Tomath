@@ -31,6 +31,7 @@ class _SplashScreenState extends State<SplashScreen>
     ]);
 
     audio.playBgm(AppMusic.homeTheme);
+    // await _startSplashSequence();
 
     if (mounted) {
       if(appState.currentDialogIndex > 0){
@@ -42,9 +43,8 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   @override
-  void initState() {
+  void initState()  {
     super.initState();
-    _initializeApplication();
 
     _logoController = AnimationController(
       vsync: this,
@@ -74,6 +74,7 @@ class _SplashScreenState extends State<SplashScreen>
       showLogo = false;
       showLoadingScreen = true;
     });
+    _initializeApplication();
   }
 
   @override

@@ -81,7 +81,7 @@ GoRouter createRouter() {
             builder: (context, state) => GameScreen(
               gameType: GameType.campaign,
               bab: i + 1,
-              subBab: j + 1
+              subBab: j + 1,
             ),
           ),
       for (int i = 0; i <= 5; i++)

@@ -34,12 +34,17 @@ class _CampaignGameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String enemyType = widget.enemyType ?? '';
+
     final appStateProvider = Provider.of<AppStateProvider>(context, listen: false);
+    if (widget.gameType == GameType.campaign) {
+      enemyType = appStateProvider.subBabList[widget.subBab - 1].enemy;
+    }
     return GameWidget(
       bab: widget.bab,
       subBab: widget.subBab,
       gameType: widget.gameType,
-      enemyType: widget.enemyType,
+      enemyType: enemyType,
       rewards: appStateProvider.subBabList[widget.subBab - 1].reward
     );
   }

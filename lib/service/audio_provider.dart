@@ -7,6 +7,11 @@ class AppMusic {
   static const String gameTheme = 'audio/bgm/Game.mp3';
 }
 
+class AppSfx {
+  static const String attack = 'audio/bgm/punch1.mp3';
+  static const String getHit = 'audio/bgm/punch0.mp3';
+}
+
 class AudioProvider extends ChangeNotifier with WidgetsBindingObserver {
   final AudioPlayer _bgmPlayer = AudioPlayer();
   final AudioPlayer _sfxPlayer = AudioPlayer();
