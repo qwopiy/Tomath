@@ -27,10 +27,15 @@ class _DialogueState extends State<Dialogue> {
     return Consumer<AppStateProvider>(
         builder: (context, appState, child) {
           final size = MediaQuery.of(context).size;
-
           final panelHeight = size.height * 0.30;
-
           final topMargin = size.height * 0.55;
+
+          String? character = appState.currentDialog?.character;
+          bool is_player = false;
+          if(character!.contains('[PLAYER_NAME]')){
+            is_player = true;
+            character = character.replaceAll('[PLAYER_NAME]', appState.player.username);
+          }
 
           return Container(
             height: panelHeight,
@@ -47,16 +52,21 @@ class _DialogueState extends State<Dialogue> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(flex: 1,
-                    child: Padding(padding: EdgeInsets.only(left:size.width * 0.05),
+                    child: Padding(padding: EdgeInsets.symmetric(horizontal :size.width * 0.05),
                       child:
-                        Text(
-                          "Mbak stroberi",
-                          style: TextStyle(
-                            fontSize: size.width * 0.05,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontFamily: 'BaskervvilleSC',
-                          ),
+                        Row(
+                          mainAxisAlignment: is_player ? MainAxisAlignment.end : MainAxisAlignment.start,
+                          children: [
+                            Text(
+                            character,
+                            style: TextStyle(
+                              fontSize: size.width * 0.05,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontFamily: 'BaskervvilleSC',
+                              ),
+                            ),
+                          ],
                         ),
                     ),
                 ),
@@ -65,7 +75,7 @@ class _DialogueState extends State<Dialogue> {
                       child: Padding(padding: EdgeInsets.only(left:size.width * 0.05),
                         child:
                         Text(
-                          "apakah kamu melihat buah",
+                          widget.textContent,
                           style: TextStyle(
                             fontSize: size.width * 0.05,
                             fontWeight: FontWeight.bold,

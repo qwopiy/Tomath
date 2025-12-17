@@ -91,21 +91,26 @@ class _ShopScreenState extends State<ShopScreen> {
                 showRightButton: true,
                 rightButtonText: "Konfirmasi",
                   rightButtonOnTap: () {
-                    if(appState.player.currency >= cost){
+                    if (cost == 0) return;
+
+                    if (appState.player.currency >= cost) {
                       appState.updatePlayerCurrency(-(cost));
-                      if(chosenItemCategory == 1){
-                        appState.updateShopItem(chosenItemId ,chosenContentId, 1);
-                      }else if(chosenItemCategory == 2){
-                        appState.updateShopItem(chosenItemId, chosenContentId, 2);
+
+                      if (chosenItemCategory == 1) {
+                        appState.updateShopItem(
+                            chosenItemId, chosenContentId, 1);
+                      } else if (chosenItemCategory == 2) {
+                        appState.updateShopItem(
+                            chosenItemId, chosenContentId, 2);
                       }
-                    }else{
+                    } else {
                       print('ga ada duid');
                       return;
                     }
-                    print("Confirm Button");
+
                     cost = 0;
                     print("barang kebeli");
-                    },
+                  },
                 rightButtonAlignment: Alignment.bottomRight,
                 rightButtonPadding: EdgeInsets.only(
                   right: size.width * 0.2,
