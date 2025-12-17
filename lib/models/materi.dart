@@ -4,18 +4,22 @@ class Materi {
     'Bilangan Bulat',
     'Bilangan Rasional',
     'Rasio',
+    'UTS',
     'Aljabar',
     'Kesebangunan',
-    'Data dan Diagram'
+    'Data dan Diagram',
+    'UAS'
   ];
   // yang dikomen gabisa jadi isian
   static const List<List<String>> subBab = [
     ['Penjumlahan dan Pengurangan','Perkalian dan Pembagian','KPK dan FPB'],
     ['Konversi','Perbandingan','Perhitungan'],
     ['Konsep Rasio','Skala','Perbandingan Berbalik Nilai'],
+    ['UTS'],
     ['Dasar Aljabar','Sifat Aljabar','Pemodelan Aljabar'], // sifat, pemodelan
     ['Hubungan Sudut','Dasar Kesebangunan','Kesebangunan Segitiga'], // full bab 5
-    ['Statistika','Jenis Data','Diagram'] // jenis data
+    ['Statistika','Jenis Data','Diagram'], // jenis data
+    ['UAS']
   ];
 
   // bool yang menandakan yang mana aja bisa dan tidak bisa jadi isian
@@ -23,9 +27,11 @@ class Materi {
     [true, true, true],
     [true, true, true],
     [true, true, true],
+    [false],
     [true, false, false],
     [false, false, false],
     [true, false, true],
+    [false]
   ];
 
 }

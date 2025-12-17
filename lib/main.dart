@@ -16,7 +16,7 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
   ]);
 
-  await AppDatabase.instance.database;
+  await QuizDatabase.instance.database;
   await RiveNative.init();
 
   runApp(const Tomath());

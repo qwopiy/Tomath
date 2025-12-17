@@ -2,10 +2,10 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class AppDatabase {
-  AppDatabase._init();
+class QuizDatabase {
+  QuizDatabase._init();
 
-  static final AppDatabase instance = AppDatabase._init();
+  static final QuizDatabase instance = QuizDatabase._init();
   static Database? _database;
 
   Future<Database> get database async {
@@ -26,12 +26,22 @@ class AppDatabase {
     final tableQuery =  await rootBundle.loadString('assets/data/question_table.txt');
     await db.rawQuery(tableQuery);
     print("Question table created.");
-    for (int i = 1; i <= 6; i++) {
+    for (int i = 1; i <= 3; i++) {
       for (int j = 1; j <= 3; j++) {
         String dataQuery =  await rootBundle.loadString('assets/data/question_data_bab${i}_subbab$j.txt');
         await db.rawQuery(dataQuery);
       }
     }
+    String dataQuery =  await rootBundle.loadString('assets/data/question_data_uts.txt');
+    await db.rawQuery(dataQuery);
+    for (int i = 4; i <= 6; i++) {
+      for (int j = 1; j <= 3; j++) {
+        String dataQuery =  await rootBundle.loadString('assets/data/question_data_bab${i}_subbab$j.txt');
+        await db.rawQuery(dataQuery);
+      }
+    }
+    dataQuery =  await rootBundle.loadString('assets/data/question_data_uas.txt');
+    await db.rawQuery(dataQuery);
   }
 
   Future<Database> _initializeDB(String filename) async {
@@ -75,22 +85,10 @@ class AppDatabase {
   }
 
   Future<List<Map>> getUTSQuestion() async {
-    final db = await instance.database;
-    final result = await db.rawQuery('SELECT * FROM Question WHERE id BETWEEN 11001 AND 33050 ORDER BY RANDOM() LIMIT 50');
-    if (result.isNotEmpty) {
-      return result;
-    } else {
-      throw Exception('No questions found in the database.');
-    }
+    return getQuestionsByBabSubBab(4, 1);
   }
 
   Future<List<Map>> getUASQuestion() async {
-    final db = await instance.database;
-    final result = await db.rawQuery('SELECT * FROM Question WHERE id BETWEEN 11001 AND 63050 ORDER BY RANDOM() LIMIT 50');
-    if (result.isNotEmpty) {
-      return result;
-    } else {
-      throw Exception('No questions found in the database.');
-    }
+    return getQuestionsByBabSubBab(8, 1);
   }
 }

@@ -243,6 +243,10 @@ class _GameWidgetState extends State<GameWidget> {
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25) ,
                 child: TextField(
+                  onSubmitted: (value) {
+                    _answerGiven(context, quizProvider, value);
+                    controller.text = '';
+                  },
                   controller: controller,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
@@ -302,6 +306,12 @@ class _GameWidgetState extends State<GameWidget> {
   @override
   Widget build(BuildContext context) {
     _playerHeight = MediaQuery.of(context).size.width / 4 - 10;
+
+    // enemy sesuai subbab
+    if (widget.gameType == GameType.campaign) {
+      widget.enemyType ?? appProvider.subBabList[widget.subBab - 1].enemy;
+    }
+
     return Consumer<QuizProvider>(
       builder: (context, quizProvider, child) {
         questionText = quizProvider.currentQuestion.text;

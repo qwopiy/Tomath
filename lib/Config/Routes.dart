@@ -26,28 +26,32 @@ class AppRoutes {
     ['/campaigngame11', '/campaigngame12', '/campaigngame13'],
     ['/campaigngame21', '/campaigngame22', '/campaigngame23'],
     ['/campaigngame31', '/campaigngame32', '/campaigngame33'],
-    ['/campaigngame41', '/campaigngame42', '/campaigngame43'],
+    ['/campaigngame41'],
     ['/campaigngame51', '/campaigngame52', '/campaigngame53'],
     ['/campaigngame61', '/campaigngame62', '/campaigngame63'],
+    ['/campaigngame71', '/campaigngame72', '/campaigngame73'],
+    ['/campaigngame81']
   ];
   static const List<List<String>> trainingGame = [
     ['/traininggame11', '/traininggame12', '/traininggame13'],
     ['/traininggame21', '/traininggame22', '/traininggame23'],
     ['/traininggame31', '/traininggame32', '/traininggame33'],
-    ['/traininggame41', '/traininggame42', '/traininggame43'],
+    ['/traininggame41'],
     ['/traininggame51', '/traininggame52', '/traininggame53'],
     ['/traininggame61', '/traininggame62', '/traininggame63'],
+    ['/traininggame71', '/traininggame72', '/traininggame73'],
+    ['/traininggame81']
   ];
   static const List<List<String>> eventGame = [
     ['/eventgame11', '/eventgame12', '/eventgame13'],
     ['/eventgame21', '/eventgame22', '/eventgame23'],
     ['/eventgame31', '/eventgame32', '/eventgame33'],
-    ['/eventgame41', '/eventgame42', '/eventgame43'],
+    ['/eventgame41'],
     ['/eventgame51', '/eventgame52', '/eventgame53'],
     ['/eventgame61', '/eventgame62', '/eventgame63'],
+    ['/eventgame71', '/eventgame72', '/eventgame73'],
+    ['/eventgame81']
   ];
-  static const String utsGame = 'uts';
-  static const String uasGame = 'uas';
 }
 
 GoRouter createRouter() {
@@ -73,7 +77,7 @@ GoRouter createRouter() {
         name: 'campaign',
         builder: (context, state) => const CampaignScreen(),
       ),
-      for (int i = 0; i <= 5; i++)
+      for (int i = 0; i <= 2; i++)
         for (int j = 0; j <= 2; j++)
           GoRoute(
             path: AppRoutes.campaignGame[i][j],
@@ -84,7 +88,18 @@ GoRouter createRouter() {
               subBab: j + 1,
             ),
           ),
-      for (int i = 0; i <= 5; i++)
+      for (int i = 4; i <= 6; i++)
+        for (int j = 0; j <= 2; j++)
+          GoRoute(
+            path: AppRoutes.campaignGame[i][j],
+            name: 'campaigngame${i + 1}${j + 1}',
+            builder: (context, state) => GameScreen(
+              gameType: GameType.campaign,
+              bab: i + 1,
+              subBab: j + 1
+            ),
+          ),
+      for (int i = 0; i <= 2; i++)
         for (int j = 0; j <= 2; j++)
           GoRoute(
             path: AppRoutes.trainingGame[i][j],
@@ -93,10 +108,22 @@ GoRouter createRouter() {
               gameType: GameType.training,
               bab: i + 1,
               subBab: j + 1,
-              enemyType: 'Banana',
+              enemyType: "Banana",
             ),
           ),
-      for (int i = 0; i <= 5; i++)
+      for (int i = 4; i <= 6; i++)
+        for (int j = 0; j <= 2; j++)
+          GoRoute(
+            path: AppRoutes.trainingGame[i][j],
+            name: 'traininggame${i + 1}${j + 1}',
+            builder: (context, state) => GameScreen(
+              gameType: GameType.training,
+              bab: i + 1,
+              subBab: j + 1,
+              enemyType: "Banana",
+            ),
+          ),
+      for (int i = 0; i <= 2; i++)
         for (int j = 0; j <= 2; j++)
           GoRoute(
             path: AppRoutes.eventGame[i][j],
@@ -104,12 +131,23 @@ GoRouter createRouter() {
             builder: (context, state) => GameScreen(
               gameType: GameType.event,
               bab: i + 1,
-              subBab: j + 1,
+              subBab: j + 1
+            ),
+          ),
+      for (int i = 4; i <= 6; i++)
+        for (int j = 0; j <= 2; j++)
+          GoRoute(
+            path: AppRoutes.eventGame[i][j],
+            name: 'eventgame${i + 1}${j + 1}',
+            builder: (context, state) => GameScreen(
+              gameType: GameType.event,
+              bab: i + 1,
+              subBab: j + 1
             ),
           ),
       GoRoute(
-        path: AppRoutes.utsGame,
-        name: 'utsgame',
+        path: AppRoutes.campaignGame[3][0],
+        name: 'campaigngame41',
         builder: (context, state) => GameScreen(
           gameType: GameType.UTS,
           bab: 0,
@@ -117,8 +155,8 @@ GoRouter createRouter() {
         ),
       ),
       GoRoute(
-        path: AppRoutes.uasGame,
-        name: 'uasgame',
+        path: AppRoutes.campaignGame[7][0],
+        name: 'campaigngame81',
         builder: (context, state) => GameScreen(
           gameType: GameType.UAS,
           bab: 0,
