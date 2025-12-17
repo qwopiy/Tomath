@@ -122,7 +122,7 @@ class DatabaseService{
           await db.insert('bab', {'chapter' : 'Data dan Diagram'});
           await db.insert('bab', {'chapter' : 'UAS'});
 
-          await db.insert('player', {'username': 'FreakyBug', 'currency' : 9999999});
+          await db.insert('player', {'username': 'FreakyBug'});
 
 
           for(final data in subBabInitialData){

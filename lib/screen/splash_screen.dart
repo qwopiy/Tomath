@@ -27,11 +27,10 @@ class _SplashScreenState extends State<SplashScreen>
 
     await Future.wait([
       appState.initializeFuture,
-      Future.delayed(Duration(seconds: 2)), // Minimum 2 detik
+      Future.delayed(Duration(seconds: 2)),
     ]);
 
     audio.playBgm(AppMusic.homeTheme);
-    // await _startSplashSequence();
 
     if (mounted) {
       if(appState.currentDialogIndex > 0){
@@ -43,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   @override
-  void initState()  {
+  void initState() {
     super.initState();
 
     _logoController = AnimationController(

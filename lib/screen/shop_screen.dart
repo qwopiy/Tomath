@@ -90,17 +90,17 @@ class _ShopScreenState extends State<ShopScreen> {
                 showLeftButton: false,
                 showRightButton: true,
                 rightButtonText: "Konfirmasi",
-                  rightButtonOnTap: () {
+                  rightButtonOnTap: () async {
                     if (cost == 0) return;
 
                     if (appState.player.currency >= cost) {
                       appState.updatePlayerCurrency(-(cost));
 
                       if (chosenItemCategory == 1) {
-                        appState.updateShopItem(
+                        await appState.updateShopItem(
                             chosenItemId, chosenContentId, 1);
                       } else if (chosenItemCategory == 2) {
-                        appState.updateShopItem(
+                        await appState.updateShopItem(
                             chosenItemId, chosenContentId, 2);
                       }
                     } else {
