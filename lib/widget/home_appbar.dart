@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'currency_bar.dart';
@@ -32,7 +35,9 @@ class HomeAppbar extends StatelessWidget{
                       alignment: AlignmentGeometry.topRight,
                       child: SettingButton(
                         buttonText: 'Keluar',
-                        onPressed: (){},
+                        onPressed: (){
+                          exit(0);
+                        },
                       ),
                     )
                 ),

@@ -8,8 +8,8 @@ class AppMusic {
 }
 
 class AppSfx {
-  static const String attack = 'audio/bgm/punch1.mp3';
-  static const String getHit = 'audio/bgm/punch0.mp3';
+  static const String attack = 'audio/sfx/punch1.mp3';
+  static const String getHit = 'audio/sfx/punch0.mp3';
 }
 
 class AudioProvider extends ChangeNotifier with WidgetsBindingObserver {
