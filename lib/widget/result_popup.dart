@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../service/app_state_provider.dart';
+import '../service/audio_provider.dart';
 
 class ResultPopup extends StatelessWidget {
   final int level;
@@ -21,6 +22,7 @@ class ResultPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appStateProvider = Provider.of<AppStateProvider>(context, listen: false);
+    final audioProvider = Provider.of<AudioProvider>(context, listen: false);
     return Center(
       child: Material(
         color: Colors.transparent,
@@ -117,7 +119,10 @@ class ResultPopup extends StatelessWidget {
                       appStateProvider.updatePlayerProgress();
                     }
                   }
-                  GoRouter.of(context).go('/home');
+                  appStateProvider.updatePlayableLevel(level);
+                  appStateProvider.updatePlayerCurrency(reward);
+                  context.go('/home');
+                  audioProvider.playBgm(AppMusic.homeTheme);
                 },
                 child: Container(
                   width: 100,

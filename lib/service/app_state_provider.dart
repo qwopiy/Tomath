@@ -11,6 +11,8 @@ import '../service/database_service.dart';
 import '../models/player_model.dart';
 
 class AppStateProvider extends ChangeNotifier {
+  late final Future<void> initializeFuture;
+
   static const String _buttonCampaignPosKey = 'button_campaign_pos';
   static const String _dialogProgressKey = 'dialog_progress';
 
@@ -38,15 +40,15 @@ class AppStateProvider extends ChangeNotifier {
   List<ShopItem>? get shopItems  => _shopItems ;
 
   AppStateProvider() {
-    _loadInitialState();
+    initializeFuture = _loadInitialState();
   }
 
-  void _loadInitialState() async {
+  Future<void> _loadInitialState() async {
     final DatabaseService dbs = DatabaseService.instance;
     await dbs.database;
 
     final prefs = await SharedPreferences.getInstance();
-    _currentDialogIndex = 0;
+    _currentDialogIndex = prefs.getInt(_dialogProgressKey) ?? 0;
 
     final Map<String, dynamic>? profileMap = await dbs.getPlayerProfile();
     if (profileMap != null) {

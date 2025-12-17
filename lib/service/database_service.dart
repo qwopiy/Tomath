@@ -103,15 +103,15 @@ class DatabaseService{
           );
 
           await db.insert('skin', {'path': 'Tomath', 'is_unlocked': 1});
-          await db.insert('skin', {'path': 'TomathUndead', 'is_unlocked': 1});
-          await db.insert('skin', {'path': 'TomathPairPlay', 'is_unlocked': 1});
+          await db.insert('skin', {'path': 'TomathUndead', 'is_unlocked': 0});
+          await db.insert('skin', {'path': 'TomathPairPlay', 'is_unlocked': 0});
 
           await db.insert('title', {'name': 'Traveler', 'is_unlocked': 1});
-          await db.insert('title', {'name': 'Ghost Buster', 'is_unlocked': 1});
-          await db.insert('title', {'name': 'Borjuis', 'is_unlocked': 1});
+          await db.insert('title', {'name': 'Ghost Buster', 'is_unlocked': 0});
+          await db.insert('title', {'name': 'Borjuis', 'is_unlocked': 0});
 
-          await db.insert('item_skin', {'skin_id': 3, 'cost' : 10000, 'is_purchased': 0});
-          await db.insert('item_title', {'title_id': 3, 'cost' : 7000, 'is_purchased': 0});
+          await db.insert('item_skin', {'skin_id': 3, 'cost' : 2000, 'is_purchased': 0});
+          await db.insert('item_title', {'title_id': 3, 'cost' : 1500, 'is_purchased': 0});
 
           await db.insert('bab', {'chapter' : 'Bilangan Bulat'});
           await db.insert('bab', {'chapter' : 'Bilangan Rasional'});
@@ -122,7 +122,7 @@ class DatabaseService{
           await db.insert('bab', {'chapter' : 'Data dan Diagram'});
           await db.insert('bab', {'chapter' : 'UAS'});
 
-          await db.insert('player', {'username': 'FreakyBug', 'currency' : 9999999});
+          await db.insert('player', {'username': 'FreakyBug'});
 
 
           for(final data in subBabInitialData){

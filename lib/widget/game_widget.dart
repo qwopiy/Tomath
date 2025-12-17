@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../provider/quiz_provider.dart';
+import '../service/audio_provider.dart';
 import 'choice_button.dart';
 import 'player_health.dart';
 
@@ -33,6 +34,7 @@ class GameWidget extends StatefulWidget {
 
 class _GameWidgetState extends State<GameWidget> {
   late final appProvider = Provider.of<AppStateProvider>(context);
+  late final audioProvider = Provider.of<AudioProvider>(context, listen: false);
   final TextEditingController controller = TextEditingController();
   late bool canBeEssay = Materi.canBeEssay[widget.bab - 1][widget.subBab - 1];
   bool _essayQuestion = true;
@@ -59,6 +61,7 @@ class _GameWidgetState extends State<GameWidget> {
       _isPlayerAttacking = true;
     });
     await Future.delayed(Duration(seconds: 1));
+    audioProvider.playSfx(AppSfx.attack);
     setState(() {
       _isPlayerAttacking = false;
     });
@@ -69,6 +72,7 @@ class _GameWidgetState extends State<GameWidget> {
       _isPlayerGetHit = true;
     });
     await Future.delayed(Duration(milliseconds: 400));
+    audioProvider.playSfx(AppSfx.getHit);
     setState(() {
       _isPlayerGetHit = false;
     });
@@ -341,6 +345,7 @@ class _GameWidgetState extends State<GameWidget> {
                               buttonText: 'Beranda',
                               onPressed: () {
                                 GoRouter.of(context).go('/home');
+                                audioProvider.playBgm(AppMusic.homeTheme);
                               },
                             ),
                           ],

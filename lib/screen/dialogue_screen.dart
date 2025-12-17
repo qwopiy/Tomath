@@ -25,11 +25,21 @@ class _DialogueScreenState extends State<DialogueScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Consumer<AppStateProvider>(
         builder: (context, appState, child) {
           Widget content;
           final String? action = appState.currentDialog?.action;
+          Future<void> _isLoading(String? action) async {
+            if(action == 'loading') {
+              await Future.delayed(const Duration(seconds: 1));
+              appState.nextDialog();
+            }
+            return;
+          }
 
+          _isLoading(action);
           if (action == 'input_username') {
             content = DialogueInputName(
                 buttonText: 'confirm',
@@ -40,7 +50,7 @@ class _DialogueScreenState extends State<DialogueScreen> {
                 textContent: appState.getProcessedDialogue(),
                 onTap: (){
                   if (action == 'navigate_toCampaign') {
-                    context.go("/campaign");
+                      context.go("/campaign");
                     print("Event Quest Dipicu!");
                   }else if (action == 'navigate_toHome'){
                       context.go("/home");
