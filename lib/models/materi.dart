@@ -23,14 +23,25 @@ class Materi {
   ];
 
   // bool yang menandakan yang mana aja bisa dan tidak bisa jadi isian
+  // static const List<List<bool>> canBeEssay = [
+  //   [true, true, true],
+  //   [true, true, true],
+  //   [true, true, true],
+  //   [false],
+  //   [true, false, false],
+  //   [false, false, false],
+  //   [true, false, true],
+  //   [false]
+  // ];
+  /// UNTUK MK GAMEDEV JADI FALSE SEMUA UNTUK SEMENTARA
   static const List<List<bool>> canBeEssay = [
-    [true, true, true],
-    [true, true, true],
-    [true, true, true],
-    [false],
-    [true, false, false],
     [false, false, false],
-    [true, false, true],
+    [false, false, false],
+    [false, false, false],
+    [false],
+    [false, false, false],
+    [false, false, false],
+    [false, false, false],
     [false]
   ];
 
