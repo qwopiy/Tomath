@@ -5,6 +5,7 @@ import 'package:tomath/widget/game_widget.dart';
 import '../models/materi.dart';
 import '../service/app_state_provider.dart';
 import '../service/audio_provider.dart';
+import '../widget/game_widget_new.dart';
 
 class GameScreen extends StatefulWidget{
   final GameType gameType;
@@ -40,7 +41,7 @@ class _CampaignGameScreenState extends State<GameScreen> {
     if (widget.gameType == GameType.campaign) {
       enemyType = appStateProvider.subBabList[widget.subBab - 1].enemy;
     }
-    return GameWidget(
+    return GameWidgetNew(
       bab: widget.bab,
       subBab: widget.subBab,
       gameType: widget.gameType,
