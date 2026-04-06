@@ -119,8 +119,6 @@ class ResultPopup extends StatelessWidget {
                       appStateProvider.updatePlayerProgress();
                     }
                   }
-                  appStateProvider.updatePlayableLevel(level);
-                  appStateProvider.updatePlayerCurrency(reward);
                   context.go('/home');
                   audioProvider.playBgm(AppMusic.homeTheme);
                 },
