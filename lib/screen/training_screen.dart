@@ -36,7 +36,6 @@ class TrainingScreen extends StatelessWidget {
                 color: Colors.black,
                 fontSize: size.width * 0.040,
                 fontFamily: 'Baskerville',
-                // fontWeight: FontWeight.bold,
               ),
             ),
           )
@@ -57,7 +56,6 @@ class TrainingScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: size.width * 0.06,
             fontFamily: 'LuckiestGuy',
-            // fontWeight: FontWeight.bold,
           ),
         ),
         SizedBox(height: size.height * 0.01),
@@ -78,15 +76,14 @@ class TrainingScreen extends StatelessWidget {
           image: DecorationImage(
             image: AssetImage('assets/background/TrainingBG.png'),
             fit: BoxFit.cover,
+            alignment: Alignment(0.9, 0),
           ),
         ),
         child: Column(
           children: [
             const Spacer(flex: 2),
-            const Spacer(flex: 4),
-
-            Flexible(
-              flex: 4,
+            Expanded(
+              flex: 8,
               child: PlankInfo(
               backgroundImage: 'assets/ui/Mading_medium.png',
                 showLeftButton: false,
@@ -94,14 +91,13 @@ class TrainingScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     const Spacer(flex: 1),
-
                     Expanded(
                       flex: 4,
                       child: Column(
                         children: [
                           const Spacer(flex: 1),
                           Expanded(
-                            flex: 5,
+                            flex: 11,
                             child: Padding(
                               padding: EdgeInsets.all(size.width * 0.02),
                               child: ListView(
@@ -126,13 +122,11 @@ class TrainingScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-
                     const Spacer(flex: 1),
                   ],
                 ),
               ),
             ),
-
             const Spacer(flex: 2),
           ],
         ),
