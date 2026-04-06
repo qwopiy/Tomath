@@ -69,18 +69,18 @@ class QuizProvider extends ChangeNotifier {
         /// Lose
         showResult(
           context,
-          'GAME OVER',
-          'You have run out of health.',
+          'GAME BERAKHIR',
+          'Darah anda habis.',
           0,
           level
         );
-        print("No health remaining. Game over.");
+        print("Darah anda habis. Game Tamat.");
       } else {
         /// Win
         showResult(
           context,
-          'SUCCESS!',
-          'You answered correctly.',
+          'SUKSES!',
+          'Anda berhasil menjawab soal dengan benar.',
           rewards,
           level
         );

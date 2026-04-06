@@ -10,6 +10,7 @@ import 'player_health.dart';
 
 import '../models/materi.dart';
 import '../service/app_state_provider.dart';
+import 'questions_left.dart';
 import 'rive_animation.dart';
 import 'setting_button.dart';
 
@@ -316,25 +317,57 @@ class _GameWidgetNewState extends State<GameWidgetNew> {
         questionText = quizProvider.currentQuestion.text;
         choices = quizProvider.currentQuestion.options;
         return Scaffold(
-          backgroundColor: Color(0xffffffff),
-          body: Align(
-            alignment: Alignment.center,
-            child:
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
+          body: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/background/BlankBG.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Align(
+              alignment: Alignment.center,
+              child:
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      margin: EdgeInsets.zero,
+                      padding: EdgeInsets.zero,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
+                      height: 75,
+                      // decoration: BoxDecoration(
+                      //   color: Color(0x1f000000),
+                      //   shape: BoxShape.rectangle,
+                      //   borderRadius: BorderRadius.zero,
+                      //   border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                      // ),
+                      child:
+                      Align(
+                        alignment: Alignment(0.9, 0.0),
+                        child: SettingButton(
+                          buttonText: 'Beranda',
+                          onPressed: () {
+                            GoRouter.of(context).go('/home');
+                            audioProvider.playBgm(AppMusic.homeTheme);
+                          },
+                        ),
+                      ),
+                    ),),
+                  Container(
                     margin: EdgeInsets.zero,
                     padding: EdgeInsets.zero,
                     width: MediaQuery
                         .of(context)
                         .size
                         .width,
-                    height: 75,
+                    height: 100,
                     // decoration: BoxDecoration(
                     //   color: Color(0x1f000000),
                     //   shape: BoxShape.rectangle,
@@ -342,186 +375,149 @@ class _GameWidgetNewState extends State<GameWidgetNew> {
                     //   border: Border.all(color: Color(0x4d9e9e9e), width: 1),
                     // ),
                     child:
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+
+
+                        PlayerHealth(gameType: widget.gameType,)
+
+                        ,
+
+                        QuestionsLeft(gameType: widget.gameType,)
+
+                        ,
+                      ],),
+                  ),
+                  Container(
+                    margin: EdgeInsets.zero,
+                    padding: EdgeInsets.zero,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
+                    height: _playerHeight - 1,
+                    // decoration: BoxDecoration(
+                    //   color: Color(0x1f000000),
+                    //   shape: BoxShape.rectangle,
+                    //   borderRadius: BorderRadius.zero,
+                    //   border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                    // ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        SizedBox(
+                          height: _playerHeight,
+                          width: _playerHeight,
+                          child: Transform.translate(
+                            offset: const Offset(20, -20),
+                            child: CustomRIVEAnimation(
+                              artboardName: appProvider.player.skin_path,
+                              isAttack: _isPlayerAttacking,
+                              isGetHit: _isPlayerGetHit,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: _playerHeight,
+                          width: _playerHeight,
+                          child: Transform.translate(
+                            offset: const Offset(-25, -20),
+                            child: CustomRIVEAnimation(
+                              artboardName: widget.enemyType ?? 'Rambutan',
+                              isAttack: _isEnemyAttacking,
+                              isGetHit: _isEnemyGetHit,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+
+                  ,
+                  Container(
+                    margin: EdgeInsets.zero,
+                    padding: EdgeInsets.zero,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
+                    height: 150,
+                    child:
                     Align(
-                      alignment: Alignment(0.9, 0.0),
-                      child: SettingButton(
-                        buttonText: 'Beranda',
-                        onPressed: () {
-                          GoRouter.of(context).go('/home');
-                          audioProvider.playBgm(AppMusic.homeTheme);
-                        },
+                      alignment: Alignment.center,
+                      child: Expanded(
+                        flex: 3,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/ui/Mading_medium.png'
+                              ),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 45, right: 55),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Text(
+                                questionText,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Color(0xFFF7EFD3),
+                                  fontFamily: 'LuckiestGuy',
+                                  shadows: [
+                                    Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
+                                    Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
+                                    Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
+                                    Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
+                                  ],
+                                ),
+                                textAlign: TextAlign.center,
+                                maxLines: 4,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),),
-                Container(
-                  margin: EdgeInsets.zero,
-                  padding: EdgeInsets.zero,
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: Color(0x1f000000),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
-                    border: Border.all(color: Color(0x4d9e9e9e), width: 1),
                   ),
-                  child:
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
+                  Container(
+                    margin: EdgeInsets.zero,
+                    padding: EdgeInsets.zero,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.4,
+                    child:
 
-
-                      PlayerHealth(gameType: widget.gameType,)
-
-                      ,
-
-                      PlayerHealth(gameType: widget.gameType,)
-
-                      ,
-                    ],),
-                ),
-                Container(
-                  margin: EdgeInsets.zero,
-                  padding: EdgeInsets.zero,
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  height: _playerHeight - 1,
-                  decoration: BoxDecoration(
-                    color: Color(0x1f000000),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
-                    border: Border.all(color: Color(0x4d9e9e9e), width: 1),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      SizedBox(
-                        height: _playerHeight,
-                        width: _playerHeight,
-                        child: Transform.translate(
-                          offset: const Offset(20, -20),
-                          child: CustomRIVEAnimation(
-                            artboardName: appProvider.player.skin_path,
-                            isAttack: _isPlayerAttacking,
-                            isGetHit: _isPlayerGetHit,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: _playerHeight,
-                        width: _playerHeight,
-                        child: Transform.translate(
-                          offset: const Offset(-25, -20),
-                          child: CustomRIVEAnimation(
-                            artboardName: widget.enemyType ?? 'Rambutan',
-                            isAttack: _isEnemyAttacking,
-                            isGetHit: _isEnemyGetHit,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-
-                ,
-                Container(
-                  margin: EdgeInsets.zero,
-                  padding: EdgeInsets.zero,
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    color: Color(0x1f000000),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
-                    border: Border.all(color: Color(0x4d9e9e9e), width: 1),
-                  ),
-                  child:
-                  Align(
-                    alignment: Alignment.center,
-                    child: Expanded(
-                      flex: 3,
+                    Expanded(
+                      flex: 4,
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(
-                                'assets/ui/kertasKecil.png'
-                            ),
-                            fit: BoxFit.fill,
+                            image: AssetImage('assets/ui/PapanKayuShort.png'),
+                            fit: BoxFit.cover,
                           ),
                         ),
                         alignment: Alignment.center,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 45, right: 55),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Text(
-                              questionText,
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Color(0xFFF7EFD3),
-                                fontFamily: 'LuckiestGuy',
-                                shadows: [
-                                  Shadow(offset: Offset(2, 2), blurRadius: 0, color: Colors.black),
-                                  Shadow(offset: Offset(-2, -2), blurRadius: 0, color: Colors.black),
-                                  Shadow(offset: Offset(2, -2), blurRadius: 0, color: Colors.black),
-                                  Shadow(offset: Offset(-2, 2), blurRadius: 0, color: Colors.black),
-                                ],
-                              ),
-                              textAlign: TextAlign.center,
-                              maxLines: 4,
-                            ),
-                          ),
-                        ),
+                        child: answerWidget(quizProvider, _essayQuestion),
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.zero,
-                  padding: EdgeInsets.zero,
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.4,
-                  decoration: BoxDecoration(
-                    color: Color(0x1f000000),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
-                    border: Border.all(color: Color(0x4d9e9e9e), width: 1),
-                  ),
-                  child:
-
-                  Expanded(
-                    flex: 4,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/ui/PapanKayuShort.png'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      alignment: Alignment.center,
-                      child: answerWidget(quizProvider, _essayQuestion),
-                    ),
-                  ),
-                ),
-              ],),),
+                ],),),
+          ),
         )
         ;
       }

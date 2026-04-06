@@ -36,9 +36,9 @@ class _PlayerHealthState extends State<PlayerHealth> {
               child: Text(
                 'HP : ',
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 24,
                   fontFamily: 'LuckiestGuy',
-                  color: Colors.black,
+                  color: Color(0xFFEFEEC8),
                 ),
                 textAlign: TextAlign.center,
               ),

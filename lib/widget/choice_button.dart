@@ -27,7 +27,7 @@ class ChoiceButton extends StatelessWidget{
         child: Text(
           buttonText,
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: 24,
             color: Colors.black,
             fontFamily: 'LuckiestGuy',
           ),
