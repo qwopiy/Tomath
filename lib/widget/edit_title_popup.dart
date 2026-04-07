@@ -65,7 +65,7 @@ class _TitlePopupState extends State<TitlePopup> {
               title.name,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
                 fontFamily: "LuckiestGuy",
@@ -131,7 +131,7 @@ class _TitlePopupState extends State<TitlePopup> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 _button("Kembali", () => Navigator.pop(context)),
-                                const SizedBox(width: 15),
+                                const SizedBox(width: 9),
                                 _button("Konfirmasi", (){
                                   if(currentTitle != chosenTitleName && chosenTitleName != ''){
                                     appState.setPlayerTitle(chosenTitleName, chosenTitleId);
@@ -177,7 +177,8 @@ class _TitlePopupState extends State<TitlePopup> {
           style: const TextStyle(
             fontSize: 18,
             color: Colors.white,
-            fontWeight: FontWeight.bold,
+            // fontWeight: FontWeight.bold,
+            fontFamily: 'LuckiestGuy'
           ),
         ),
       ),
